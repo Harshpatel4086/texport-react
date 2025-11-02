@@ -14,3 +14,4 @@ Dashboard Panel
     -  Staff Salary Management (View Salary, Process Salary, Salary History)
     -  Billing & Invoicing (Create Invoice, View Invoices, Payment Tracking)
     -  Expense Management (Add Expense, View Expenses, Expense Reports)
+
