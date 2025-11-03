@@ -1,10 +1,10 @@
-import { useForm } from '@inertiajs/react';
+import { useForm, Link } from '@inertiajs/react';
 import { useEffect } from 'react';
 import Modal from './Modal';
 import Input from './Input';
 import Button from './Button';
 
-export default function EditStaffModal({ isOpen, onClose, staff }) {
+export default function EditStaffModal({ isOpen, onClose, staff, userRoles }) {
     const { data, setData, put, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -23,12 +23,11 @@ export default function EditStaffModal({ isOpen, onClose, staff }) {
         }
     }, [staff]);
 
-    // TODO: Replace with dynamic roles from database in future
-    const roles = [
-        { value: 'Admin', label: 'Admin' },
-        { value: 'Manager', label: 'Manager' },
-        { value: 'Employee', label: 'Employee' },
-    ];
+    // Use dynamic roles from current user
+    const roles = userRoles.map(role => ({
+        value: role.name,
+        label: role.name
+    }));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -85,6 +84,14 @@ export default function EditStaffModal({ isOpen, onClose, staff }) {
                         ))}
                     </select>
                     {errors.role && <p className="mt-1 text-sm text-red-500">{errors.role}</p>}
+                    {roles.length === 0 && (
+                        <p className="mt-1 text-sm text-gray-500">
+                            Role is not available{' '}
+                            <Link href="/roles" className="text-primary hover:text-primary-600 underline">
+                                Create role
+                            </Link>
+                        </p>
+                    )}
                 </div>
 
                 <Input

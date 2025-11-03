@@ -29,7 +29,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             icon: MdPeople,
             submenu: [
                 { name: 'Staff', href: '/staff', routeName: 'staff.index' },
-                { name: 'Roles', href: '#', routeName: 'users.roles' }
+                { name: 'Roles', href: '/roles', routeName: 'roles.index' }
             ]
         },
         // { name: 'Logistics', icon: MdLocalShipping, href: '#', routeName: 'logistics' },

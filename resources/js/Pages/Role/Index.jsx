@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Head, Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import Sidebar from '@/Components/Sidebar';
 import DashboardHeader from '@/Components/DashboardHeader';
 import Breadcrumb from '@/Components/Breadcrumb';
@@ -7,82 +7,64 @@ import DataTable from '@/Components/DataTable';
 import Button from '@/Components/Button';
 import { MdAdd, MdEdit, MdDelete } from 'react-icons/md';
 import IconButton from '@/Components/IconButton';
-import AddStaffModal from '@/Components/AddStaffModal';
-import EditStaffModal from '@/Components/EditStaffModal';
-import DeleteStaffModal from '@/Components/DeleteStaffModal';
+import AddRoleModal from '@/Components/AddRoleModal';
+import EditRoleModal from '@/Components/EditRoleModal';
+import DeleteRoleModal from '@/Components/DeleteRoleModal';
 
-export default function StaffIndex(props) {
-    const { auth = {}, staff = {}, filters = {}, userRoles = [] } = props;
+export default function RoleIndex(props) {
+    const { auth = {}, roles = {}, filters = {}, permissions = [] } = props;
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
     const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [selectedStaff, setSelectedStaff] = useState(null);
-
-    const mockStaff = {
-        data: [
-            { id: 1, name: 'John Doe', email: 'john@example.com', phone: '+1234567890', role: 'Manager', created_at: '2024-01-15' },
-            { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '+1234567891', role: 'Staff', created_at: '2024-01-20' },
-            { id: 3, name: 'Mike Johnson', email: 'mike@example.com', phone: '+1234567892', role: 'Supervisor', created_at: '2024-02-01' },
-        ],
-        from: 1,
-        to: 3,
-        total: 3,
-        links: [
-            { label: '&laquo; Previous', url: null, active: false },
-            { label: '1', url: '#', active: true },
-            { label: 'Next &raquo;', url: null, active: false }
-        ]
-    };
+    const [selectedRole, setSelectedRole] = useState(null);
 
     const breadcrumbItems = [
         { label: 'Home', href: '/dashboard' },
-        { label: 'Users', href: '/staff' },
-        { label: 'Staff' }
+        { label: 'Users', href: '/roles' },
+        { label: 'Roles' }
     ];
 
     const columns = [
         {
             key: "name",
-            label: "Name",
+            label: "Role Name",
             sortable: true,
             render: (item) => (
                 <div className="flex items-center">
                     <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium">
-                        {item.name.charAt(0)}
+                        {item.name.charAt(0).toUpperCase()}
                     </div>
                     <div className="ml-4">
                         <div className="text-sm font-medium text-text">
                             {item.name}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                            {item.phone}
                         </div>
                     </div>
                 </div>
             ),
         },
         {
-            key: "email",
-            label: "Email",
-            sortable: true,
+            key: "permissions",
+            label: "Permissions",
             render: (item) => (
-                <span className="text-gray-600">{item.email}</span>
-            ),
-        },
-        {
-            key: "role",
-            label: "Role",
-            render: (item) => (
-                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary">
-                    {item.role}
-                </span>
+                <div className="flex flex-wrap gap-1">
+                    {item.permissions.slice(0, 3).map((permission) => (
+                        <span key={permission.id} className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary">
+                            {permission.name}
+                        </span>
+                    ))}
+                    {item.permissions.length > 3 && (
+                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-600">
+                            +{item.permissions.length - 3} more
+                        </span>
+                    )}
+                </div>
             ),
         },
         {
             key: "created_at",
-            label: "Joined",
+            label: "Created",
             sortable: true,
             render: (item) => (
                 <span className="text-gray-600">
@@ -91,18 +73,8 @@ export default function StaffIndex(props) {
             ),
         },
         {
-            key: "status",
-            label: "Status",
-            render: () => (
-                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                    Active
-                </span>
-            ),
-        },
-        {
             key: "actions",
             label: "Actions",
-            // align: 'right',
             render: (item) => (
                 <div className="inline-flex items-center justify-end space-x-1">
                     <IconButton
@@ -110,7 +82,7 @@ export default function StaffIndex(props) {
                         tooltip="Edit"
                         variant="primary"
                         onClick={() => {
-                            setSelectedStaff(item);
+                            setSelectedRole(item);
                             setShowEditModal(true);
                         }}
                     />
@@ -119,7 +91,7 @@ export default function StaffIndex(props) {
                         tooltip="Delete"
                         variant="danger"
                         onClick={() => {
-                            setSelectedStaff(item);
+                            setSelectedRole(item);
                             setShowDeleteModal(true);
                         }}
                     />
@@ -128,11 +100,9 @@ export default function StaffIndex(props) {
         },
     ];
 
-    const staffData = staff.data ? staff : mockStaff;
-
     return (
         <>
-            <Head title="Staff Management" />
+            <Head title="Role Management" />
 
             <div className="flex h-screen bg-background">
                 <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
@@ -147,48 +117,48 @@ export default function StaffIndex(props) {
                         <Breadcrumb items={breadcrumbItems} />
 
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
-                            <h1 className="text-xl lg:text-2xl font-bold text-text">Staff Management</h1>
+                            <h1 className="text-xl lg:text-2xl font-bold text-text">Role Management</h1>
                             <Button
                                 className="flex items-center space-x-2"
-                                tooltip="Add Staff"
+                                tooltip="Add Role"
                                 onClick={() => setShowAddModal(true)}
                             >
                                 <MdAdd className="w-5 h-5" />
-                                <span>Add Staff</span>
+                                <span>Add Role</span>
                             </Button>
                         </div>
 
                         <DataTable
-                            data={staffData.data}
+                            data={roles.data}
                             columns={columns}
-                            searchPlaceholder="Search staff by name, email, or role..."
+                            searchPlaceholder="Search roles by name..."
                             filters={filters}
-                            pagination={staffData}
+                            pagination={roles}
                         />
 
-                        <AddStaffModal
+                        <AddRoleModal
                             isOpen={showAddModal}
                             onClose={() => setShowAddModal(false)}
-                            userRoles={userRoles}
+                            permissions={permissions}
                         />
 
-                        <EditStaffModal
+                        <EditRoleModal
                             isOpen={showEditModal}
                             onClose={() => {
                                 setShowEditModal(false);
-                                setSelectedStaff(null);
+                                setSelectedRole(null);
                             }}
-                            staff={selectedStaff}
-                            userRoles={userRoles}
+                            role={selectedRole}
+                            permissions={permissions}
                         />
 
-                        <DeleteStaffModal
+                        <DeleteRoleModal
                             isOpen={showDeleteModal}
                             onClose={() => {
                                 setShowDeleteModal(false);
-                                setSelectedStaff(null);
+                                setSelectedRole(null);
                             }}
-                            staff={selectedStaff}
+                            role={selectedRole}
                         />
                     </main>
                 </div>

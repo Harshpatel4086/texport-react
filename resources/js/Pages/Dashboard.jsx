@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import Sidebar from '@/Components/Sidebar';
 import DashboardHeader from '@/Components/DashboardHeader';
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, userRoles, userPermissions }) {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const stats = [
         { title: 'Active Orders', value: '1,284', change: '+8.2%', positive: true },
@@ -49,7 +49,17 @@ export default function Dashboard({ auth }) {
 
                         {/* Header */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
-                            <h1 className="text-xl lg:text-2xl font-bold text-text">Overview</h1>
+                            <div>
+                                <h1 className="text-xl lg:text-2xl font-bold text-text">Overview</h1>
+                                <div className="flex items-center space-x-2 mt-1">
+                                    <span className="text-sm text-gray-500">Role:</span>
+                                    {userRoles?.map((role, index) => (
+                                        <span key={role.id} className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary">
+                                            {role.name}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
                                 <button className="px-4 py-2 text-gray-600 hover:text-text transition-colors text-sm">
                                     📤 Export

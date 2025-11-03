@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -50,6 +51,15 @@ class RegisteredUserController extends Controller
             'business_location' => $request->business_location,
             'password' => Hash::make($request->password),
         ]);
+
+        // Assign owner role with all permissions to new user
+        $ownerRole = Role::where('name', 'owner')->first();
+        if ($ownerRole) {
+            $user->addRole($ownerRole);
+            // Sync all available permissions to the owner role
+            $allPermissions = \App\Models\Permission::pluck('name')->toArray();
+            $ownerRole->syncPermissions($allPermissions);
+        }
 
         event(new Registered($user));
 

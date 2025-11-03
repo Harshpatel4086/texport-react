@@ -30,11 +30,33 @@ class StaffManagementController extends Controller
             $query->orderBy($sortField, $sortDirection);
         }
 
-        $staff = $query->paginate(10)->withQueryString();
+        $perPage = $request->get('per_page', 10);
+        $staff = $query->paginate($perPage)->withQueryString();
+
+        // Set default filters when none provided
+        $filters = $request->only(['search', 'sort', 'direction', 'per_page']);
+        if (empty($filters)) {
+            $filters = [
+                'per_page' => 10,
+                'page' => 1,
+                'direction' => 'asc',
+                'sort' => 'name',
+                'search' => ''
+            ];
+        } else {
+            $filters = array_merge([
+                'per_page' => 10,
+                'page' => 1,
+                'direction' => 'asc',
+                'sort' => 'name',
+                'search' => ''
+            ], array_filter($filters));
+        }
 
         return Inertia::render('Staff/Index', [
             'staff' => $staff,
-            'filters' => $request->only(['search', 'sort', 'direction'])
+            'filters' => $filters,
+            'userRoles' => \App\Models\Role::where('created_by', auth()->id())->get()
         ]);
     }
 
@@ -43,7 +65,7 @@ class StaffManagementController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:staff',
-            'role' => 'required|string|in:Admin,Manager,Employee',
+            'role' => 'required|string|max:255',
             'password' => 'required|string|min:8',
         ]);
 
@@ -67,7 +89,7 @@ class StaffManagementController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:staff,email,' . $staff->id,
-            'role' => 'required|string|in:Admin,Manager,Employee',
+            'role' => 'required|string|max:255',
             'password' => 'nullable|string|min:8',
         ]);
 

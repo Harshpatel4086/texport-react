@@ -14,7 +14,10 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    $user = auth()->user()->load('roles.permissions');
+    return Inertia::render('Dashboard', [
+        'userRoles' => $user->roles
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -24,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
     // Staff routes
     Route::resource('staff', App\Http\Controllers\StaffManagementController::class);
+    
+    // Role routes
+    Route::resource('roles', App\Http\Controllers\RoleManagementController::class);
 });
 
 require __DIR__.'/auth.php';
