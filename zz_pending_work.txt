@@ -15,3 +15,5 @@ Dashboard Panel
     -  Billing & Invoicing (Create Invoice, View Invoices, Payment Tracking)
     -  Expense Management (Add Expense, View Expenses, Expense Reports)
 
+
+store all the users and staff in users table with ads roles column in users table and other information like phone, GST number etc store in setting table 
