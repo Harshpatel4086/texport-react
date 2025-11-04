@@ -3,12 +3,8 @@ import Input from '@/Components/Input';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
-        business_name: '',
-        owner_name: '',
+        name: '',
         email: '',
-        phone: '',
-        gst_number: '',
-        business_location: '',
         password: '',
         password_confirmation: '',
     });
@@ -38,21 +34,12 @@ export default function Register() {
 
                         <form onSubmit={submit} className="space-y-4">
                             <Input
-                                label="Business Name"
-                                value={data.business_name}
-                                onChange={(e) => setData('business_name', e.target.value)}
-                                placeholder="Enter your business name"
+                                label="Full Name"
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
+                                placeholder="Enter your full name"
                                 required
-                                error={errors.business_name}
-                            />
-
-                            <Input
-                                label="Owner Name"
-                                value={data.owner_name}
-                                onChange={(e) => setData('owner_name', e.target.value)}
-                                placeholder="Enter owner name"
-                                required
-                                error={errors.owner_name}
+                                error={errors.name}
                             />
 
                             <Input
@@ -63,33 +50,6 @@ export default function Register() {
                                 placeholder="Enter your email"
                                 required
                                 error={errors.email}
-                            />
-
-                            <Input
-                                label="Phone Number"
-                                type="tel"
-                                value={data.phone}
-                                onChange={(e) => setData('phone', e.target.value)}
-                                placeholder="Enter your phone number"
-                                required
-                                error={errors.phone}
-                            />
-
-                            <Input
-                                label="GST Number"
-                                value={data.gst_number}
-                                onChange={(e) => setData('gst_number', e.target.value)}
-                                placeholder="Enter GST number (optional)"
-                                error={errors.gst_number}
-                            />
-
-                            <Input
-                                label="Business Location"
-                                value={data.business_location}
-                                onChange={(e) => setData('business_location', e.target.value)}
-                                placeholder="Enter your business location"
-                                required
-                                error={errors.business_location}
                             />
 
                             <Input

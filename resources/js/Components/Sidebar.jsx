@@ -12,10 +12,18 @@ import {
     MdExpandMore,
     MdExpandLess
 } from 'react-icons/md';
+import { usePermissions } from '@/Utils/permissions';
 
 export default function Sidebar({ isOpen, setIsOpen }) {
     const [expandedMenus, setExpandedMenus] = useState({});
     const { url } = usePage();
+    const { canManage } = usePermissions();
+
+    // Build submenu items based on permissions
+    const usersSubmenu = [
+        ...(canManage('staff') ? [{ name: 'Staff', href: '/staff', routeName: 'staff.index' }] : []),
+        ...(canManage('role') ? [{ name: 'Roles', href: '/roles', routeName: 'roles.index' }] : [])
+    ];
 
     const menuItems = [
         {
@@ -24,14 +32,12 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             href: '/dashboard',
             routeName: 'dashboard'
         },
-        {
+        // Only show Users menu if user has any submenu permissions
+        ...(usersSubmenu.length > 0 ? [{
             name: 'Users',
             icon: MdPeople,
-            submenu: [
-                { name: 'Staff', href: '/staff', routeName: 'staff.index' },
-                { name: 'Roles', href: '/roles', routeName: 'roles.index' }
-            ]
-        },
+            submenu: usersSubmenu
+        }] : []),
         // { name: 'Logistics', icon: MdLocalShipping, href: '#', routeName: 'logistics' },
         // { name: 'Vendors', icon: MdBusiness, href: '#', routeName: 'vendors' },
         // { name: 'Reports', icon: MdAssessment, href: '#', routeName: 'reports' },

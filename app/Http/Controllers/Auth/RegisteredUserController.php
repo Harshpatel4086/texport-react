@@ -32,24 +32,16 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'business_name' => 'required|string|max:255',
-            'owner_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
-            'phone' => 'required|string|max:20',
-            'gst_number' => 'nullable|string|max:15',
-            'business_location' => 'required|string|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'business_name' => $request->business_name,
-            'owner_name' => $request->owner_name,
-            'name' => $request->owner_name,
+            'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
-            'gst_number' => $request->gst_number,
-            'business_location' => $request->business_location,
             'password' => Hash::make($request->password),
+            'is_staff' => false,
         ]);
 
         // Assign owner role with all permissions to new user

@@ -19,14 +19,12 @@ class User extends Authenticatable implements LaratrustUser
      * @var array<int, string>
      */
     protected $fillable = [
-        'business_name',
-        'owner_name',
         'name',
         'email',
-        'phone',
-        'gst_number',
-        'business_location',
         'password',
+        'role',
+        'created_by',
+        'is_staff',
     ];
 
     /**
@@ -49,6 +47,27 @@ class User extends Authenticatable implements LaratrustUser
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_staff' => 'boolean',
         ];
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function staffMembers()
+    {
+        return $this->hasMany(User::class, 'created_by')->where('is_staff', true);
+    }
+
+    public function scopeStaff($query)
+    {
+        return $query->where('is_staff', true);
+    }
+
+    public function scopeOwners($query)
+    {
+        return $query->where('is_staff', false);
     }
 }

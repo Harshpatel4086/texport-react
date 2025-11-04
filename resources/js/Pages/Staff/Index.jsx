@@ -10,9 +10,16 @@ import IconButton from '@/Components/IconButton';
 import AddStaffModal from '@/Components/AddStaffModal';
 import EditStaffModal from '@/Components/EditStaffModal';
 import DeleteStaffModal from '@/Components/DeleteStaffModal';
+import { usePermissions } from '@/Utils/permissions';
+import Toast from '@/Components/Toast';
+import { useToastFlash } from '@/Hooks/useToastFlash';
 
 export default function StaffIndex(props) {
     const { auth = {}, staff = {}, filters = {}, userRoles = [] } = props;
+    const { canCreate, canEdit, canDelete, hasAnyAction } = usePermissions();
+
+    // Handle flash messages as toasts
+    useToastFlash();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
@@ -99,33 +106,37 @@ export default function StaffIndex(props) {
                 </span>
             ),
         },
-        {
+        // Only show Actions column if user has any action permissions
+        ...(hasAnyAction('staff') ? [{
             key: "actions",
             label: "Actions",
-            // align: 'right',
             render: (item) => (
                 <div className="inline-flex items-center justify-end space-x-1">
-                    <IconButton
-                        icon={MdEdit}
-                        tooltip="Edit"
-                        variant="primary"
-                        onClick={() => {
-                            setSelectedStaff(item);
-                            setShowEditModal(true);
-                        }}
-                    />
-                    <IconButton
-                        icon={MdDelete}
-                        tooltip="Delete"
-                        variant="danger"
-                        onClick={() => {
-                            setSelectedStaff(item);
-                            setShowDeleteModal(true);
-                        }}
-                    />
+                    {canEdit('staff') && (
+                        <IconButton
+                            icon={MdEdit}
+                            tooltip="Edit"
+                            variant="primary"
+                            onClick={() => {
+                                setSelectedStaff(item);
+                                setShowEditModal(true);
+                            }}
+                        />
+                    )}
+                    {canDelete('staff') && (
+                        <IconButton
+                            icon={MdDelete}
+                            tooltip="Delete"
+                            variant="danger"
+                            onClick={() => {
+                                setSelectedStaff(item);
+                                setShowDeleteModal(true);
+                            }}
+                        />
+                    )}
                 </div>
             ),
-        },
+        }] : []),
     ];
 
     const staffData = staff.data ? staff : mockStaff;
@@ -148,14 +159,16 @@ export default function StaffIndex(props) {
 
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
                             <h1 className="text-xl lg:text-2xl font-bold text-text">Staff Management</h1>
-                            <Button
-                                className="flex items-center space-x-2"
-                                tooltip="Add Staff"
-                                onClick={() => setShowAddModal(true)}
-                            >
-                                <MdAdd className="w-5 h-5" />
-                                <span>Add Staff</span>
-                            </Button>
+                                {canCreate('staff') && (
+                                    <Button
+                                        className="flex items-center space-x-2"
+                                        tooltip="Add Staff"
+                                        onClick={() => setShowAddModal(true)}
+                                    >
+                                        <MdAdd className="w-5 h-5" />
+                                        <span>Add Staff</span>
+                                    </Button>
+                                )}
                         </div>
 
                         <DataTable
@@ -166,33 +179,42 @@ export default function StaffIndex(props) {
                             pagination={staffData}
                         />
 
-                        <AddStaffModal
-                            isOpen={showAddModal}
-                            onClose={() => setShowAddModal(false)}
-                            userRoles={userRoles}
-                        />
+                        {canCreate('staff') && (
+                            <AddStaffModal
+                                isOpen={showAddModal}
+                                onClose={() => setShowAddModal(false)}
+                                userRoles={userRoles}
 
-                        <EditStaffModal
-                            isOpen={showEditModal}
-                            onClose={() => {
-                                setShowEditModal(false);
-                                setSelectedStaff(null);
-                            }}
-                            staff={selectedStaff}
-                            userRoles={userRoles}
-                        />
+                            />
+                        )}
 
-                        <DeleteStaffModal
-                            isOpen={showDeleteModal}
-                            onClose={() => {
-                                setShowDeleteModal(false);
-                                setSelectedStaff(null);
-                            }}
-                            staff={selectedStaff}
-                        />
+                        {canEdit('staff') && (
+                            <EditStaffModal
+                                isOpen={showEditModal}
+                                onClose={() => {
+                                    setShowEditModal(false);
+                                    setSelectedStaff(null);
+                                }}
+                                staff={selectedStaff}
+                                userRoles={userRoles}
+                            />
+                        )}
+
+                        {canDelete('staff') && (
+                            <DeleteStaffModal
+                                isOpen={showDeleteModal}
+                                onClose={() => {
+                                    setShowDeleteModal(false);
+                                    setSelectedStaff(null);
+                                }}
+                                staff={selectedStaff}
+                            />
+                        )}
                     </main>
                 </div>
             </div>
+
+            <Toast />
         </>
     );
 }

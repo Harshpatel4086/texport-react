@@ -10,9 +10,16 @@ import IconButton from '@/Components/IconButton';
 import AddRoleModal from '@/Components/AddRoleModal';
 import EditRoleModal from '@/Components/EditRoleModal';
 import DeleteRoleModal from '@/Components/DeleteRoleModal';
+import { usePermissions } from '@/Utils/permissions';
+import Toast from '@/Components/Toast';
+import { useToastFlash } from '@/Hooks/useToastFlash';
 
 export default function RoleIndex(props) {
     const { auth = {}, roles = {}, filters = {}, permissions = [] } = props;
+    const { canCreate, canEdit, canDelete, hasAnyAction } = usePermissions();
+    
+    // Handle flash messages as toasts
+    useToastFlash();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
@@ -72,32 +79,37 @@ export default function RoleIndex(props) {
                 </span>
             ),
         },
-        {
+        // Only show Actions column if user has any action permissions
+        ...(hasAnyAction('role') ? [{
             key: "actions",
             label: "Actions",
             render: (item) => (
                 <div className="inline-flex items-center justify-end space-x-1">
-                    <IconButton
-                        icon={MdEdit}
-                        tooltip="Edit"
-                        variant="primary"
-                        onClick={() => {
-                            setSelectedRole(item);
-                            setShowEditModal(true);
-                        }}
-                    />
-                    <IconButton
-                        icon={MdDelete}
-                        tooltip="Delete"
-                        variant="danger"
-                        onClick={() => {
-                            setSelectedRole(item);
-                            setShowDeleteModal(true);
-                        }}
-                    />
+                    {canEdit('role') && (
+                        <IconButton
+                            icon={MdEdit}
+                            tooltip="Edit"
+                            variant="primary"
+                            onClick={() => {
+                                setSelectedRole(item);
+                                setShowEditModal(true);
+                            }}
+                        />
+                    )}
+                    {canDelete('role') && (
+                        <IconButton
+                            icon={MdDelete}
+                            tooltip="Delete"
+                            variant="danger"
+                            onClick={() => {
+                                setSelectedRole(item);
+                                setShowDeleteModal(true);
+                            }}
+                        />
+                    )}
                 </div>
             ),
-        },
+        }] : []),
     ];
 
     return (
@@ -118,14 +130,16 @@ export default function RoleIndex(props) {
 
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
                             <h1 className="text-xl lg:text-2xl font-bold text-text">Role Management</h1>
-                            <Button
-                                className="flex items-center space-x-2"
-                                tooltip="Add Role"
-                                onClick={() => setShowAddModal(true)}
-                            >
-                                <MdAdd className="w-5 h-5" />
-                                <span>Add Role</span>
-                            </Button>
+                            {canCreate('role') && (
+                                <Button
+                                    className="flex items-center space-x-2"
+                                    tooltip="Add Role"
+                                    onClick={() => setShowAddModal(true)}
+                                >
+                                    <MdAdd className="w-5 h-5" />
+                                    <span>Add Role</span>
+                                </Button>
+                            )}
                         </div>
 
                         <DataTable
@@ -136,33 +150,41 @@ export default function RoleIndex(props) {
                             pagination={roles}
                         />
 
-                        <AddRoleModal
-                            isOpen={showAddModal}
-                            onClose={() => setShowAddModal(false)}
-                            permissions={permissions}
-                        />
+                        {canCreate('role') && (
+                            <AddRoleModal
+                                isOpen={showAddModal}
+                                onClose={() => setShowAddModal(false)}
+                                permissions={permissions}
+                            />
+                        )}
 
-                        <EditRoleModal
-                            isOpen={showEditModal}
-                            onClose={() => {
-                                setShowEditModal(false);
-                                setSelectedRole(null);
-                            }}
-                            role={selectedRole}
-                            permissions={permissions}
-                        />
+                        {canEdit('role') && (
+                            <EditRoleModal
+                                isOpen={showEditModal}
+                                onClose={() => {
+                                    setShowEditModal(false);
+                                    setSelectedRole(null);
+                                }}
+                                role={selectedRole}
+                                permissions={permissions}
+                            />
+                        )}
 
-                        <DeleteRoleModal
-                            isOpen={showDeleteModal}
-                            onClose={() => {
-                                setShowDeleteModal(false);
-                                setSelectedRole(null);
-                            }}
-                            role={selectedRole}
-                        />
+                        {canDelete('role') && (
+                            <DeleteRoleModal
+                                isOpen={showDeleteModal}
+                                onClose={() => {
+                                    setShowDeleteModal(false);
+                                    setSelectedRole(null);
+                                }}
+                                role={selectedRole}
+                            />
+                        )}
                     </main>
                 </div>
             </div>
+            
+            <Toast />
         </>
     );
 }

@@ -3,7 +3,7 @@
 Dashboard Panel
     -  Dashboard Overview (Stats, Charts, Recent Activity)
     - ✅ Staff Management (List, Add, Edit, Delete)
-    -  Role Management (List, Add (With permissions), Edit, Delete) using Spatie Laravel-Permission
+    - ✅ Role Management (List, Add (With permissions), Edit, Delete) using Spatie Laravel-Permission
     -  Profile Management (View, Edit, Change Password)
     -  Settings (General(Company Logo (For invoices), Theme Color), Security, Notifications)
     -  Party Management (List, Add, Edit, Delete)

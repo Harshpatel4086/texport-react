@@ -13,29 +13,26 @@ class PermissionSeeder extends Seeder
         // Define permissions with descriptive names for easy searching
         $permissions = [
             // User Management
-            'manage user',
-            'create user',
-            'view user',
-            'edit user',
-            'delete user',
+            // 'manage user',
+            // 'create user',
+            // 'edit user',
+            // 'delete user',
 
             // Role Management
-            // 'manage role',
-            // 'create role',
-            // 'view role',
-            // 'edit role',
-            // 'delete role',
+            'manage role',
+            'create role',
+            'edit role',
+            'delete role',
 
             // Staff Management
-            // 'manage staff',
-            // 'create staff',
-            // 'view staff',
-            // 'edit staff',
-            // 'delete staff',
+            'manage staff',
+            'create staff',
+            'edit staff',
+            'delete staff',
 
             // Product Management (example)
-            'create product',
-            'edit product',
+            // 'create product',
+            // 'edit product',
 
             // Order Management (example)
             // 'manage order',

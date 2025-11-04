@@ -11,6 +11,11 @@ class RoleManagementController extends Controller
 {
     public function index(Request $request)
     {
+        // Check manage permission for roles
+        if (auth()->user()->is_staff && !auth()->user()->hasPermission('manage role')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $query = Role::where('created_by', auth()->id())->with('permissions');
 
         if ($request->filled('search')) {
@@ -57,6 +62,11 @@ class RoleManagementController extends Controller
 
     public function store(Request $request)
     {
+        // Check create permission for roles
+        if (auth()->user()->is_staff && !auth()->user()->hasPermission('create role')) {
+            return back()->with('error', 'Permission denied!');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'permissions' => 'array'
@@ -77,6 +87,11 @@ class RoleManagementController extends Controller
             abort(403);
         }
 
+        // Check edit permission for roles
+        if (auth()->user()->is_staff && !auth()->user()->hasPermission('edit role')) {
+            return back()->with('error', 'Permission denied!');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255|unique:roles,name,' . $role->id,
             'permissions' => 'array'
@@ -92,6 +107,11 @@ class RoleManagementController extends Controller
     {
         if ($role->created_by !== auth()->id()) {
             abort(403);
+        }
+
+        // Check delete permission for roles
+        if (auth()->user()->is_staff && !auth()->user()->hasPermission('delete role')) {
+            return back()->with('error', 'Permission denied!');
         }
 
         $role->delete();

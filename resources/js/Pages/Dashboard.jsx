@@ -2,8 +2,13 @@ import { useState } from 'react';
 import { Head } from '@inertiajs/react';
 import Sidebar from '@/Components/Sidebar';
 import DashboardHeader from '@/Components/DashboardHeader';
+import Toast from '@/Components/Toast';
+import { useToastFlash } from '@/Hooks/useToastFlash';
 
 export default function Dashboard({ auth, userRoles, userPermissions }) {
+    // Handle flash messages as toasts
+    useToastFlash();
+    
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const stats = [
         { title: 'Active Orders', value: '1,284', change: '+8.2%', positive: true },
@@ -184,6 +189,8 @@ export default function Dashboard({ auth, userRoles, userPermissions }) {
                     </main>
                 </div>
             </div>
+            
+            <Toast />
         </>
     );
 }

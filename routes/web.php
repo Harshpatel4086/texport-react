@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleManagementController;
+use App\Http\Controllers\StaffManagementController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -26,10 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Staff routes
-    Route::resource('staff', App\Http\Controllers\StaffManagementController::class);
-    
+    Route::resource('staff', StaffManagementController::class);
+
     // Role routes
-    Route::resource('roles', App\Http\Controllers\RoleManagementController::class);
+    Route::resource('roles', RoleManagementController::class);
 });
 
 require __DIR__.'/auth.php';
