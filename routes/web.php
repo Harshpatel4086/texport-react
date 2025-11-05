@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\PartyManagementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\StaffManagementController;
@@ -7,20 +10,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('LandingPage', [
-        'auth' => [
-            'user' => auth()->user()
-        ]
-    ]);
-})->name('home');
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
 
-Route::get('/dashboard', function () {
-    $user = auth()->user()->load('roles.permissions');
-    return Inertia::render('Dashboard', [
-        'userRoles' => $user->roles
-    ]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -32,6 +24,9 @@ Route::middleware('auth')->group(function () {
 
     // Role routes
     Route::resource('roles', RoleManagementController::class);
+
+    // Party routes
+    Route::resource('parties', PartyManagementController::class);
 });
 
 require __DIR__.'/auth.php';

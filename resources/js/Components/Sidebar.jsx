@@ -38,6 +38,13 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             icon: MdPeople,
             submenu: usersSubmenu
         }] : []),
+        // Show Parties as direct menu item
+        ...(canManage('party') ? [{
+            name: 'Parties',
+            icon: MdBusiness,
+            href: '/parties',
+            routeName: 'parties.index'
+        }] : []),
         // { name: 'Logistics', icon: MdLocalShipping, href: '#', routeName: 'logistics' },
         // { name: 'Vendors', icon: MdBusiness, href: '#', routeName: 'vendors' },
         // { name: 'Reports', icon: MdAssessment, href: '#', routeName: 'reports' },

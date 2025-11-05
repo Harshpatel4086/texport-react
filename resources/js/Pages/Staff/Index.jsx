@@ -7,9 +7,9 @@ import DataTable from '@/Components/DataTable';
 import Button from '@/Components/Button';
 import { MdAdd, MdEdit, MdDelete } from 'react-icons/md';
 import IconButton from '@/Components/IconButton';
-import AddStaffModal from '@/Components/AddStaffModal';
-import EditStaffModal from '@/Components/EditStaffModal';
-import DeleteStaffModal from '@/Components/DeleteStaffModal';
+import StaffModal from './StaffModal';
+import StaffActions from './StaffActions';
+import { staffColumns } from './staffConfig.jsx';
 import { usePermissions } from '@/Utils/permissions';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
@@ -22,25 +22,14 @@ export default function StaffIndex(props) {
     useToastFlash();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [showAddModal, setShowAddModal] = useState(false);
-    const [showEditModal, setShowEditModal] = useState(false);
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [selectedStaff, setSelectedStaff] = useState(null);
+    const [modalState, setModalState] = useState({ isOpen: false, mode: null, entity: null });
 
-    const mockStaff = {
-        data: [
-            { id: 1, name: 'John Doe', email: 'john@example.com', phone: '+1234567890', role: 'Manager', created_at: '2024-01-15' },
-            { id: 2, name: 'Jane Smith', email: 'jane@example.com', phone: '+1234567891', role: 'Staff', created_at: '2024-01-20' },
-            { id: 3, name: 'Mike Johnson', email: 'mike@example.com', phone: '+1234567892', role: 'Supervisor', created_at: '2024-02-01' },
-        ],
-        from: 1,
-        to: 3,
-        total: 3,
-        links: [
-            { label: '&laquo; Previous', url: null, active: false },
-            { label: '1', url: '#', active: true },
-            { label: 'Next &raquo;', url: null, active: false }
-        ]
+    const handleEdit = (item) => {
+        setModalState({ isOpen: true, mode: 'edit', entity: item });
+    };
+
+    const handleDelete = (item) => {
+        setModalState({ isOpen: true, mode: 'delete', entity: item });
     };
 
     const breadcrumbItems = [
@@ -48,98 +37,6 @@ export default function StaffIndex(props) {
         { label: 'Users', href: '/staff' },
         { label: 'Staff' }
     ];
-
-    const columns = [
-        {
-            key: "name",
-            label: "Name",
-            sortable: true,
-            render: (item) => (
-                <div className="flex items-center">
-                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium">
-                        {item.name.charAt(0)}
-                    </div>
-                    <div className="ml-4">
-                        <div className="text-sm font-medium text-text">
-                            {item.name}
-                        </div>
-                        <div className="text-sm text-gray-500">
-                            {item.phone}
-                        </div>
-                    </div>
-                </div>
-            ),
-        },
-        {
-            key: "email",
-            label: "Email",
-            sortable: true,
-            render: (item) => (
-                <span className="text-gray-600">{item.email}</span>
-            ),
-        },
-        {
-            key: "role",
-            label: "Role",
-            render: (item) => (
-                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-primary/10 text-primary">
-                    {item.role}
-                </span>
-            ),
-        },
-        {
-            key: "created_at",
-            label: "Joined",
-            sortable: true,
-            render: (item) => (
-                <span className="text-gray-600">
-                    {new Date(item.created_at).toLocaleDateString()}
-                </span>
-            ),
-        },
-        {
-            key: "status",
-            label: "Status",
-            render: () => (
-                <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
-                    Active
-                </span>
-            ),
-        },
-        // Only show Actions column if user has any action permissions
-        ...(hasAnyAction('staff') ? [{
-            key: "actions",
-            label: "Actions",
-            render: (item) => (
-                <div className="inline-flex items-center justify-end space-x-1">
-                    {canEdit('staff') && (
-                        <IconButton
-                            icon={MdEdit}
-                            tooltip="Edit"
-                            variant="primary"
-                            onClick={() => {
-                                setSelectedStaff(item);
-                                setShowEditModal(true);
-                            }}
-                        />
-                    )}
-                    {canDelete('staff') && (
-                        <IconButton
-                            icon={MdDelete}
-                            tooltip="Delete"
-                            variant="danger"
-                            onClick={() => {
-                                setSelectedStaff(item);
-                                setShowDeleteModal(true);
-                            }}
-                        />
-                    )}
-                </div>
-            ),
-        }] : []),
-    ];
-
-    const staffData = staff.data ? staff : mockStaff;
 
     return (
         <>
@@ -163,7 +60,7 @@ export default function StaffIndex(props) {
                                     <Button
                                         className="flex items-center space-x-2"
                                         tooltip="Add Staff"
-                                        onClick={() => setShowAddModal(true)}
+                                        onClick={() => setModalState({ isOpen: true, mode: 'create', entity: null })}
                                     >
                                         <MdAdd className="w-5 h-5" />
                                         <span>Add Staff</span>
@@ -172,44 +69,33 @@ export default function StaffIndex(props) {
                         </div>
 
                         <DataTable
-                            data={staffData.data}
-                            columns={columns}
+                            data={staff.data}
+                            columns={[
+                                ...staffColumns,
+                                ...(hasAnyAction('staff') ? [{
+                                    key: "actions",
+                                    label: "Actions",
+                                    render: (item) => (
+                                        <StaffActions
+                                            item={item}
+                                            onEdit={handleEdit}
+                                            onDelete={handleDelete}
+                                        />
+                                    ),
+                                }] : []),
+                            ]}
                             searchPlaceholder="Search staff by name, email, or role..."
                             filters={filters}
-                            pagination={staffData}
+                            pagination={staff}
                         />
 
-                        {canCreate('staff') && (
-                            <AddStaffModal
-                                isOpen={showAddModal}
-                                onClose={() => setShowAddModal(false)}
-                                userRoles={userRoles}
-
-                            />
-                        )}
-
-                        {canEdit('staff') && (
-                            <EditStaffModal
-                                isOpen={showEditModal}
-                                onClose={() => {
-                                    setShowEditModal(false);
-                                    setSelectedStaff(null);
-                                }}
-                                staff={selectedStaff}
-                                userRoles={userRoles}
-                            />
-                        )}
-
-                        {canDelete('staff') && (
-                            <DeleteStaffModal
-                                isOpen={showDeleteModal}
-                                onClose={() => {
-                                    setShowDeleteModal(false);
-                                    setSelectedStaff(null);
-                                }}
-                                staff={selectedStaff}
-                            />
-                        )}
+                        <StaffModal
+                            isOpen={modalState.isOpen}
+                            onClose={() => setModalState({ isOpen: false, mode: null, entity: null })}
+                            mode={modalState.mode}
+                            entity={modalState.entity}
+                            userRoles={userRoles}
+                        />
                     </main>
                 </div>
             </div>

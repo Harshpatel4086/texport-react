@@ -13,7 +13,7 @@ class StaffManagementController extends Controller
     public function index(Request $request)
     {
         // Check manage permission for staff
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('manage staff')) {
+        if (!auth()->user()->hasPermission('manage staff')) {
             return redirect()->route('dashboard')->with('error', 'Permission denied!');
         }
 
@@ -69,7 +69,7 @@ class StaffManagementController extends Controller
     public function store(Request $request)
     {
         // Check create permission for staff
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('create staff')) {
+        if (!auth()->user()->hasPermission('create staff')) {
             return back()->with('error', 'Permission denied!');
         }
 
@@ -106,12 +106,12 @@ class StaffManagementController extends Controller
 
     public function update(Request $request, User $staff)
     {
-        if ($staff->created_by !== auth()->id() || !$staff->is_staff) {
+        if ($staff->created_by != auth()->id() || !$staff->is_staff) {
             abort(403);
         }
 
         // Check edit permission for staff
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('edit staff')) {
+        if (!auth()->user()->hasPermission('edit staff')) {
             return back()->with('error', 'Permission denied!');
         }
 
@@ -144,7 +144,7 @@ class StaffManagementController extends Controller
         $staff->update($updateData);
 
         // Remove all existing roles and assign the new role
-        $staff->detachRoles();
+        $staff->removeRoles();
         $staff->addRole($role);
 
         return back()->with('success', 'Staff updated successfully.');
@@ -157,7 +157,7 @@ class StaffManagementController extends Controller
         }
 
         // Check delete permission for staff
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('delete staff')) {
+        if (!auth()->user()->hasPermission('delete staff')) {
             return back()->with('error', 'Permission denied!');
         }
 

@@ -13,5 +13,14 @@ if (!function_exists('createdBy')) {
     }
 }
 
+if (!function_exists('formatPartyNumber')) {
+    function formatPartyNumber($id)
+    {
+        if($id === null){
+            return '--';
+        }
+        return '#PTY-' . str_pad($id, 6, '0', STR_PAD_LEFT);
+    }
+}
 
 ?>

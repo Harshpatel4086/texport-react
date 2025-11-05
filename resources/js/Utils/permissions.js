@@ -6,9 +6,11 @@ export function usePermissions() {
 
 
     const hasPermission = (permission) => {
-        // Owners have all permissions
+        // Owners have all permissions that exist in the database
         if (auth.isOwner) {
-            return true;
+            // Only return true if the permission exists in the permissions array
+            // This ensures we only show menus for permissions that are seeded
+            return auth.permissions && auth.permissions.includes(permission);
         }
 
         // Check if staff has the specific permission
@@ -19,7 +21,8 @@ export function usePermissions() {
     const canCreate = (module) => hasPermission(`create ${module}`);
     const canEdit = (module) => hasPermission(`edit ${module}`);
     const canDelete = (module) => hasPermission(`delete ${module}`);
-    const hasAnyAction = (module) => canEdit(module) || canDelete(module);
+    const canView = (module) => hasPermission(`view ${module}`);
+    const hasAnyAction = (module) => canEdit(module) || canDelete(module) || canView(module);
 
     return {
         hasPermission,
@@ -27,6 +30,7 @@ export function usePermissions() {
         canCreate,
         canEdit,
         canDelete,
+        canView,
         hasAnyAction,
         isOwner: auth.isOwner,
         permissions: auth.permissions || []

@@ -13,7 +13,8 @@ export default function DataTable(props) {
         currentUrl = url,
         filters = {},
         pagination = null,
-        perPageOptions = [10, 25, 50, 100]
+        perPageOptions = [10, 25, 50, 100],
+        onView = null
     } = props;
 
     // Safely get URL parameters (client-side only)
@@ -78,7 +79,7 @@ export default function DataTable(props) {
 
     const renderCell = (item, column) => {
         if (column.render) {
-            return column.render(item);
+            return column.render(item, onView);
         }
         return item[column.key] || '-';
     };

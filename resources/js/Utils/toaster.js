@@ -1,31 +1,16 @@
+import { toast } from 'sonner';
+
 class Toaster {
-    constructor() {
-        this.listeners = [];
-    }
-
-    addListener(callback) {
-        this.listeners.push(callback);
-        return () => {
-            this.listeners = this.listeners.filter(listener => listener !== callback);
-        };
-    }
-
     success(message) {
-        this.show(message, 'success');
+        toast.success(message);
     }
 
     error(message) {
-        this.show(message, 'error');
+        toast.error(message);
     }
 
     warning(message) {
-        this.show(message, 'warning');
-    }
-
-    show(message, type) {
-        this.listeners.forEach(callback => {
-            callback({ message, type, id: Date.now() + Math.random() });
-        });
+        toast.warning(message);
     }
 }
 

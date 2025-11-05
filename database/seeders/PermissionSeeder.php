@@ -12,12 +12,6 @@ class PermissionSeeder extends Seeder
     {
         // Define permissions with descriptive names for easy searching
         $permissions = [
-            // User Management
-            // 'manage user',
-            // 'create user',
-            // 'edit user',
-            // 'delete user',
-
             // Role Management
             'manage role',
             'create role',
@@ -29,6 +23,13 @@ class PermissionSeeder extends Seeder
             'create staff',
             'edit staff',
             'delete staff',
+
+            // Party Management
+            'manage party',
+            'create party',
+            'edit party',
+            'view party',
+            'delete party',
 
             // Product Management (example)
             // 'create product',

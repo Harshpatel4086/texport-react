@@ -7,22 +7,27 @@ import DataTable from '@/Components/DataTable';
 import Button from '@/Components/Button';
 import { MdAdd, MdEdit, MdDelete } from 'react-icons/md';
 import IconButton from '@/Components/IconButton';
-import RoleModal from './RoleModal';
-import RoleActions from './RoleActions';
-import { roleColumns } from './roleConfig.jsx';
+import PartyModal from './PartyModal';
+import PartyViewModal from './PartyViewModal';
+import PartyActions from './PartyActions';
+import { partyColumns } from './partyConfig.jsx';
 import { usePermissions } from '@/Utils/permissions';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
 
-export default function RoleIndex(props) {
-    const { auth = {}, roles = {}, filters = {}, permissions = [] } = props;
+export default function PartyIndex(props) {
+    const { auth = {}, parties = {}, filters = {} } = props;
     const { canCreate, canEdit, canDelete, hasAnyAction } = usePermissions();
-    
-    // Handle flash messages as toasts
+
     useToastFlash();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [modalState, setModalState] = useState({ isOpen: false, mode: null, entity: null });
+    const [viewModalState, setViewModalState] = useState({ isOpen: false, entity: null });
+
+    const handleView = (item) => {
+        setViewModalState({ isOpen: true, entity: item });
+    };
 
     const handleEdit = (item) => {
         setModalState({ isOpen: true, mode: 'edit', entity: item });
@@ -34,15 +39,14 @@ export default function RoleIndex(props) {
 
     const breadcrumbItems = [
         { label: 'Home', href: '/dashboard' },
-        { label: 'Users', href: '/roles' },
-        { label: 'Roles' }
+        { label: 'Parties' }
     ];
 
 
 
     return (
         <>
-            <Head title="Role Management" />
+            <Head title="Party Management" />
 
             <div className="flex h-screen bg-background">
                 <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
@@ -57,51 +61,58 @@ export default function RoleIndex(props) {
                         <Breadcrumb items={breadcrumbItems} />
 
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
-                            <h1 className="text-xl lg:text-2xl font-bold text-text">Role Management</h1>
-                            {canCreate('role') && (
+                            <h1 className="text-xl lg:text-2xl font-bold text-text">Party Management</h1>
+                            {canCreate('party') && (
                                 <Button
                                     className="flex items-center space-x-2"
-                                    tooltip="Add Role"
+                                    tooltip="Add Party"
                                     onClick={() => setModalState({ isOpen: true, mode: 'create', entity: null })}
                                 >
                                     <MdAdd className="w-5 h-5" />
-                                    <span>Add Role</span>
+                                    <span>Add Party</span>
                                 </Button>
                             )}
                         </div>
 
                         <DataTable
-                            data={roles.data}
+                            data={parties.data}
                             columns={[
-                                ...roleColumns,
-                                ...(hasAnyAction('role') ? [{
+                                ...partyColumns,
+                                ...(hasAnyAction('party') ? [{
                                     key: "actions",
                                     label: "Actions",
                                     render: (item) => (
-                                        <RoleActions
+                                        <PartyActions
                                             item={item}
+                                            onView={handleView}
                                             onEdit={handleEdit}
                                             onDelete={handleDelete}
                                         />
                                     ),
                                 }] : []),
                             ]}
-                            searchPlaceholder="Search roles by name..."
+                            searchPlaceholder="Search parties by name, email, GST number..."
                             filters={filters}
-                            pagination={roles}
+                            pagination={parties}
+                                onView={handleView}
                         />
 
-                        <RoleModal
+                        <PartyModal
                             isOpen={modalState.isOpen}
                             onClose={() => setModalState({ isOpen: false, mode: null, entity: null })}
                             mode={modalState.mode}
                             entity={modalState.entity}
-                            permissions={permissions}
+                        />
+
+                        <PartyViewModal
+                            isOpen={viewModalState.isOpen}
+                            onClose={() => setViewModalState({ isOpen: false, entity: null })}
+                            party={viewModalState.entity}
                         />
                     </main>
                 </div>
             </div>
-            
+
             <Toast />
         </>
     );

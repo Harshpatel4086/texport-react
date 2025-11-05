@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\Permission;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class RoleManagementController extends Controller
@@ -12,7 +13,7 @@ class RoleManagementController extends Controller
     public function index(Request $request)
     {
         // Check manage permission for roles
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('manage role')) {
+        if (!auth()->user()->hasPermission('manage role')) {
             return redirect()->route('dashboard')->with('error', 'Permission denied!');
         }
 
@@ -63,12 +64,19 @@ class RoleManagementController extends Controller
     public function store(Request $request)
     {
         // Check create permission for roles
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('create role')) {
+        if (!auth()->user()->hasPermission('create role')) {
             return back()->with('error', 'Permission denied!');
         }
 
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('roles')->where(function ($query) {
+                    return $query->where('created_by', auth()->id());
+                })
+            ],
             'permissions' => 'array'
         ]);
 
@@ -88,12 +96,19 @@ class RoleManagementController extends Controller
         }
 
         // Check edit permission for roles
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('edit role')) {
+        if (!auth()->user()->hasPermission('edit role')) {
             return back()->with('error', 'Permission denied!');
         }
 
         $request->validate([
-            'name' => 'required|string|max:255|unique:roles,name,' . $role->id,
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('roles')->where(function ($query) {
+                    return $query->where('created_by', auth()->id());
+                })->ignore($role->id)
+            ],
             'permissions' => 'array'
         ]);
 
@@ -110,7 +125,7 @@ class RoleManagementController extends Controller
         }
 
         // Check delete permission for roles
-        if (auth()->user()->is_staff && !auth()->user()->hasPermission('delete role')) {
+        if (!auth()->user()->hasPermission('delete role')) {
             return back()->with('error', 'Permission denied!');
         }
 
