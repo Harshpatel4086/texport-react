@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2025 at 07:46 PM
+-- Generation Time: Nov 06, 2025 at 07:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,6 +24,37 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `attendances`
+--
+
+CREATE TABLE `attendances` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `staff_id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `status` enum('present','absent') NOT NULL,
+  `created_by` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `attendances`
+--
+
+INSERT INTO `attendances` (`id`, `staff_id`, `date`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 10, '2025-11-06', 'present', 1, '2025-11-06 12:49:21', '2025-11-06 12:53:06'),
+(2, 13, '2025-11-06', 'absent', 1, '2025-11-06 12:58:55', '2025-11-06 13:07:08'),
+(3, 14, '2025-11-06', 'absent', 11, '2025-11-06 13:01:56', '2025-11-06 13:01:56'),
+(4, 13, '2025-11-07', 'present', 1, '2025-11-06 13:07:27', '2025-11-06 13:07:27'),
+(5, 10, '2025-11-07', 'absent', 1, '2025-11-06 13:07:32', '2025-11-06 13:07:32'),
+(6, 13, '2025-11-05', 'present', 1, '2025-11-06 13:07:57', '2025-11-06 13:07:57'),
+(7, 10, '2025-11-05', 'present', 1, '2025-11-06 13:08:03', '2025-11-06 13:08:03'),
+(8, 13, '2025-11-03', 'absent', 1, '2025-11-06 13:08:15', '2025-11-06 13:08:15'),
+(9, 10, '2025-11-03', 'absent', 1, '2025-11-06 13:08:16', '2025-11-06 13:08:16');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cache`
 --
 
@@ -38,8 +69,8 @@ CREATE TABLE `cache` (
 --
 
 INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('harsh@gmail.com|127.0.0.1', 'i:1;', 1762269190),
-('harsh@gmail.com|127.0.0.1:timer', 'i:1762269190;', 1762269190);
+('tes@example.com|127.0.0.1', 'i:1;', 1762445511),
+('tes@example.com|127.0.0.1:timer', 'i:1762445511;', 1762445511);
 
 -- --------------------------------------------------------
 
@@ -128,7 +159,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2025_11_03_163934_add_created_by_to_roles_table', 1),
 (6, '2025_01_15_000000_modify_roles_unique_constraint', 2),
 (7, '2025_11_05_164912_create_parties_table', 3),
-(8, '2025_11_05_183212_add_party_number_to_parties_table', 4);
+(8, '2025_11_05_183212_add_party_number_to_parties_table', 4),
+(9, '2025_11_06_164427_create_staff_details_table', 5),
+(11, '2025_11_06_181257_create_attendances_table', 6);
 
 -- --------------------------------------------------------
 
@@ -214,7 +247,12 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (17, 'create party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
 (18, 'edit party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
 (19, 'view party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
-(20, 'delete party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16');
+(20, 'delete party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
+(21, 'manage attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
+(22, 'create attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
+(23, 'edit attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
+(24, 'view attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
+(25, 'delete attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05');
 
 -- --------------------------------------------------------
 
@@ -285,7 +323,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (17, 7),
 (18, 1),
 (19, 1),
-(20, 1);
+(20, 1),
+(21, 1),
+(22, 1),
+(23, 1),
+(24, 1),
+(25, 1);
 
 -- --------------------------------------------------------
 
@@ -354,7 +397,9 @@ INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (2, 9, 'App\\Models\\User'),
 (2, 10, 'App\\Models\\User'),
 (1, 11, 'App\\Models\\User'),
-(2, 12, 'App\\Models\\User');
+(2, 12, 'App\\Models\\User'),
+(7, 13, 'App\\Models\\User'),
+(5, 14, 'App\\Models\\User');
 
 -- --------------------------------------------------------
 
@@ -376,10 +421,34 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('CnyfI5HVdvnAJMrpsU917siOW1ltozl5JyCADE9f', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWnVTa1hJVTI1ZHR3SDljUzNmNjZDR3VCcHlQVHhlUzFINEtVSFJZSSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjQ6Imh0dHA6Ly9sb2NhbGhvc3QvcGFydGllcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7fQ==', 1762368248),
-('nXVc9cSwGUuUdZgQzv8umohTf7URRqduUTFpVPLs', 11, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoib1JqMkVtSXNuUGdWVDFzeEpxWms2cDBrVU40dkE5elZXNk5iamt5ayI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MTY6Imh0dHA6Ly9sb2NhbGhvc3QiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxMTt9', 1762368347),
-('Tw7oNb6BNI9yrNLU2r2vXJB7RhmAj8FEbVdlyXtH', 10, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiRFZMWERGemRPTks4ekQ3SVJyUHJTQVRDdzhJNk5MUXBoQndlaGprZCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI2OiJodHRwOi8vbG9jYWxob3N0L2Rhc2hib2FyZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjEwO30=', 1762367850),
-('yfAaZv6E8HYWMQAFgWfLvASxDDr0wX9IsNspNdSp', 10, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiR3k3TnJETjlpdmg2c0ZweDlnY3lkMGgyZjU4YWhIZk1naUIzcFFoOCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjQ6Imh0dHA6Ly9sb2NhbGhvc3QvcGFydGllcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjEwO30=', 1762368288);
+('JAAgQbxUFcpsglLMtTBu9lWPvchQnFGXZhAMNNpZ', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoia0Fkb3R3Vm1SRWthbXV0QXFSQnFmRERHNWd4dHB6SDZqWnBxTG9XRCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXR0ZW5kYW5jZT9zZWFyY2g9Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTE7fQ==', 1762454583),
+('oWbKYkPWC9k4jrmoOHdUYM7EqBoMQkc5s2YHqEpb', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiM0V6UlRHV00xZkRCMUJTaVRhMlF5RDBrSEJ5VWxRaWd0Mktxb05NVCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2F0dGVuZGFuY2UiO319', 1762454412);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_details`
+--
+
+CREATE TABLE `staff_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `salary_type` enum('monthly','daily','per_meter') NOT NULL DEFAULT 'monthly',
+  `salary_amount` decimal(10,2) DEFAULT NULL,
+  `created_by` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `staff_details`
+--
+
+INSERT INTO `staff_details` (`id`, `user_id`, `phone_number`, `salary_type`, `salary_amount`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 10, NULL, 'monthly', 2000.00, 1, '2025-11-06 11:18:28', '2025-11-06 11:21:57'),
+(2, 13, '1234567890', 'daily', 200.00, 1, '2025-11-06 12:58:29', '2025-11-06 12:58:29'),
+(3, 14, '1234567890', 'per_meter', 100.00, 11, '2025-11-06 13:01:49', '2025-11-06 13:01:49');
 
 -- --------------------------------------------------------
 
@@ -406,13 +475,23 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `created_by`, `is_staff`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Test User', 'test@example.com', '2025-11-04 09:40:56', '$2y$12$dLx78tABGwrk.LY5qjKmkexpdRrbnzd8INBOITxwcba29l/AmbCei', 'owner', NULL, 0, 'Wso0At3cqo', '2025-11-04 09:40:56', '2025-11-04 09:40:56'),
+(1, 'Harsh', 'test@example.com', '2025-11-04 09:40:56', '$2y$12$dLx78tABGwrk.LY5qjKmkexpdRrbnzd8INBOITxwcba29l/AmbCei', 'owner', NULL, 0, 'rRUtx1AVVb5tCytbJW7U4MoiI9VoSZ7HwbBsK14r6Uh0DFcswrmONH4Mai2w', '2025-11-04 09:40:56', '2025-11-06 12:47:04'),
 (10, 'divy', 'divy@gmail.com', NULL, '$2y$12$vqh8/Xm8K/T1.u4t0i9fPeiRGErA3URug2DDhabUBnFUBcGlD2Psm', 'Manager', 1, 1, NULL, '2025-11-05 10:26:06', '2025-11-05 10:26:06'),
-(11, 'harsh', 'harsh@gmail.com', NULL, '$2y$12$V0znjbRMJx2Fm2dre.aRn.neno/gvQukjvtDzfgN7K4B3hiO9ucda', 'owner', NULL, 0, NULL, '2025-11-05 10:48:47', '2025-11-05 10:48:47');
+(11, 'harsh', 'harsh@gmail.com', NULL, '$2y$12$V0znjbRMJx2Fm2dre.aRn.neno/gvQukjvtDzfgN7K4B3hiO9ucda', 'owner', NULL, 0, NULL, '2025-11-05 10:48:47', '2025-11-05 10:48:47'),
+(13, 'demo staff', 'demo@staff.com', NULL, '$2y$12$NZ8kwOcjgWqHWoaNufCl7ubw3AvGHrodk/kMymn9IGp9uAjI38ziy', 'Demo role', 1, 1, NULL, '2025-11-06 12:58:29', '2025-11-06 12:58:29'),
+(14, 'New Staff', 'new@staff.com', NULL, '$2y$12$JuaTIZZB6C4/dg0AkbAz7.8E2aa2u4BKwIAzJ4Xe8qoIZBPevgpZS', 'Admin', 11, 1, NULL, '2025-11-06 13:01:49', '2025-11-06 13:01:49');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `attendances`
+--
+ALTER TABLE `attendances`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `attendances_staff_id_date_unique` (`staff_id`,`date`),
+  ADD KEY `attendances_created_by_foreign` (`created_by`);
 
 --
 -- Indexes for table `cache`
@@ -510,6 +589,14 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indexes for table `staff_details`
+--
+ALTER TABLE `staff_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `staff_details_user_id_foreign` (`user_id`),
+  ADD KEY `staff_details_created_by_foreign` (`created_by`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -520,6 +607,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `attendances`
+--
+ALTER TABLE `attendances`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -537,7 +630,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `parties`
@@ -549,7 +642,7 @@ ALTER TABLE `parties`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -558,14 +651,27 @@ ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `staff_details`
+--
+ALTER TABLE `staff_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `attendances`
+--
+ALTER TABLE `attendances`
+  ADD CONSTRAINT `attendances_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `attendances_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `parties`
@@ -597,6 +703,13 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `staff_details`
+--
+ALTER TABLE `staff_details`
+  ADD CONSTRAINT `staff_details_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `staff_details_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`

@@ -31,6 +31,13 @@ class PermissionSeeder extends Seeder
             'view party',
             'delete party',
 
+            // Attendance Management
+            'manage attendance',
+            'create attendance',
+            'edit attendance',
+            'view attendance',
+            'delete attendance',
+
             // Product Management (example)
             // 'create product',
             // 'edit product',

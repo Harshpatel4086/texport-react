@@ -8,7 +8,7 @@ import { useToastFlash } from '@/Hooks/useToastFlash';
 export default function Dashboard({ auth, userRoles, userPermissions }) {
     // Handle flash messages as toasts
     useToastFlash();
-    
+
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const stats = [
         { title: 'Active Orders', value: '1,284', change: '+8.2%', positive: true },
@@ -36,21 +36,18 @@ export default function Dashboard({ auth, userRoles, userPermissions }) {
     return (
         <>
             <Head title="Dashboard" />
-            
+
             <div className="flex h-screen bg-background">
-                <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-                
+                <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} user={auth.user} />
+
                 <div className="flex-1 flex flex-col overflow-hidden lg:ml-0">
-                    <DashboardHeader 
-                        user={auth.user} 
+                    <DashboardHeader
+                        user={auth.user}
                         onMenuClick={() => setSidebarOpen(true)}
+                        breadcrumbs={[{ label: 'Dashboard' }]}
                     />
-                    
+
                     <main className="flex-1 overflow-y-auto p-4 lg:p-6">
-                        {/* Breadcrumb */}
-                        <div className="text-sm text-gray-500 mb-4 lg:mb-6">
-                            Home / Dashboard
-                        </div>
 
                         {/* Header */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
@@ -189,7 +186,7 @@ export default function Dashboard({ auth, userRoles, userPermissions }) {
                     </main>
                 </div>
             </div>
-            
+
             <Toast />
         </>
     );

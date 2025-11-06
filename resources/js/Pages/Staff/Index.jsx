@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Sidebar from '@/Components/Sidebar';
 import DashboardHeader from '@/Components/DashboardHeader';
-import Breadcrumb from '@/Components/Breadcrumb';
 import DataTable from '@/Components/DataTable';
 import Button from '@/Components/Button';
 import { MdAdd, MdEdit, MdDelete } from 'react-icons/md';
@@ -32,10 +31,10 @@ export default function StaffIndex(props) {
         setModalState({ isOpen: true, mode: 'delete', entity: item });
     };
 
-    const breadcrumbItems = [
-        { label: 'Home', href: '/dashboard' },
-        { label: 'Users', href: '/staff' },
-        { label: 'Staff' }
+    const breadcrumbs = [
+        { label: 'Dashboard', href: route('dashboard') },
+        { label: 'Users' },
+        { label: 'Staff Management' }
     ];
 
     return (
@@ -43,16 +42,16 @@ export default function StaffIndex(props) {
             <Head title="Staff Management" />
 
             <div className="flex h-screen bg-background">
-                <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
+                <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} user={auth.user} />
 
                 <div className="flex-1 flex flex-col overflow-hidden">
                     <DashboardHeader
                         user={auth.user}
                         onMenuClick={() => setSidebarOpen(true)}
+                        breadcrumbs={breadcrumbs}
                     />
 
                     <main className="flex-1 overflow-y-auto p-4 lg:p-6">
-                        <Breadcrumb items={breadcrumbItems} />
 
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
                             <h1 className="text-xl lg:text-2xl font-bold text-text">Staff Management</h1>
@@ -84,7 +83,7 @@ export default function StaffIndex(props) {
                                     ),
                                 }] : []),
                             ]}
-                            searchPlaceholder="Search staff by name, email, or role..."
+                            searchPlaceholder="Search staff by name, email, phone, or role..."
                             filters={filters}
                             pagination={staff}
                         />

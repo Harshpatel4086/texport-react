@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\StaffDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -24,7 +25,10 @@ class StaffManagementController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
                   ->orWhere('email', 'like', "%{$search}%")
-                  ->orWhere('role', 'like', "%{$search}%");
+                  ->orWhere('role', 'like', "%{$search}%")
+                  ->orWhereHas('staffDetail', function($sq) use ($search) {
+                      $sq->where('phone_number', 'like', "%{$search}%");
+                  });
             });
         }
 
@@ -37,7 +41,7 @@ class StaffManagementController extends Controller
         }
 
         $perPage = $request->get('per_page', 10);
-        $staff = $query->with('roles')->paginate($perPage)->withQueryString();
+        $staff = $query->with(['roles', 'staffDetail'])->paginate($perPage)->withQueryString();
 
         // Set default filters when none provided
         $filters = $request->only(['search', 'sort', 'direction', 'per_page']);
@@ -78,6 +82,9 @@ class StaffManagementController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'role' => 'required|string|max:255',
             'password' => 'required|string|min:8',
+            'phone_number' => 'nullable|string|max:20',
+            'salary_type' => 'required|in:monthly,daily,per_meter',
+            'salary_amount' => 'nullable|numeric|min:0',
         ]);
 
         // Verify the role belongs to the current user
@@ -101,6 +108,15 @@ class StaffManagementController extends Controller
         // Assign the role to the staff member
         $staff->addRole($role);
 
+        // Create staff details
+        StaffDetail::create([
+            'user_id' => $staff->id,
+            'phone_number' => $request->phone_number,
+            'salary_type' => $request->salary_type,
+            'salary_amount' => $request->salary_amount,
+            'created_by' => auth()->id(),
+        ]);
+
         return back()->with('success', 'Staff member created successfully....');
     }
 
@@ -120,6 +136,9 @@ class StaffManagementController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $staff->id,
             'role' => 'required|string|max:255',
             'password' => 'nullable|string|min:8',
+            'phone_number' => 'nullable|string|max:20',
+            'salary_type' => 'required|in:monthly,daily,per_meter',
+            'salary_amount' => 'nullable|numeric|min:0',
         ]);
 
         // Verify the role belongs to the current user
@@ -146,6 +165,17 @@ class StaffManagementController extends Controller
         // Remove all existing roles and assign the new role
         $staff->removeRoles();
         $staff->addRole($role);
+
+        // Update or create staff details
+        $staff->staffDetail()->updateOrCreate(
+            ['user_id' => $staff->id],
+            [
+                'phone_number' => $request->phone_number,
+                'salary_type' => $request->salary_type,
+                'salary_amount' => $request->salary_amount,
+                'created_by' => auth()->id(),
+            ]
+        );
 
         return back()->with('success', 'Staff updated successfully.');
     }

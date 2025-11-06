@@ -1,9 +1,8 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import { Transition } from '@headlessui/react';
+import Button from '@/Components/Button';
+import FormField from '@/Components/FormField';
 import { useForm } from '@inertiajs/react';
+import { MdLock, MdSecurity } from 'react-icons/md';
+import { toaster } from '@/Utils/toaster';
 import { useRef } from 'react';
 
 export default function UpdatePasswordForm({ className = '' }) {
@@ -29,112 +28,114 @@ export default function UpdatePasswordForm({ className = '' }) {
 
         put(route('password.update'), {
             preserveScroll: true,
-            onSuccess: () => reset(),
+            onSuccess: () => {
+                reset();
+                toaster.success('Password updated successfully!');
+            },
             onError: (errors) => {
                 if (errors.password) {
                     reset('password', 'password_confirmation');
-                    passwordInput.current.focus();
+                    passwordInput.current?.focus();
                 }
 
                 if (errors.current_password) {
                     reset('current_password');
-                    currentPasswordInput.current.focus();
+                    currentPasswordInput.current?.focus();
                 }
+                toaster.error('Failed to update password. Please check your inputs.');
             },
         });
     };
 
     return (
         <section className={className}>
-            <header>
-                <h2 className="text-lg font-medium text-gray-900">
-                    Update Password
-                </h2>
-
-                <p className="mt-1 text-sm text-gray-600">
-                    Ensure your account is using a long, random password to stay
-                    secure.
-                </p>
-            </header>
-
-            <form onSubmit={updatePassword} className="mt-6 space-y-6">
-                <div>
-                    <InputLabel
-                        htmlFor="current_password"
-                        value="Current Password"
-                    />
-
-                    <TextInput
-                        id="current_password"
-                        ref={currentPasswordInput}
-                        value={data.current_password}
-                        onChange={(e) =>
-                            setData('current_password', e.target.value)
-                        }
-                        type="password"
-                        className="mt-1 block w-full"
-                        autoComplete="current-password"
-                    />
-
-                    <InputError
-                        message={errors.current_password}
-                        className="mt-2"
-                    />
+            <div className="flex items-start space-x-4 mb-6">
+                <div className="w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center">
+                    <MdSecurity className="w-6 h-6 text-white" />
                 </div>
-
                 <div>
-                    <InputLabel htmlFor="password" value="New Password" />
+                    <h2 className="text-xl font-bold text-text">
+                        Security Settings
+                    </h2>
+                    <p className="text-gray-600 mt-1">
+                        Ensure your account is using a long, random password to stay secure.
+                    </p>
+                </div>
+            </div>
 
-                    <TextInput
-                        id="password"
-                        ref={passwordInput}
+            <form onSubmit={updatePassword} className="space-y-6">
+                <FormField
+                    label="Current Password"
+                    name="current_password"
+                    type="password"
+                    value={data.current_password}
+                    onChange={(e) => setData('current_password', e.target.value)}
+                    error={errors.current_password}
+                    required
+                    icon={MdLock}
+                    placeholder="Enter your current password"
+                    autoComplete="current-password"
+                    ref={currentPasswordInput}
+                />
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <FormField
+                        label="New Password"
+                        name="password"
+                        type="password"
                         value={data.password}
                         onChange={(e) => setData('password', e.target.value)}
-                        type="password"
-                        className="mt-1 block w-full"
+                        error={errors.password}
+                        required
+                        icon={MdLock}
+                        placeholder="Enter new password"
                         autoComplete="new-password"
+                        ref={passwordInput}
                     />
 
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div>
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
+                    <FormField
+                        label="Confirm New Password"
+                        name="password_confirmation"
+                        type="password"
                         value={data.password_confirmation}
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
-                        type="password"
-                        className="mt-1 block w-full"
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                        error={errors.password_confirmation}
+                        required
+                        icon={MdLock}
+                        placeholder="Confirm new password"
                         autoComplete="new-password"
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
                     />
                 </div>
 
-                <div className="flex items-center gap-4">
-                    <PrimaryButton disabled={processing}>Save</PrimaryButton>
+                {/* Security Tips */}
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                            <MdSecurity className="h-5 w-5 text-blue-400" />
+                        </div>
+                        <div className="ml-3">
+                            <h3 className="text-sm font-medium text-blue-800">
+                                Password Security Tips
+                            </h3>
+                            <div className="mt-2 text-sm text-blue-700">
+                                <ul className="list-disc list-inside space-y-1">
+                                    <li>Use at least 8 characters with a mix of letters, numbers, and symbols</li>
+                                    <li>Avoid using personal information or common words</li>
+                                    <li>Consider using a password manager for stronger security</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                    <Transition
-                        show={recentlySuccessful}
-                        enter="transition ease-in-out"
-                        enterFrom="opacity-0"
-                        leave="transition ease-in-out"
-                        leaveTo="opacity-0"
+                <div className="flex justify-end">
+                    <Button
+                        type="submit"
+                        loading={processing}
+                        className="px-6"
                     >
-                        <p className="text-sm text-gray-600">
-                            Saved.
-                        </p>
-                    </Transition>
+                        Update Password
+                    </Button>
                 </div>
             </form>
         </section>

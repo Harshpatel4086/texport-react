@@ -17,7 +17,7 @@ export default function StaffModal({ isOpen, onClose, mode, entity, userRoles = 
         destroy: route(staffRoutes.destroy, ':id'),
     };
 
-    // Add role options to the role field
+    // Add options to fields that need them
     const fieldsWithOptions = staffFields.map(field => {
         if (field.name === 'role') {
             return {
@@ -31,13 +31,22 @@ export default function StaffModal({ isOpen, onClose, mode, entity, userRoles = 
         return field;
     });
 
+    // Prepare entity data with staff details flattened
+    const preparedEntity = entity ? {
+        ...entity,
+        phone_number: entity.staff_detail?.phone_number || '',
+        salary_type: entity.staff_detail?.salary_type || 'monthly',
+        salary_amount: entity.staff_detail?.salary_amount || '',
+        password: '' // Always empty for edit mode
+    } : null;
+
     return (
         <CrudModal
             isOpen={isOpen}
             onClose={onClose}
             mode={mode}
             title={getTitle()}
-            entity={entity}
+            entity={preparedEntity}
             fields={fieldsWithOptions}
             routes={routes}
             entityName="Staff"

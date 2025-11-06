@@ -70,4 +70,14 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $query->where('is_staff', false);
     }
+
+    public function staffDetail()
+    {
+        return $this->hasOne(StaffDetail::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'staff_id');
+    }
 }

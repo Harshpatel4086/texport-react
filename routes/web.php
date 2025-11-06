@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\PartyManagementController;
@@ -21,6 +22,11 @@ Route::middleware('auth')->group(function () {
 
     // Staff routes
     Route::resource('staff', StaffManagementController::class);
+
+    // Attendance routes
+    Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+    Route::post('attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+    Route::get('attendance/history/{staff}', [AttendanceController::class, 'history'])->name('attendance.history');
 
     // Role routes
     Route::resource('roles', RoleManagementController::class);

@@ -10,11 +10,14 @@ import {
     MdStar,
     MdHistory,
     MdExpandMore,
-    MdExpandLess
+    MdExpandLess,
+    MdPerson,
+    MdLogout,
+    MdSchedule
 } from 'react-icons/md';
 import { usePermissions } from '@/Utils/permissions';
 
-export default function Sidebar({ isOpen, setIsOpen }) {
+export default function Sidebar({ isOpen, setIsOpen, user }) {
     const [expandedMenus, setExpandedMenus] = useState({});
     const { url } = usePage();
     const { canManage } = usePermissions();
@@ -44,6 +47,13 @@ export default function Sidebar({ isOpen, setIsOpen }) {
             icon: MdBusiness,
             href: '/parties',
             routeName: 'parties.index'
+        }] : []),
+        // Show Attendance as direct menu item
+        ...(canManage('attendance') ? [{
+            name: 'Attendance',
+            icon: MdSchedule,
+            href: '/attendance',
+            routeName: 'attendance.index'
         }] : []),
         // { name: 'Logistics', icon: MdLocalShipping, href: '#', routeName: 'logistics' },
         // { name: 'Vendors', icon: MdBusiness, href: '#', routeName: 'vendors' },
@@ -190,21 +200,46 @@ export default function Sidebar({ isOpen, setIsOpen }) {
                     </div> */}
                 </div>
 
-                {/* Upgrade Plan */}
-                {/* <div className="p-4">
-                    <div className="bg-slate-700 rounded-lg p-4">
-                        <div className="flex items-center mb-2">
-                            <span className="text-lg mr-2">⚡</span>
-                            <div>
-                                <div className="text-sm font-medium">Upgrade plan</div>
-                                <div className="text-xs text-gray-400">Unlock advanced analytics</div>
+                {/* Mobile User Profile Section */}
+                {user && (
+                    <div className="lg:hidden border-t border-gray-200 p-4">
+                        <div className="flex items-center space-x-3 mb-4 p-3 bg-gray-50 rounded-lg">
+                            <div className="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium">
+                                {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <div className="text-sm font-semibold text-text truncate">
+                                    {user?.name || 'User'}
+                                </div>
+                                <div className="text-xs text-gray-500 capitalize truncate">
+                                    {user?.is_staff ? user?.role : 'Owner'}
+                                </div>
                             </div>
                         </div>
-                        <button className="w-full bg-primary hover:bg-primary-600 text-white py-2 px-4 rounded-lg text-sm font-medium mt-2 transition-colors">
-                            Upgrade
-                        </button>
+
+                        <div className="space-y-2">
+                            <Link
+                                href={route('profile.edit')}
+                                className="flex items-center px-3 py-2 text-sm text-gray-600 hover:text-primary hover:bg-primary-50 rounded-lg transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <MdPerson className="w-5 h-5 mr-3" />
+                                Profile Settings
+                            </Link>
+
+                            <Link
+                                href={route('logout')}
+                                method="post"
+                                as="button"
+                                className="w-full flex items-center px-3 py-2 text-sm text-red-600 hover:text-red-700 hover:bg-red-50 rounded-lg transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                <MdLogout className="w-5 h-5 mr-3" />
+                                Sign Out
+                            </Link>
+                        </div>
                     </div>
-                </div> */}
+                )}
             </div>
         </>
     );
