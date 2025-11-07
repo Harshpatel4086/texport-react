@@ -24,6 +24,12 @@ class PermissionSeeder extends Seeder
             'edit staff',
             'delete staff',
 
+            // Staff Salary Management
+            'manage staff salary',
+            'create staff salary',
+            'edit staff salary',
+            'delete staff salary',
+
             // Party Management
             'manage party',
             'create party',

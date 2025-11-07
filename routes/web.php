@@ -7,6 +7,7 @@ use App\Http\Controllers\PartyManagementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\StaffManagementController;
+use App\Http\Controllers\StaffSalaryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,6 +23,9 @@ Route::middleware('auth')->group(function () {
 
     // Staff routes
     Route::resource('staff', StaffManagementController::class);
+    
+    // Staff Salary routes
+    Route::resource('staff-salaries', StaffSalaryController::class);
 
     // Attendance routes
     Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');

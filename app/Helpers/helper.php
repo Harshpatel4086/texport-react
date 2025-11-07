@@ -23,4 +23,14 @@ if (!function_exists('formatPartyNumber')) {
     }
 }
 
+if (!function_exists('formatDate')) {
+    function formatDate($date, $format = 'd/m/Y')
+    {
+        if (!$date) {
+            return '--';
+        }
+        return date($format, strtotime($date));
+    }
+}
+
 ?>

@@ -66,7 +66,7 @@ class StaffManagementController extends Controller
         return Inertia::render('Staff/Index', [
             'staff' => $staff,
             'filters' => $filters,
-            'userRoles' => \App\Models\Role::where('created_by', auth()->id())->get()
+            'userRoles' => \App\Models\Role::where('created_by', createdBy())->get()
         ]);
     }
 
@@ -83,13 +83,13 @@ class StaffManagementController extends Controller
             'role' => 'required|string|max:255',
             'password' => 'required|string|min:8',
             'phone_number' => 'nullable|string|max:20',
-            'salary_type' => 'required|in:monthly,daily,per_meter',
+            'salary_type' => 'required|in:monthly,per_meter',
             'salary_amount' => 'nullable|numeric|min:0',
         ]);
 
         // Verify the role belongs to the current user
         $role = Role::where('name', $request->role)
-                                ->where('created_by', auth()->id())
+                                ->where('created_by', createdBy())
                                 ->first();
 
         if (!$role) {
@@ -101,7 +101,7 @@ class StaffManagementController extends Controller
             'email' => $request->email,
             'role' => $request->role,
             'password' => Hash::make($request->password),
-            'created_by' => auth()->id(),
+            'created_by' => createdBy(),
             'is_staff' => true,
         ]);
 
@@ -114,7 +114,7 @@ class StaffManagementController extends Controller
             'phone_number' => $request->phone_number,
             'salary_type' => $request->salary_type,
             'salary_amount' => $request->salary_amount,
-            'created_by' => auth()->id(),
+            'created_by' => createdBy(),
         ]);
 
         return back()->with('success', 'Staff member created successfully....');
@@ -137,7 +137,7 @@ class StaffManagementController extends Controller
             'role' => 'required|string|max:255',
             'password' => 'nullable|string|min:8',
             'phone_number' => 'nullable|string|max:20',
-            'salary_type' => 'required|in:monthly,daily,per_meter',
+            'salary_type' => 'required|in:monthly,per_meter',
             'salary_amount' => 'nullable|numeric|min:0',
         ]);
 

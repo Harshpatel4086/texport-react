@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2025 at 07:45 PM
+-- Generation Time: Nov 07, 2025 at 07:13 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,7 +50,10 @@ INSERT INTO `attendances` (`id`, `staff_id`, `date`, `status`, `created_by`, `cr
 (6, 13, '2025-11-05', 'present', 1, '2025-11-06 13:07:57', '2025-11-06 13:07:57'),
 (7, 10, '2025-11-05', 'present', 1, '2025-11-06 13:08:03', '2025-11-06 13:08:03'),
 (8, 13, '2025-11-03', 'absent', 1, '2025-11-06 13:08:15', '2025-11-06 13:08:15'),
-(9, 10, '2025-11-03', 'absent', 1, '2025-11-06 13:08:16', '2025-11-06 13:08:16');
+(9, 10, '2025-11-03', 'absent', 1, '2025-11-06 13:08:16', '2025-11-06 13:08:16'),
+(10, 14, '2025-11-07', 'present', 11, '2025-11-07 10:17:06', '2025-11-07 10:17:06'),
+(11, 13, '2025-10-30', 'absent', 1, '2025-11-07 11:13:17', '2025-11-07 11:13:17'),
+(12, 10, '2025-10-30', 'present', 1, '2025-11-07 11:13:19', '2025-11-07 11:13:19');
 
 -- --------------------------------------------------------
 
@@ -63,14 +66,6 @@ CREATE TABLE `cache` (
   `value` mediumtext NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `cache`
---
-
-INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('tes@example.com|127.0.0.1', 'i:1;', 1762445511),
-('tes@example.com|127.0.0.1:timer', 'i:1762445511;', 1762445511);
 
 -- --------------------------------------------------------
 
@@ -161,7 +156,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2025_11_05_164912_create_parties_table', 3),
 (8, '2025_11_05_183212_add_party_number_to_parties_table', 4),
 (9, '2025_11_06_164427_create_staff_details_table', 5),
-(11, '2025_11_06_181257_create_attendances_table', 6);
+(11, '2025_11_06_181257_create_attendances_table', 6),
+(12, '2025_01_15_120000_create_staff_salaries_table', 7);
 
 -- --------------------------------------------------------
 
@@ -252,7 +248,11 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (22, 'create attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
 (23, 'edit attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
 (24, 'view attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
-(25, 'delete attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05');
+(25, 'delete attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
+(26, 'manage staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01'),
+(27, 'create staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01'),
+(28, 'edit staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01'),
+(29, 'delete staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01');
 
 -- --------------------------------------------------------
 
@@ -284,22 +284,28 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (6, 4),
 (6, 5),
 (6, 6),
+(6, 8),
 (7, 5),
 (7, 6),
+(7, 8),
 (8, 1),
 (8, 2),
 (8, 5),
 (8, 6),
+(8, 8),
 (9, 1),
 (9, 2),
 (9, 5),
 (9, 6),
+(9, 8),
 (10, 1),
 (10, 5),
 (10, 6),
+(10, 8),
 (11, 1),
 (11, 5),
 (11, 6),
+(11, 8),
 (12, 1),
 (12, 5),
 (12, 6),
@@ -325,10 +331,22 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (19, 1),
 (20, 1),
 (21, 1),
+(21, 8),
 (22, 1),
+(22, 8),
 (23, 1),
 (24, 1),
-(25, 1);
+(25, 1),
+(26, 1),
+(26, 2),
+(26, 8),
+(27, 1),
+(27, 2),
+(27, 8),
+(28, 1),
+(28, 2),
+(29, 1),
+(29, 2);
 
 -- --------------------------------------------------------
 
@@ -368,7 +386,8 @@ INSERT INTO `roles` (`id`, `created_by`, `name`, `display_name`, `description`, 
 (4, 11, 'Manager', NULL, NULL, '2025-11-05 10:51:57', '2025-11-05 10:51:57'),
 (5, 11, 'Admin', NULL, NULL, '2025-11-05 10:52:31', '2025-11-05 10:52:31'),
 (6, 1, 'Admin', NULL, NULL, '2025-11-05 10:53:05', '2025-11-05 10:53:05'),
-(7, 1, 'Demo role', NULL, NULL, '2025-11-05 12:35:17', '2025-11-05 12:35:17');
+(7, 1, 'Demo role', NULL, NULL, '2025-11-05 12:35:17', '2025-11-05 12:35:17'),
+(8, 1, 'Supervisor', NULL, NULL, '2025-11-07 11:09:51', '2025-11-07 11:09:51');
 
 -- --------------------------------------------------------
 
@@ -421,8 +440,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('JAAgQbxUFcpsglLMtTBu9lWPvchQnFGXZhAMNNpZ', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoia0Fkb3R3Vm1SRWthbXV0QXFSQnFmRERHNWd4dHB6SDZqWnBxTG9XRCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXR0ZW5kYW5jZT9zZWFyY2g9Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTE7fQ==', 1762454583),
-('oWbKYkPWC9k4jrmoOHdUYM7EqBoMQkc5s2YHqEpb', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiM0V6UlRHV00xZkRCMUJTaVRhMlF5RDBrSEJ5VWxRaWd0Mktxb05NVCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMjoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL2F0dGVuZGFuY2UiO319', 1762454412);
+('SN88ljlOITU7XB86EnGYO6dJUPUnNOupDnC1MJ7P', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMVhwcUFxbU8wZk5Hb3RFNG9wYlpGUlE5cTUzSjlXZEJlZkJ2YVRRNCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTA7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi1zYWxhcmllcyI7fX0=', 1762539079),
+('vIuwyG8dyEMNGYzBXyf0tlc62hayV0SQqZifX1Ye', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTmc5RXgzVGNqZTFIdlQ5T21CMk1ia3BLdFEzWTRzbEpNSzlYeDJ0NSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo4ODoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3N0YWZmLXNhbGFyaWVzP2RpcmVjdGlvbj1kZXNjJnBlcl9wYWdlPTEwJnNlYXJjaD0mc29ydD1zYWxhcnlfZGF0ZSI7fX0=', 1762539084);
 
 -- --------------------------------------------------------
 
@@ -434,7 +453,7 @@ CREATE TABLE `staff_details` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
-  `salary_type` enum('monthly','daily','per_meter') NOT NULL DEFAULT 'monthly',
+  `salary_type` enum('monthly','per_meter') NOT NULL DEFAULT 'monthly',
   `salary_amount` decimal(10,2) DEFAULT NULL,
   `created_by` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -446,9 +465,37 @@ CREATE TABLE `staff_details` (
 --
 
 INSERT INTO `staff_details` (`id`, `user_id`, `phone_number`, `salary_type`, `salary_amount`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 10, NULL, 'monthly', 2000.00, 1, '2025-11-06 11:18:28', '2025-11-06 11:21:57'),
-(2, 13, '1234567890', 'daily', 200.00, 1, '2025-11-06 12:58:29', '2025-11-06 12:58:29'),
+(1, 10, NULL, 'monthly', 1000.00, 1, '2025-11-06 11:18:28', '2025-11-07 11:23:00'),
+(2, 13, '1234567890', 'per_meter', 200.00, 1, '2025-11-06 12:58:29', '2025-11-07 10:46:11'),
 (3, 14, '1234567890', 'per_meter', 100.00, 11, '2025-11-06 13:01:49', '2025-11-06 13:01:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_salaries`
+--
+
+CREATE TABLE `staff_salaries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `staff_id` bigint(20) UNSIGNED NOT NULL,
+  `staff_salary` decimal(10,2) NOT NULL,
+  `salary_type` enum('monthly','per_meter') NOT NULL,
+  `meter` decimal(8,2) DEFAULT NULL,
+  `working_days` int(11) DEFAULT NULL,
+  `total_salary` decimal(10,2) NOT NULL,
+  `salary_date` date NOT NULL,
+  `created_by` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `staff_salaries`
+--
+
+INSERT INTO `staff_salaries` (`id`, `staff_id`, `staff_salary`, `salary_type`, `meter`, `working_days`, `total_salary`, `salary_date`, `created_by`, `created_at`, `updated_at`) VALUES
+(2, 14, 100.00, 'per_meter', 14.00, NULL, 1400.00, '2025-11-07', 11, '2025-11-07 10:57:22', '2025-11-07 10:57:22'),
+(3, 10, 2000.00, 'monthly', NULL, 12, 24000.00, '2025-10-27', 1, '2025-11-07 11:08:40', '2025-11-07 11:22:35');
 
 -- --------------------------------------------------------
 
@@ -476,7 +523,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `created_by`, `is_staff`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Harsh', 'test@example.com', '2025-11-04 09:40:56', '$2y$12$dLx78tABGwrk.LY5qjKmkexpdRrbnzd8INBOITxwcba29l/AmbCei', 'owner', NULL, 0, 'rRUtx1AVVb5tCytbJW7U4MoiI9VoSZ7HwbBsK14r6Uh0DFcswrmONH4Mai2w', '2025-11-04 09:40:56', '2025-11-06 12:47:04'),
-(10, 'divy', 'divy@gmail.com', NULL, '$2y$12$vqh8/Xm8K/T1.u4t0i9fPeiRGErA3URug2DDhabUBnFUBcGlD2Psm', 'Manager', 1, 1, NULL, '2025-11-05 10:26:06', '2025-11-05 10:26:06'),
+(10, 'divy', 'divy@gmail.com', NULL, '$2y$12$vqh8/Xm8K/T1.u4t0i9fPeiRGErA3URug2DDhabUBnFUBcGlD2Psm', 'Manager', 1, 1, NULL, '2025-11-05 10:26:06', '2025-11-07 11:15:14'),
 (11, 'harsh', 'harsh@gmail.com', NULL, '$2y$12$V0znjbRMJx2Fm2dre.aRn.neno/gvQukjvtDzfgN7K4B3hiO9ucda', 'owner', NULL, 0, NULL, '2025-11-05 10:48:47', '2025-11-05 10:48:47'),
 (13, 'demo staff', 'demo@staff.com', NULL, '$2y$12$NZ8kwOcjgWqHWoaNufCl7ubw3AvGHrodk/kMymn9IGp9uAjI38ziy', 'Demo role', 1, 1, NULL, '2025-11-06 12:58:29', '2025-11-06 12:58:29'),
 (14, 'New Staff', 'new@staff.com', NULL, '$2y$12$JuaTIZZB6C4/dg0AkbAz7.8E2aa2u4BKwIAzJ4Xe8qoIZBPevgpZS', 'Admin', 11, 1, NULL, '2025-11-06 13:01:49', '2025-11-06 13:01:49');
@@ -597,6 +644,14 @@ ALTER TABLE `staff_details`
   ADD KEY `staff_details_created_by_foreign` (`created_by`);
 
 --
+-- Indexes for table `staff_salaries`
+--
+ALTER TABLE `staff_salaries`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `staff_salaries_staff_id_foreign` (`staff_id`),
+  ADD KEY `staff_salaries_created_by_foreign` (`created_by`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -612,7 +667,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -630,7 +685,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `parties`
@@ -642,19 +697,25 @@ ALTER TABLE `parties`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `staff_details`
 --
 ALTER TABLE `staff_details`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `staff_salaries`
+--
+ALTER TABLE `staff_salaries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -710,6 +771,13 @@ ALTER TABLE `role_user`
 ALTER TABLE `staff_details`
   ADD CONSTRAINT `staff_details_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `staff_details_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `staff_salaries`
+--
+ALTER TABLE `staff_salaries`
+  ADD CONSTRAINT `staff_salaries_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `staff_salaries_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`

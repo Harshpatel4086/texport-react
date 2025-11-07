@@ -25,6 +25,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
     // Build submenu items based on permissions
     const usersSubmenu = [
         ...(canManage('staff') ? [{ name: 'Staff', href: '/staff', routeName: 'staff.index' }] : []),
+        ...(canManage('staff salary') ? [{ name: 'Staff Salaries', href: '/staff-salaries', routeName: 'staff-salaries.index' }] : []),
         ...(canManage('role') ? [{ name: 'Roles', href: '/roles', routeName: 'roles.index' }] : [])
     ];
 

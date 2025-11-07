@@ -11,6 +11,7 @@ export default function FormField({
     ...props
 }) {
     const baseInputClasses = "w-full px-4 py-3 border border-neutral rounded-lg text-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors";
+    const dateInputClasses = "w-full px-4 py-3 border border-neutral rounded-lg text-text focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors [&::-webkit-calendar-picker-indicator]:cursor-pointer [&::-webkit-calendar-picker-indicator]:opacity-70 hover:[&::-webkit-calendar-picker-indicator]:opacity-100";
 
     const renderInput = () => {
         if (type === 'select') {
@@ -18,7 +19,7 @@ export default function FormField({
                 <select
                     value={value}
                     onChange={onChange}
-                    className={`${baseInputClasses} ${className}`}
+                    className={`${baseInputClasses} ${className} ${props.disabled ? 'bg-gray-100 cursor-not-allowed' : ''}`}
                     required={required}
                     {...props}
                 >
@@ -79,7 +80,7 @@ export default function FormField({
                 onChange={onChange}
                 placeholder={placeholder}
                 required={required}
-                className={`${baseInputClasses} ${className}`}
+                className={`${type === 'date' ? dateInputClasses : baseInputClasses} ${className}`}
                 {...props}
             />
         );
