@@ -8,10 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laratrust\Contracts\LaratrustUser;
 use Laratrust\Traits\HasRolesAndPermissions;
+// email verification removed for staff users, only owners will have verified emails
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 
-class User extends Authenticatable implements LaratrustUser
+class User extends Authenticatable implements LaratrustUser, MustVerifyEmail
 {
-    use HasFactory, Notifiable, HasRolesAndPermissions;
+    use HasFactory, Notifiable, HasRolesAndPermissions, MustVerifyEmailTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -79,5 +82,13 @@ class User extends Authenticatable implements LaratrustUser
     public function attendances()
     {
         return $this->hasMany(Attendance::class, 'staff_id');
+    }
+
+    /**
+     * Determine if the user must verify their email address.
+     */
+    public function mustVerifyEmail(): bool
+    {
+        return !$this->is_staff;
     }
 }

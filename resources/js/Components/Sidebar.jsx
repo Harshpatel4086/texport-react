@@ -108,15 +108,21 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                 isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
             } flex flex-col shadow-lg`}>
                 {/* Logo */}
-                {/* <div className="p-6 flex items-center justify-between">
-                    <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full"></div>
+                <div className="p-6 flex items-center justify-between">
+                    <Link href="/">
+                        <img
+                            src="assets/logo/logo_dark.png"
+                            alt="TexPort"
+                            className="h-8"
+                        />
+                    </Link>
                     <button
                         className="lg:hidden text-gray-400 hover:text-white"
                         onClick={() => setIsOpen(false)}
                     >
                         ✕
                     </button>
-                </div> */}
+                </div>
 
                 {/* Main Menu */}
                 <div className="flex-1 px-4 overflow-y-auto">

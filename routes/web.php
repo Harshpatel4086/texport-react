@@ -9,21 +9,36 @@ use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\StaffManagementController;
 use App\Http\Controllers\StaffSalaryController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    file_put_contents(storage_path('logs/laravel.log'), '');
+    return redirect()->back()->with('success', 'Cache and logs cleared successfully!');
+});
+
+Route::get('/email/verification-status', function() {
+    return response()->json([
+        'verified' => auth()->check() && auth()->user()->hasVerifiedEmail()
+    ]);
+})->middleware('auth');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Staff routes
     Route::resource('staff', StaffManagementController::class);
-    
+
     // Staff Salary routes
     Route::resource('staff-salaries', StaffSalaryController::class);
 

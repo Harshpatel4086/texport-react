@@ -67,14 +67,14 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
                                     <button className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors group">
                                         <div className="text-right">
                                             <div className="text-sm font-semibold text-text group-hover:text-primary transition-colors">
-                                                {user?.name || "User"}
+                                                {user?.name || "Test"}
                                             </div>
                                             <div className="text-xs text-gray-500 capitalize">
-                                                {user?.is_staff ? user?.role : "Owner"}
+                                                {user?.is_staff ? user?.role : "Role"}
                                             </div>
                                         </div>
                                         <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium">
-                                            {user?.name?.charAt(0)?.toUpperCase() || "U"}
+                                            {user?.name?.charAt(0)?.toUpperCase() || "T"}
                                         </div>
                                         <svg
                                             className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors"

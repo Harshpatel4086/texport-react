@@ -25,18 +25,37 @@ export default function Register() {
                 <div className="w-full lg:w-1/2 flex items-center justify-center p-8">
                     <div className="max-w-md w-full">
                         <div className="text-center mb-8">
-                            <Link href={route('home')} className="text-3xl font-bold text-primary mb-6 block">
+                            {/* <Link
+                                href={route("home")}
+                                className="text-3xl font-bold text-primary mb-6 block"
+                            >
                                 TexPort
+                            </Link> */}
+                            <Link
+                                href={route("home")}
+                                className="text-3xl font-bold text-primary mb-6 block"
+                            >
+                                <img
+                                    src="/assets/logo/logo_dark.png"
+                                    alt="TexPort"
+                                    className="w-64 h-10 object-contain mx-auto"
+                                />
                             </Link>
-                            <h1 className="text-2xl font-bold text-text mb-2">Create Account</h1>
-                            <p className="text-gray-600">Join us today! Please fill in your details</p>
+                            <h1 className="text-2xl font-bold text-text mb-2">
+                                Create Account
+                            </h1>
+                            <p className="text-gray-600">
+                                Join us today! Please fill in your details
+                            </p>
                         </div>
 
                         <form onSubmit={submit} className="space-y-4">
                             <Input
                                 label="Full Name"
                                 value={data.name}
-                                onChange={(e) => setData('name', e.target.value)}
+                                onChange={(e) =>
+                                    setData("name", e.target.value)
+                                }
                                 placeholder="Enter your full name"
                                 required
                                 error={errors.name}
@@ -46,7 +65,9 @@ export default function Register() {
                                 label="Email Address"
                                 type="email"
                                 value={data.email}
-                                onChange={(e) => setData('email', e.target.value)}
+                                onChange={(e) =>
+                                    setData("email", e.target.value)
+                                }
                                 placeholder="Enter your email"
                                 required
                                 error={errors.email}
@@ -56,7 +77,9 @@ export default function Register() {
                                 label="Password"
                                 type="password"
                                 value={data.password}
-                                onChange={(e) => setData('password', e.target.value)}
+                                onChange={(e) =>
+                                    setData("password", e.target.value)
+                                }
                                 placeholder="Create a password"
                                 required
                                 error={errors.password}
@@ -66,7 +89,12 @@ export default function Register() {
                                 label="Confirm Password"
                                 type="password"
                                 value={data.password_confirmation}
-                                onChange={(e) => setData('password_confirmation', e.target.value)}
+                                onChange={(e) =>
+                                    setData(
+                                        "password_confirmation",
+                                        e.target.value
+                                    )
+                                }
                                 placeholder="Confirm your password"
                                 required
                                 error={errors.password_confirmation}
@@ -77,14 +105,19 @@ export default function Register() {
                                 disabled={processing}
                                 className="w-full bg-primary hover:bg-primary-600 text-white py-3 px-4 rounded-lg font-medium transition-colors disabled:opacity-50"
                             >
-                                {processing ? 'Creating Account...' : 'Create Account'}
+                                {processing
+                                    ? "Creating Account..."
+                                    : "Create Account"}
                             </button>
                         </form>
 
                         <div className="mt-6 text-center">
                             <p className="text-gray-600">
-                                Already have an account?{' '}
-                                <Link href={route('login')} className="text-primary hover:text-primary-600 font-medium">
+                                Already have an account?{" "}
+                                <Link
+                                    href={route("login")}
+                                    className="text-primary hover:text-primary-600 font-medium"
+                                >
                                     Sign in
                                 </Link>
                             </p>
@@ -95,8 +128,12 @@ export default function Register() {
                 {/* Right Side - Gradient Background */}
                 <div className="hidden lg:flex lg:w-1/2 bg-brand-gradient items-center justify-center p-12">
                     <div className="text-center text-white">
-                        <h2 className="text-3xl font-bold mb-4">Join TexPort Today</h2>
-                        <p className="text-lg opacity-90">Start your journey with our modern platform</p>
+                        <h2 className="text-3xl font-bold mb-4">
+                            Join TexPort Today
+                        </h2>
+                        <p className="text-lg opacity-90">
+                            Start your journey with our modern platform
+                        </p>
                     </div>
                 </div>
             </div>

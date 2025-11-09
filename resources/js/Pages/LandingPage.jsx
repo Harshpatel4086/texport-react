@@ -5,26 +5,27 @@ import Container from '../Components/Container';
 import Button from '../Components/Button';
 import SectionHeader from '../Components/SectionHeader';
 import FeatureCard from '../Components/FeatureCard';
+import { FaRocket, FaLock, FaMobile, FaBolt, FaCheck } from 'react-icons/fa';
 
 export default function LandingPage({ auth }) {
     const features = [
         {
-            icon: "🚀",
+            icon: <FaRocket className="w-8 h-8 text-blue-600" />,
             title: "Fast Performance",
             description: "Lightning-fast loading times and optimized performance for the best user experience."
         },
         {
-            icon: "🔒",
+            icon: <FaLock className="w-8 h-8 text-blue-600" />,
             title: "Secure & Reliable",
             description: "Enterprise-grade security with 99.9% uptime guarantee and data protection."
         },
         {
-            icon: "📱",
+            icon: <FaMobile className="w-8 h-8 text-blue-600" />,
             title: "Mobile Responsive",
             description: "Perfectly optimized for all devices - desktop, tablet, and mobile."
         },
         {
-            icon: "⚡",
+            icon: <FaBolt className="w-8 h-8 text-blue-600" />,
             title: "Easy Integration",
             description: "Simple setup process with comprehensive documentation and support."
         }
@@ -33,10 +34,10 @@ export default function LandingPage({ auth }) {
     return (
         <>
             <Head title="TexPort - Modern Solutions" />
-            
+
             <div className="min-h-screen bg-white">
                 <Navbar auth={auth} />
-                
+
                 {/* Hero Section */}
                 <section className="bg-gradient-to-br from-blue-50 to-indigo-100 py-20">
                     <Container>
@@ -46,7 +47,7 @@ export default function LandingPage({ auth }) {
                                 <span className="text-blue-600"> Your Business</span>
                             </h1>
                             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                                Transform your workflow with our cutting-edge platform. Built for performance, 
+                                Transform your workflow with our cutting-edge platform. Built for performance,
                                 designed for simplicity, and crafted for success.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -60,7 +61,7 @@ export default function LandingPage({ auth }) {
                 {/* Features Section */}
                 <section id="features" className="py-20 bg-gray-50">
                     <Container>
-                        <SectionHeader 
+                        <SectionHeader
                             title="Why Choose TexPort?"
                             subtitle="Discover the features that make us the preferred choice for modern businesses"
                         />
@@ -81,27 +82,21 @@ export default function LandingPage({ auth }) {
                                     Built for the Future of Business
                                 </h2>
                                 <p className="text-lg text-gray-600 mb-6">
-                                    Our platform combines innovative technology with user-friendly design 
-                                    to deliver exceptional results. We understand the challenges modern 
+                                    Our platform combines innovative technology with user-friendly design
+                                    to deliver exceptional results. We understand the challenges modern
                                     businesses face and have created solutions that adapt to your needs.
                                 </p>
                                 <ul className="space-y-3 mb-8">
                                     <li className="flex items-center">
-                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
+                                        <FaCheck className="w-5 h-5 text-green-500 mr-3" />
                                         <span className="text-gray-700">24/7 Customer Support</span>
                                     </li>
                                     <li className="flex items-center">
-                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
+                                        <FaCheck className="w-5 h-5 text-green-500 mr-3" />
                                         <span className="text-gray-700">Advanced Analytics</span>
                                     </li>
                                     <li className="flex items-center">
-                                        <svg className="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
+                                        <FaCheck className="w-5 h-5 text-green-500 mr-3" />
                                         <span className="text-gray-700">Scalable Infrastructure</span>
                                     </li>
                                 </ul>
@@ -133,10 +128,7 @@ export default function LandingPage({ auth }) {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <Button variant="secondary" size="lg">
-                                    Start Free Trial
-                                </Button>
-                                <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-blue-600">
-                                    Contact Sales
+                                    Register Now
                                 </Button>
                             </div>
                         </div>
