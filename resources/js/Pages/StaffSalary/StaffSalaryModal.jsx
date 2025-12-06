@@ -194,23 +194,8 @@ export default function StaffSalaryModal({
                         readOnly
                         options={[
                             { value: 'monthly', label: 'Monthly' },
-                            { value: 'per_meter', label: 'Per Meter' }
                         ]}
                     />
-
-                    {data.salary_type === 'per_meter' && (
-                        <FormField
-                            label="Meter"
-                            name="meter"
-                            type="number"
-                            value={data.meter}
-                            onChange={(e) => setData('meter', e.target.value)}
-                            placeholder="Enter meter value"
-                            error={errors.meter}
-                            step="0.01"
-                            min="0"
-                        />
-                    )}
 
                     {data.salary_type === 'monthly' && (
                         <FormField
@@ -218,9 +203,10 @@ export default function StaffSalaryModal({
                             name="working_days"
                             type="number"
                             value={data.working_days}
-                            onChange={(e) => setData('working_days', e.target.value)}
+                            onChange={(e) => e.target.value > 0 ? setData('working_days', e.target.value) : setData('working_days', 1)}
                             placeholder="Enter working days"
                             error={errors.working_days}
+                            step="1"
                             min="1"
                             max="31"
                         />

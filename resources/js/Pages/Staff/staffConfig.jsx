@@ -7,7 +7,6 @@ export const staffFields = [
     { name: 'role', label: 'Role', type: 'select', placeholder: 'Select a role', required: true },
     { name: 'salary_type', label: 'Salary Type', type: 'select', placeholder: 'Select salary type', required: true, options: [
         { value: 'monthly', label: 'Monthly' },
-        { value: 'per_meter', label: 'Per Meter' }
     ]},
     { name: 'salary_amount', label: 'Salary Amount', type: 'number', placeholder: 'Enter salary amount', required: false, step: '0.01', min: '0' },
     { name: 'password', label: 'Password', type: 'password', placeholder: 'Create password', required: true },

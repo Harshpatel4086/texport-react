@@ -6,9 +6,9 @@ import DangerButton from '@/Components/DangerButton';
 import FormField from '@/Components/FormField';
 import PermissionSelector from '@/Components/PermissionSelector';
 
-export default function CrudModal({ 
-    isOpen, 
-    onClose, 
+export default function CrudModal({
+    isOpen,
+    onClose,
     mode, // 'create', 'edit', 'delete'
     title,
     entity, // The item being edited/deleted
@@ -39,7 +39,7 @@ export default function CrudModal({
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         if (mode === 'create') {
             post(routes.store, {
                 onSuccess: () => {
@@ -75,7 +75,7 @@ export default function CrudModal({
         return (
             <Modal isOpen={isOpen} onClose={onClose} title={title} size="md">
                 <p className="text-gray-600 mb-6">
-                    Are you sure you want to delete <strong>{entity?.[fields?.[0]?.name]}</strong>? 
+                    Are you sure you want to delete <strong>{entity?.[fields?.[0]?.name]}</strong>?
                     This action cannot be undone.
                 </p>
 

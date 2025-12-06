@@ -84,6 +84,16 @@ class User extends Authenticatable implements LaratrustUser, MustVerifyEmail
         return $this->hasMany(Attendance::class, 'staff_id');
     }
 
+    public function workers()
+    {
+        return $this->hasMany(Worker::class);
+    }
+
+    public function machines()
+    {
+        return $this->hasMany(Machine::class);
+    }
+
     /**
      * Determine if the user must verify their email address.
      */

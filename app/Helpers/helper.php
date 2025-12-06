@@ -33,4 +33,14 @@ if (!function_exists('formatDate')) {
     }
 }
 
+if (!function_exists('formatMachineNumber')) {
+    function formatMachineNumber($number)
+    {
+        if($number === null){
+            return '--';
+        }
+        return '#MCH-' . str_pad($number, 6, '0', STR_PAD_LEFT);
+    }
+}
+
 ?>

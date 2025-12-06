@@ -13,7 +13,9 @@ import {
     MdExpandLess,
     MdPerson,
     MdLogout,
-    MdSchedule
+    MdSchedule,
+    MdPrecisionManufacturing,
+    MdWork
 } from 'react-icons/md';
 import { usePermissions } from '@/Utils/permissions';
 
@@ -29,37 +31,70 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
         ...(canManage('role') ? [{ name: 'Roles', href: '/roles', routeName: 'roles.index' }] : [])
     ];
 
+    // Worker management submenu (always available for factory owners)
+    const workersSubmenu = [
+        { name: 'Workers', href: '/workers', routeName: 'workers.index' },
+        { name: 'Machines', href: '/machines', routeName: 'machines.index' },
+        { name: 'Machine Assignments', href: '/worker-machine-assignments', routeName: 'worker-machine-assignments.index' },
+        { name: 'Daily Production', href: '/worker-production', routeName: 'worker-production.index' },
+        { name: 'Salary Calculation', href: '/worker-salary', routeName: 'worker-salary.index' }
+    ];
+
     const menuItems = [
         {
-            name: 'Dashboard',
+            name: "Dashboard",
             icon: MdDashboard,
-            href: '/dashboard',
-            routeName: 'dashboard'
+            href: "/dashboard",
+            routeName: "dashboard",
         },
         // Only show Users menu if user has any submenu permissions
-        ...(usersSubmenu.length > 0 ? [{
-            name: 'Users',
-            icon: MdPeople,
-            submenu: usersSubmenu
-        }] : []),
+        ...(usersSubmenu.length > 0
+            ? [
+                  {
+                      name: "Users",
+                      icon: MdPeople,
+                      submenu: usersSubmenu,
+                  },
+              ]
+            : []),
+        // Worker Management menu (always available for factory owners)
+        {
+            name: "Workers",
+            icon: MdWork,
+            submenu: workersSubmenu,
+        },
         // Show Parties as direct menu item
-        ...(canManage('party') ? [{
-            name: 'Parties',
-            icon: MdBusiness,
-            href: '/parties',
-            routeName: 'parties.index'
-        }] : []),
+        ...(canManage("party")
+            ? [
+                  {
+                      name: "Parties",
+                      icon: MdBusiness,
+                      href: "/parties",
+                      routeName: "parties.index",
+                  },
+              ]
+            : []),
         // Show Attendance as direct menu item
-        ...(canManage('attendance') ? [{
-            name: 'Attendance',
-            icon: MdSchedule,
-            href: '/attendance',
-            routeName: 'attendance.index'
-        }] : []),
+        ...(canManage("attendance")
+            ? [
+                  {
+                      name: "Attendance",
+                      icon: MdSchedule,
+                      href: "/attendance",
+                      routeName: "attendance.index",
+                  },
+              ]
+            : []),
+        // Settings menu
+        {
+            name: "Settings",
+            icon: MdSettings,
+            href: "/settings",
+            routeName: "settings.index",
+        }
         // { name: 'Logistics', icon: MdLocalShipping, href: '#', routeName: 'logistics' },
         // { name: 'Vendors', icon: MdBusiness, href: '#', routeName: 'vendors' },
         // { name: 'Reports', icon: MdAssessment, href: '#', routeName: 'reports' },
-        // { name: 'Settings', icon: MdSettings, href: '#', routeName: 'settings' },
     ];
 
     const isActive = (routeName) => {

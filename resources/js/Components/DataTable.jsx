@@ -60,13 +60,13 @@ export default function DataTable(props) {
 
     const handlePerPageChange = (newPerPage) => {
         setPerPage(newPerPage);
-        
+
         // Calculate current position and new page
         const currentPage = pagination?.current_page || 1;
         const currentPerPage = pagination?.per_page || perPage;
         const currentPosition = (currentPage - 1) * currentPerPage + 1;
         const newPage = Math.ceil(currentPosition / newPerPage);
-        
+
         router.get(currentUrl, { ...filters, search, sort: sortField, direction: sortDirection, per_page: newPerPage, page: newPage });
     };
 
@@ -170,7 +170,9 @@ export default function DataTable(props) {
                             <tr>
                                 <td colSpan={columns.length} className="px-6 py-12 text-center">
                                     <div className="text-gray-500">
-                                        <div className="text-lg mb-2">📄</div>
+                                        <div className="text-lg mb-2">
+                                            <MdSearch className="inline-block w-6 h-6 mr-2" />
+                                        </div>
                                         <div className="font-medium">No data available</div>
                                         <div className="text-sm">There are no records to display</div>
                                     </div>

@@ -1,0 +1,107 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Worker;
+use App\Models\WorkerDailyProductionEntry;
+use App\Models\Setting;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Inertia\Inertia;
+
+class WorkerSalaryController extends Controller
+{
+    public function index()
+    {
+        $workers = Worker::where('user_id', createdBy())->get();
+
+        return Inertia::render('WorkerSalary/Index', [
+            'workers' => $workers,
+        ]);
+    }
+
+    public function calculate(Request $request)
+    {
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+            'worker_id' => 'nullable|exists:workers,id',
+            'shift_id' => 'nullable|in:day,night',
+        ]);
+
+        // Get worker_per_meter_rate from settings for current user
+        $rate = Setting::getValue('worker_per_meter_rate', createdBy());
+
+        $query = WorkerDailyProductionEntry::where('user_id', createdBy())
+            ->whereBetween('date', [$request->date_from, $request->date_to])
+            ->with(['worker', 'machine']);
+
+        if ($request->worker_id) {
+            $query->where('worker_id', $request->worker_id);
+        }
+
+        if ($request->shift_id) {
+            $query->where('shift_id', $request->shift_id);
+        }
+
+        $entries = $query->get();
+
+        $workerSalaries = $entries->groupBy('worker_id')->map(function ($workerEntries) use ($rate) {
+            $worker = $workerEntries->first()->worker;
+            $totalMeters = $workerEntries->sum('meters');
+            $totalSalary = $totalMeters * $rate;
+
+            return [
+                'worker' => $worker,
+                'total_meters' => $totalMeters,
+                'rate' => $rate,
+                'total_salary' => $totalSalary,
+            ];
+        })->values();
+
+        return response()->json([
+            'salaries' => $workerSalaries,
+            'rate' => $rate,
+        ]);
+    }
+
+    public function report(Request $request, $encryptedWorkerId)
+    {
+        $workerId = base64_decode($encryptedWorkerId);
+        $worker = Worker::where('id', $workerId)
+            ->where('user_id', createdBy())
+            ->firstOrFail();
+
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+            'shift_id' => 'nullable|in:day,night',
+        ]);
+
+        $rate = Setting::getValue('worker_per_meter_rate', createdBy());
+
+        $query = WorkerDailyProductionEntry::where('user_id', createdBy())
+            ->where('worker_id', $worker->id)
+            ->whereBetween('date', [$request->date_from, $request->date_to])
+            ->with('machine');
+
+        if ($request->shift_id) {
+            $query->where('shift_id', $request->shift_id);
+        }
+
+        $entries = $query->orderBy('date')->orderBy('shift_id')->get();
+        $totalMeters = $entries->sum('meters');
+        $totalSalary = $totalMeters * $rate;
+
+        return Inertia::render('WorkerSalary/Report', [
+            'worker' => $worker,
+            'entries' => $entries,
+            'totalMeters' => $totalMeters,
+            'rate' => $rate,
+            'totalSalary' => $totalSalary,
+            'dateFrom' => $request->date_from,
+            'dateTo' => $request->date_to,
+            'shift' => $request->shift_id,
+        ]);
+    }
+}

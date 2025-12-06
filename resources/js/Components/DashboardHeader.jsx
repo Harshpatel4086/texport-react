@@ -70,7 +70,7 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
                                                 {user?.name || "Test"}
                                             </div>
                                             <div className="text-xs text-gray-500 capitalize">
-                                                {user?.is_staff ? user?.role : "Role"}
+                                                {user ? user?.role : "Role"}
                                             </div>
                                         </div>
                                         <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium">

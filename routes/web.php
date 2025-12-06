@@ -3,11 +3,17 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\MachineController;
 use App\Http\Controllers\PartyManagementController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleManagementController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StaffManagementController;
 use App\Http\Controllers\StaffSalaryController;
+use App\Http\Controllers\WorkerController;
+use App\Http\Controllers\WorkerMachineAssignmentController;
+use App\Http\Controllers\WorkerProductionController;
+use App\Http\Controllers\WorkerSalaryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +58,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Party routes
     Route::resource('parties', PartyManagementController::class);
+
+    // Worker routes
+    Route::resource('workers', WorkerController::class);
+
+    // Machine routes
+    Route::resource('machines', MachineController::class);
+
+    // Worker Machine Assignment routes
+    Route::get('worker-machine-assignments', [WorkerMachineAssignmentController::class, 'index'])->name('worker-machine-assignments.index');
+    Route::post('worker-machine-assignments', [WorkerMachineAssignmentController::class, 'store'])->name('worker-machine-assignments.store');
+
+    // Worker Production routes
+    Route::get('worker-production', [WorkerProductionController::class, 'index'])->name('worker-production.index');
+    Route::get('worker-production/machines', [WorkerProductionController::class, 'getMachines'])->name('worker-production.machines');
+    Route::get('worker-production/existing', [WorkerProductionController::class, 'getExisting'])->name('worker-production.existing');
+    Route::post('worker-production', [WorkerProductionController::class, 'store'])->name('worker-production.store');
+
+    // Worker Salary routes
+    Route::get('worker-salary', [WorkerSalaryController::class, 'index'])->name('worker-salary.index');
+    Route::post('worker-salary/calculate', [WorkerSalaryController::class, 'calculate'])->name('worker-salary.calculate');
+    Route::get('worker-salary/report/{worker}', [WorkerSalaryController::class, 'report'])->name('worker-salary.report');
+
+    // Settings routes
+    Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('settings/worker-rate', [SettingController::class, 'updateWorkerRate'])->name('settings.worker-rate');
 });
 
 require __DIR__.'/auth.php';

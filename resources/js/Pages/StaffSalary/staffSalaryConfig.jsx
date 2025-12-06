@@ -6,7 +6,6 @@ export const staffSalaryFields = [
     { name: 'staff_salary', label: 'Staff Salary', type: 'number', placeholder: 'Enter salary amount', required: true, step: '0.01', min: '0' },
     { name: 'salary_type', label: 'Salary Type', type: 'select', placeholder: 'Auto-filled', required: true, readonly: true, options: [
         { value: 'monthly', label: 'Monthly' },
-        { value: 'per_meter', label: 'Per Meter' }
     ]},
     { name: 'meter', label: 'Meter', type: 'number', placeholder: 'Enter meter value', required: false, step: '0.01', min: '0', conditional: 'per_meter' },
     { name: 'working_days', label: 'Working Days', type: 'number', placeholder: 'Enter working days', required: false, min: '1', max: '31', conditional: 'monthly' },
