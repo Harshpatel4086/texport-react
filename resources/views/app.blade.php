@@ -27,7 +27,7 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
-        
+
         <!-- PWA Install Popup -->
         <div id="pwa-install-popup" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; align-items: center; justify-content: center;">
             <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);"></div>
@@ -43,51 +43,84 @@
                     ✕
                 </button>
             </div>
-            
-            <p class="text-sm text-gray-600 mb-4">
-                Install this app on your home screen for quick and easy access when you're on the go.
-            </p>
-            
-            <div class="flex space-x-2">
-                <button
-                    onclick="installPWA()"
-                    class="bg-blue-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-600 flex-1"
-                >
-                    Install
-                </button>
+
+            <div id="popup-content">
+                <p class="text-sm text-gray-600 mb-4">
+                    Install this app on your home screen for quick and easy access when you're on the go.
+                </p>
+
+                <div class="flex space-x-2">
+                    <button
+                        onclick="installPWA()"
+                        class="bg-blue-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-600 flex-1"
+                    >
+                        Install
+                    </button>
+                    <button
+                        onclick="hidePopup()"
+                        class="border border-gray-300 text-gray-700 px-4 py-2 rounded text-sm hover:bg-gray-50 flex-1"
+                    >
+                        Not now
+                    </button>
+                </div>
+            </div>
+
+            <div id="ios-content" style="display: none;">
+                <p class="text-sm text-gray-600 mb-4">
+                    To install this app on your iPhone:
+                </p>
+                <ol class="text-sm text-gray-600 mb-4 space-y-1">
+                    <li>1. Tap the <strong>Share</strong> button ⬆️ in Safari</li>
+                    <li>2. Select <strong>"Add to Home Screen"</strong></li>
+                    <li>3. Tap <strong>"Add"</strong> to install</li>
+                </ol>
+
                 <button
                     onclick="hidePopup()"
-                    class="border border-gray-300 text-gray-700 px-4 py-2 rounded text-sm hover:bg-gray-50 flex-1"
+                    class="bg-blue-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-600 w-full"
                 >
-                    Not now
+                    Got it
                 </button>
             </div>
         </div>
         </div>
-        
+
         <script>
             let deferredPrompt;
-            
+
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 deferredPrompt = e;
             });
-            
+
+            // Cookie functions
+            function setCookie(name, value, days) {
+                const expires = new Date(Date.now() + days * 864e5).toUTCString();
+                document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+            }
+
+            function getCookie(name) {
+                return document.cookie.split('; ').reduce((r, v) => {
+                    const parts = v.split('=');
+                    return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+                }, '');
+            }
+
             // Check if popup should be shown
             function shouldShowPopup() {
-                const lastDismissed = localStorage.getItem('pwa-popup-dismissed');
+                const lastDismissed = getCookie('pwa-popup-dismissed');
                 if (!lastDismissed) return true;
-                
+
                 const today = new Date().toDateString();
                 return lastDismissed !== today;
             }
-            
+
             // Hide popup and save dismiss date
             function hidePopup() {
                 document.getElementById('pwa-install-popup').style.display = 'none';
-                localStorage.setItem('pwa-popup-dismissed', new Date().toDateString());
+                setCookie('pwa-popup-dismissed', new Date().toDateString(), 1);
             }
-            
+
             function installPWA() {
                 if (deferredPrompt) {
                     deferredPrompt.prompt();
@@ -98,10 +131,20 @@
                     hidePopup();
                 }
             }
-            
+
+            // Detect iOS Safari specifically
+            function isIOSSafari() {
+                const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+                const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome|CriOS|FxiOS/.test(navigator.userAgent);
+                return isIOS && isSafari;
+            }
+
             // Show/hide popup on page load
             if (!shouldShowPopup()) {
                 document.getElementById('pwa-install-popup').style.display = 'none';
+            } else if (isIOSSafari()) {
+                document.getElementById('popup-content').style.display = 'none';
+                document.getElementById('ios-content').style.display = 'block';
             }
         </script>
     </body>

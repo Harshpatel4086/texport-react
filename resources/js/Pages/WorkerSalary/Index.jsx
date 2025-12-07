@@ -21,8 +21,8 @@ export default function WorkerSalaryIndex(props) {
     const [generatingPayslip, setGeneratingPayslip] = useState(null);
     const [salaryData, setSalaryData] = useState(null);
     const [filters, setFilters] = useState({
-        date_from: '',
-        date_to: '',
+        date_from: new Date().toISOString().split('T')[0],
+        date_to: new Date().toISOString().split('T')[0],
         worker_id: '',
         shift_id: '',
     });
