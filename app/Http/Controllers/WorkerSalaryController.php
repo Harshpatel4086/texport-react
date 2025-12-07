@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Worker;
 use App\Models\WorkerDailyProductionEntry;
 use App\Models\Setting;
+use App\Models\Payslip;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
@@ -31,6 +32,12 @@ class WorkerSalaryController extends Controller
 
         // Get worker_per_meter_rate from settings for current user
         $rate = Setting::getValue('worker_per_meter_rate', createdBy());
+        
+        if (!$rate) {
+            return response()->json([
+                'error' => 'Please set the rate price in setting'
+            ], 422);
+        }
 
         $query = WorkerDailyProductionEntry::where('user_id', createdBy())
             ->whereBetween('date', [$request->date_from, $request->date_to])
@@ -102,6 +109,78 @@ class WorkerSalaryController extends Controller
             'dateFrom' => $request->date_from,
             'dateTo' => $request->date_to,
             'shift' => $request->shift_id,
+        ]);
+    }
+
+    public function generatePayslip(Request $request)
+    {
+        $request->validate([
+            'date_from' => 'required|date',
+            'date_to' => 'required|date|after_or_equal:date_from',
+            'worker_id' => 'required|exists:workers,id',
+            'shift_id' => 'nullable|in:day,night',
+        ]);
+
+        $rate = Setting::getValue('worker_per_meter_rate', createdBy());
+        
+        if (!$rate) {
+            return response()->json([
+                'error' => 'Please set the rate price in setting'
+            ], 422);
+        }
+
+        $query = WorkerDailyProductionEntry::where('user_id', createdBy())
+            ->where('worker_id', $request->worker_id)
+            ->whereBetween('date', [$request->date_from, $request->date_to])
+            ->with('machine');
+
+        if ($request->shift_id) {
+            $query->where('shift_id', $request->shift_id);
+        }
+
+        $entries = $query->get();
+        $totalMeters = $entries->sum('meters');
+        $totalSalary = $totalMeters * $rate;
+
+        $payslip = Payslip::create([
+            'worker_id' => $request->worker_id,
+            'user_id' => createdBy(),
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to,
+            'shift_id' => $request->shift_id,
+            'total_meters' => $totalMeters,
+            'rate' => $rate,
+            'total_salary' => $totalSalary,
+            'calculation_data' => $entries->toArray()
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Payslip generated successfully!',
+            'payslip_id' => $payslip->id
+        ]);
+    }
+
+    public function payslips()
+    {
+        $payslips = Payslip::where('user_id', createdBy())
+            ->with('worker')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return Inertia::render('WorkerSalary/Payslips', [
+            'payslips' => $payslips
+        ]);
+    }
+
+    public function viewPayslip($id)
+    {
+        $payslip = Payslip::where('user_id', createdBy())
+            ->with('worker')
+            ->findOrFail($id);
+
+        return Inertia::render('WorkerSalary/PayslipView', [
+            'payslip' => $payslip
         ]);
     }
 }

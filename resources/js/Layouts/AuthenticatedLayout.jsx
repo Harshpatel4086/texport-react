@@ -3,6 +3,8 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import Toast from '@/Components/Toast';
+import PWAInstallPopup from '@/Components/PWAInstallPopup';
+import { usePWA } from '@/Hooks/usePWA';
 import { Link, usePage } from '@inertiajs/react';
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
@@ -13,6 +15,9 @@ export default function AuthenticatedLayout({ header, children }) {
 
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
+    // Initialize PWA functionality
+    usePWA();
 
     useEffect(() => {
         if (flash.success) {
@@ -184,6 +189,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
             <main>{children}</main>
             <Toast />
+            <PWAInstallPopup />
         </div>
     );
 }

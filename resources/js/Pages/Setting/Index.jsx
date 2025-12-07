@@ -10,7 +10,7 @@ import { FaSave } from 'react-icons/fa';
 import { MdAttachMoney } from 'react-icons/md';
 
 export default function SettingIndex(props) {
-    const { auth = {}, workerRate = 10.00 } = props;
+    const { auth = {}, workerRate = '' } = props;
 
     useToastFlash();
 
@@ -18,7 +18,7 @@ export default function SettingIndex(props) {
     const [activeSection, setActiveSection] = useState('rate');
 
     const { data, setData, post, processing, errors } = useForm({
-        rate: workerRate,
+        rate: workerRate || '',
     });
 
     const handleSubmit = (e) => {

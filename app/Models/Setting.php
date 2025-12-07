@@ -20,7 +20,7 @@ class Setting extends Model
         return $this->belongsTo(User::class);
     }
 
-    public static function getValue($key, $userId, $default = 2)
+    public static function getValue($key, $userId, $default = null)
     {
         $setting = self::where('key', $key)
             ->where('user_id', $userId)

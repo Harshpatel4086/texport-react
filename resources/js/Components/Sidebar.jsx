@@ -59,7 +59,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
             : []),
         // Worker Management menu (always available for factory owners)
         {
-            name: "Workers",
+            name: "Workers Management",
             icon: MdWork,
             submenu: workersSubmenu,
         },
@@ -146,7 +146,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                 <div className="p-6 flex items-center justify-between">
                     <Link href="/">
                         <img
-                            src="assets/logo/logo_dark.png"
+                            src="/assets/logo/logo_dark.png"
                             alt="TexPort"
                             className="h-8"
                         />

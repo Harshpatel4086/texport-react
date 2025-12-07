@@ -10,7 +10,7 @@ class SettingController extends Controller
 {
     public function index()
     {
-        $workerRate = Setting::getValue('worker_per_meter_rate', createdBy(), 10.00);
+        $workerRate = Setting::getValue('worker_per_meter_rate', createdBy());
 
         return Inertia::render('Setting/Index', [
             'workerRate' => $workerRate,

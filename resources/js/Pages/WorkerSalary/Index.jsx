@@ -18,6 +18,7 @@ export default function WorkerSalaryIndex(props) {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [calculating, setCalculating] = useState(false);
+    const [generatingPayslip, setGeneratingPayslip] = useState(null);
     const [salaryData, setSalaryData] = useState(null);
     const [filters, setFilters] = useState({
         date_from: '',
@@ -42,13 +43,34 @@ export default function WorkerSalaryIndex(props) {
         setCalculating(true);
         try {
             const response = await axios.post(route('worker-salary.calculate'), filters);
-            console.log(response.data);
-
             setSalaryData(response.data);
         } catch (error) {
-            console.error('Error calculating salary:', error);
+            if (error.response?.data?.error) {
+                toaster.error(error.response.data.error);
+            } else {
+                toaster.error('Error calculating salary');
+            }
         } finally {
             setCalculating(false);
+        }
+    };
+
+    const handleGeneratePayslip = async (workerId) => {
+        setGeneratingPayslip(workerId);
+        try {
+            const response = await axios.post(route('worker-salary.generate-payslip'), {
+                ...filters,
+                worker_id: workerId
+            });
+            toaster.success(response.data.message);
+        } catch (error) {
+            if (error.response?.data?.error) {
+                toaster.error(error.response.data.error);
+            } else {
+                toaster.error('Failed to generate payslip');
+            }
+        } finally {
+            setGeneratingPayslip(null);
         }
     };
 
@@ -142,6 +164,15 @@ export default function WorkerSalaryIndex(props) {
                             </form>
                         </div>
 
+                        {/* Payslips Link */}
+                        <div className="mb-6">
+                            <Link href={route('worker-salary.payslips')}>
+                                <Button variant="outline">
+                                    View All Payslips
+                                </Button>
+                            </Link>
+                        </div>
+
                         {/* Results */}
                         {salaryData && (
                             <div className="bg-white rounded-xl shadow-sm border border-gray-100">
@@ -190,21 +221,31 @@ export default function WorkerSalaryIndex(props) {
                                                             ₹{salary.total_salary.toFixed(2)}
                                                         </td>
                                                         <td className="px-6 py-4 text-sm text-gray-900">
-                                                            <Link
-                                                                href={route('worker-salary.report', {
-                                                                    worker: btoa(salary.worker.id),
-                                                                    date_from: filters.date_from,
-                                                                    date_to: filters.date_to,
-                                                                    shift_id: filters.shift_id || undefined,
-                                                                })}
-                                                            >
-                                                                <IconButton
-                                                                    icon={MdVisibility}
-                                                                    tooltip="View Detailed Report"
-                                                                    variant="primary"
+                                                            <div className="flex gap-2">
+                                                                <Link
+                                                                    href={route('worker-salary.report', {
+                                                                        worker: btoa(salary.worker.id),
+                                                                        date_from: filters.date_from,
+                                                                        date_to: filters.date_to,
+                                                                        shift_id: filters.shift_id || undefined,
+                                                                    })}
+                                                                >
+                                                                    <IconButton
+                                                                        icon={MdVisibility}
+                                                                        tooltip="View Detailed Report"
+                                                                        variant="primary"
+                                                                        size="sm"
+                                                                    />
+                                                                </Link>
+                                                                <Button
                                                                     size="sm"
-                                                                />
-                                                            </Link>
+                                                                    variant="secondary"
+                                                                    disabled={generatingPayslip === salary.worker.id}
+                                                                    onClick={() => handleGeneratePayslip(salary.worker.id)}
+                                                                >
+                                                                    {generatingPayslip === salary.worker.id ? 'Generating...' : 'Generate Payslip'}
+                                                                </Button>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 ))}

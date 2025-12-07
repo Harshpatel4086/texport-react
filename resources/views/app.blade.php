@@ -6,6 +6,14 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- PWA Manifest -->
+        <link rel="manifest" href="{{ asset('manifest.json') }}">
+        <meta name="theme-color" content="#1E88E5">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta name="apple-mobile-web-app-title" content="Texport">
+        <link rel="apple-touch-icon" href="{{ asset('pwa-icon-192.png') }}">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -19,5 +27,82 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+        
+        <!-- PWA Install Popup -->
+        <div id="pwa-install-popup" style="display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; display: flex; align-items: center; justify-content: center;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);"></div>
+            <div style="position: relative; background: white; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); padding: 24px; max-width: 400px; margin: 16px;">
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
+                        <span class="text-white text-sm font-bold">T</span>
+                    </div>
+                    <span class="font-medium text-gray-900">Texport</span>
+                </div>
+                <button onclick="hidePopup()" class="text-gray-400 hover:text-gray-600">
+                    ✕
+                </button>
+            </div>
+            
+            <p class="text-sm text-gray-600 mb-4">
+                Install this app on your home screen for quick and easy access when you're on the go.
+            </p>
+            
+            <div class="flex space-x-2">
+                <button
+                    onclick="installPWA()"
+                    class="bg-blue-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-blue-600 flex-1"
+                >
+                    Install
+                </button>
+                <button
+                    onclick="hidePopup()"
+                    class="border border-gray-300 text-gray-700 px-4 py-2 rounded text-sm hover:bg-gray-50 flex-1"
+                >
+                    Not now
+                </button>
+            </div>
+        </div>
+        </div>
+        
+        <script>
+            let deferredPrompt;
+            
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+            });
+            
+            // Check if popup should be shown
+            function shouldShowPopup() {
+                const lastDismissed = localStorage.getItem('pwa-popup-dismissed');
+                if (!lastDismissed) return true;
+                
+                const today = new Date().toDateString();
+                return lastDismissed !== today;
+            }
+            
+            // Hide popup and save dismiss date
+            function hidePopup() {
+                document.getElementById('pwa-install-popup').style.display = 'none';
+                localStorage.setItem('pwa-popup-dismissed', new Date().toDateString());
+            }
+            
+            function installPWA() {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then(() => {
+                        hidePopup();
+                    });
+                } else {
+                    hidePopup();
+                }
+            }
+            
+            // Show/hide popup on page load
+            if (!shouldShowPopup()) {
+                document.getElementById('pwa-install-popup').style.display = 'none';
+            }
+        </script>
     </body>
 </html>

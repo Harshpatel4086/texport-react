@@ -1,0 +1,15 @@
+PWA ICONS NEEDED:
+
+Please create the following icon files in the public directory:
+
+1. pwa-icon-192.png (192x192 pixels)
+2. pwa-icon-512.png (512x512 pixels)
+
+These should be your app logo/icon in PNG format with transparent background.
+The icons should match your brand colors (primary: #1E88E5, secondary: #00B8A9).
+
+You can use online tools like:
+- https://realfavicongenerator.net/
+- https://www.pwabuilder.com/imageGenerator
+
+Or create them manually using design tools like Figma, Canva, or Photoshop.
