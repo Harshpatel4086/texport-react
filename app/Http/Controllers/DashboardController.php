@@ -10,7 +10,8 @@ class DashboardController extends Controller
     {
         $user = auth()->user()->load('roles.permissions');
         return Inertia::render('Dashboard', [
-            'userRoles' => $user->roles
+            'userRoles' => $user->roles,
+            'vapidPublicKey' => config('app.vapid_public_key')
         ]);
     }
 }

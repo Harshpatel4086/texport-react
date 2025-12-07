@@ -10,6 +10,7 @@ use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StaffManagementController;
 use App\Http\Controllers\StaffSalaryController;
+use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\WorkerMachineAssignmentController;
 use App\Http\Controllers\WorkerProductionController;
@@ -29,6 +30,12 @@ Route::get('/clear-cache', function() {
     return redirect()->back()->with('success', 'Cache and logs cleared successfully!');
 });
 
+Route::get('/send/notification/{title}/{message}', function($title, $message) {
+    $userId = null;
+    app(\App\Services\NotificationService::class)->sendToUser($userId, $title, $message);
+    return redirect()->back()->with('success', 'Notification sent successfully!');
+})->middleware('auth');
+
 Route::get('/email/verification-status', function() {
     return response()->json([
         'verified' => auth()->check() && auth()->user()->hasVerifiedEmail()
@@ -41,6 +48,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Push notification subscriptions
+    Route::post('/subscriptions', [SubscriptionsController::class, 'store'])->name('subscriptions.store');
 
     // Staff routes
     Route::resource('staff', StaffManagementController::class);

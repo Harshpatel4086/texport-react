@@ -4,10 +4,14 @@ import Sidebar from '@/Components/Sidebar';
 import DashboardHeader from '@/Components/DashboardHeader';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
+import usePushNotifications from '@/Hooks/usePushNotifications';
 
-export default function Dashboard({ auth, userRoles, userPermissions }) {
+export default function Dashboard({ auth, userRoles, userPermissions, vapidPublicKey }) {
     // Handle flash messages as toasts
     useToastFlash();
+    
+    // Initialize push notifications
+    usePushNotifications(vapidPublicKey);
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const stats = [

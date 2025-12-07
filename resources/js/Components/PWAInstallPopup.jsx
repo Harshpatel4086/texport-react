@@ -30,16 +30,8 @@ export default function PWAInstallPopup() {
         setShowPopup(false);
     };
 
-    // Test button - remove after testing
     if (!showPopup) {
-        return (
-            <button
-                onClick={() => setShowPopup(true)}
-                className="fixed bottom-4 right-4 z-50 bg-red-500 text-white px-3 py-2 rounded"
-            >
-                Show Install Popup
-            </button>
-        );
+        return null;
     }
 
     return (

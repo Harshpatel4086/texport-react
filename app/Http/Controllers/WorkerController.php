@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worker;
+use App\Services\NotificationService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -63,11 +64,19 @@ class WorkerController extends Controller
             'phone' => 'nullable|string|max:20',
         ]);
 
-        Worker::create([
+        $worker = Worker::create([
             'user_id' => createdBy(),
             'name' => $request->name,
             'phone' => $request->phone,
         ]);
+
+        // Send push notification
+        $notificationService = new NotificationService();
+        $notificationService->sendToUser(
+            createdBy(),
+            'New Worker Added',
+            'A new worker has been added to your account.'
+        );
 
         return back()->with('success', 'Worker created successfully.');
     }
@@ -94,13 +103,14 @@ class WorkerController extends Controller
     public function destroy(Worker $worker)
     {
         if ($worker->user_id !== createdBy()) {
-            abort(403);
+            // abort(403);
+            return back()->with('error', 'You are not authorized to delete this worker.');
         }
 
         // Delete related data first
         $worker->machineAssignments()->delete();
         $worker->productionEntries()->delete();
-        
+
         $worker->delete();
         return back()->with('success', 'Worker deleted successfully.');
     }

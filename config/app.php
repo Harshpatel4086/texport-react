@@ -123,4 +123,17 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Web Push Notifications (VAPID)
+    |--------------------------------------------------------------------------
+    |
+    | VAPID keys for web push notifications. Generate using:
+    | php artisan webpush:vapid
+    |
+    */
+
+    'vapid_public_key' => env('VAPID_PUBLIC_KEY'),
+    'vapid_private_key' => env('VAPID_PRIVATE_KEY'),
+
 ];
