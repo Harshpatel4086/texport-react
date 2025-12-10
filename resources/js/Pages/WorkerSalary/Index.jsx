@@ -10,9 +10,11 @@ import { MdVisibility } from 'react-icons/md';
 import IconButton from '@/Components/IconButton';
 import axios from 'axios';
 import { toaster } from "@/Utils/toaster";
+import { usePermissions } from '@/Utils/permissions';
 
 export default function WorkerSalaryIndex(props) {
     const { auth = {}, workers = [] } = props;
+    const { hasPermission } = usePermissions();
 
     useToastFlash();
 
@@ -153,25 +155,29 @@ export default function WorkerSalaryIndex(props) {
                                     />
                                 </div>
 
-                                <div className="flex justify-end">
-                                    <Button
-                                        type="submit"
-                                        disabled={calculating || !filters.date_from || !filters.date_to}
-                                    >
-                                        {calculating ? 'Calculating...' : 'Calculate'}
-                                    </Button>
-                                </div>
+                                {hasPermission('calculate worker salary') && (
+                                    <div className="flex justify-end">
+                                        <Button
+                                            type="submit"
+                                            disabled={calculating || !filters.date_from || !filters.date_to}
+                                        >
+                                            {calculating ? 'Calculating...' : 'Calculate'}
+                                        </Button>
+                                    </div>
+                                )}
                             </form>
                         </div>
 
                         {/* Payslips Link */}
-                        <div className="mb-6">
-                            <Link href={route('worker-salary.payslips')}>
-                                <Button variant="outline">
-                                    View All Payslips
-                                </Button>
-                            </Link>
-                        </div>
+                        {hasPermission('view worker payslip') && (
+                            <div className="mb-6">
+                                <Link href={route('worker-salary.payslips')}>
+                                    <Button variant="outline">
+                                        View All Payslips
+                                    </Button>
+                                </Link>
+                            </div>
+                        )}
 
                         {/* Results */}
                         {salaryData && (
@@ -237,14 +243,16 @@ export default function WorkerSalaryIndex(props) {
                                                                         size="sm"
                                                                     />
                                                                 </Link>
-                                                                <Button
-                                                                    size="sm"
-                                                                    variant="secondary"
-                                                                    disabled={generatingPayslip === salary.worker.id}
-                                                                    onClick={() => handleGeneratePayslip(salary.worker.id)}
-                                                                >
-                                                                    {generatingPayslip === salary.worker.id ? 'Generating...' : 'Generate Payslip'}
-                                                                </Button>
+                                                                {hasPermission('generate worker payslip') && (
+                                                                    <Button
+                                                                        size="sm"
+                                                                        variant="secondary"
+                                                                        disabled={generatingPayslip === salary.worker.id}
+                                                                        onClick={() => handleGeneratePayslip(salary.worker.id)}
+                                                                    >
+                                                                        {generatingPayslip === salary.worker.id ? 'Generating...' : 'Generate Payslip'}
+                                                                    </Button>
+                                                                )}
                                                             </div>
                                                         </td>
                                                     </tr>

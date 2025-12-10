@@ -98,3 +98,8 @@ self.addEventListener('notificationclick', event => {
     clients.openWindow(event.notification.data.url || '/dashboard')
   );
 });
+
+// App installation event
+self.addEventListener('appinstalled', event => {
+  console.log('PWA was installed successfully');
+});

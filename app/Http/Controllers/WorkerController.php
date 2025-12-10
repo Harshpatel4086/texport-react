@@ -11,6 +11,11 @@ class WorkerController extends Controller
 {
     public function index(Request $request)
     {
+        // Check manage permission for workers
+        if (!auth()->user()->hasPermission('manage workers')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $query = Worker::where('user_id', createdBy());
 
         if ($request->filled('search')) {
@@ -59,6 +64,11 @@ class WorkerController extends Controller
 
     public function store(Request $request)
     {
+        // Check create permission for workers
+        if (!auth()->user()->hasPermission('create workers')) {
+            return back()->with('error', 'Permission denied!');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'phone' => 'nullable|string|max:20',
@@ -70,13 +80,13 @@ class WorkerController extends Controller
             'phone' => $request->phone,
         ]);
 
-        // Send push notification
-        $notificationService = new NotificationService();
-        $notificationService->sendToUser(
-            createdBy(),
-            'New Worker Added',
-            'A new worker has been added to your account.'
-        );
+        // // Send push notification
+        // $notificationService = new NotificationService();
+        // $notificationService->sendToUser(
+        //     createdBy(),
+        //     'New Worker Added',
+        //     'A new worker has been added to your account.'
+        // );
 
         return back()->with('success', 'Worker created successfully.');
     }
@@ -85,6 +95,11 @@ class WorkerController extends Controller
     {
         if ($worker->user_id != createdBy()) {
             abort(403);
+        }
+
+        // Check edit permission for workers
+        if (!auth()->user()->hasPermission('edit workers')) {
+            return back()->with('error', 'Permission denied!');
         }
 
         $request->validate([
@@ -105,6 +120,11 @@ class WorkerController extends Controller
         if ($worker->user_id !== createdBy()) {
             // abort(403);
             return back()->with('error', 'You are not authorized to delete this worker.');
+        }
+
+        // Check delete permission for workers
+        if (!auth()->user()->hasPermission('delete workers')) {
+            return back()->with('error', 'Permission denied!');
         }
 
         // Delete related data first

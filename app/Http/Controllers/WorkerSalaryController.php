@@ -14,6 +14,11 @@ class WorkerSalaryController extends Controller
 {
     public function index()
     {
+        // Check manage permission for worker salary
+        if (!auth()->user()->hasPermission('manage worker salary')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $workers = Worker::where('user_id', createdBy())->get();
 
         return Inertia::render('WorkerSalary/Index', [
@@ -23,6 +28,11 @@ class WorkerSalaryController extends Controller
 
     public function calculate(Request $request)
     {
+        // Check calculate permission for worker salary
+        if (!auth()->user()->hasPermission('calculate worker salary')) {
+            return response()->json(['error' => 'Permission denied!'], 403);
+        }
+
         $request->validate([
             'date_from' => 'required|date',
             'date_to' => 'required|date|after_or_equal:date_from',
@@ -114,6 +124,11 @@ class WorkerSalaryController extends Controller
 
     public function generatePayslip(Request $request)
     {
+        // Check generate payslip permission for worker payslip
+        if (!auth()->user()->hasPermission('generate worker payslip')) {
+            return response()->json(['error' => 'Permission denied!'], 403);
+        }
+
         $request->validate([
             'date_from' => 'required|date',
             'date_to' => 'required|date|after_or_equal:date_from',
@@ -163,6 +178,11 @@ class WorkerSalaryController extends Controller
 
     public function payslips()
     {
+        // Check view payslips permission for worker payslip
+        if (!auth()->user()->hasPermission('view worker payslip')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $payslips = Payslip::where('user_id', createdBy())
             ->with('worker')
             ->orderBy('created_at', 'desc')
@@ -175,6 +195,11 @@ class WorkerSalaryController extends Controller
 
     public function viewPayslip($id)
     {
+        // Check view payslips permission for worker payslip
+        if (!auth()->user()->hasPermission('view worker payslip')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $payslip = Payslip::where('user_id', createdBy())
             ->with('worker')
             ->findOrFail($id);

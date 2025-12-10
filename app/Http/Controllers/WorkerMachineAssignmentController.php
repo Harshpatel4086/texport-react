@@ -12,6 +12,11 @@ class WorkerMachineAssignmentController extends Controller
 {
     public function index()
     {
+        // Check manage permission for worker machine assign
+        if (!auth()->user()->hasPermission('manage worker machine assign')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $workers = Worker::where('user_id', createdBy())
             ->with(['machineAssignments.machine'])
             ->get();
@@ -26,6 +31,11 @@ class WorkerMachineAssignmentController extends Controller
 
     public function store(Request $request)
     {
+        // Check assign permission for worker machine assign
+        if (!auth()->user()->hasPermission('assign worker machine assign')) {
+            return back()->with('error', 'Permission denied!');
+        }
+
         $request->validate([
             'worker_id' => 'required|exists:workers,id',
             'machine_ids' => 'required|array',

@@ -12,6 +12,11 @@ class WorkerProductionController extends Controller
 {
     public function index()
     {
+        // Check manage permission for worker daily production
+        if (!auth()->user()->hasPermission('manage worker daily production')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $workers = Worker::where('user_id', createdBy())->get();
 
         return Inertia::render('WorkerProduction/Index', [
@@ -21,6 +26,11 @@ class WorkerProductionController extends Controller
 
     public function getMachines(Request $request)
     {
+        // Check manage permission for worker daily production
+        if (!auth()->user()->hasPermission('manage worker daily production')) {
+            return response()->json(['error' => 'Permission denied!'], 403);
+        }
+
         $request->validate([
             'worker_id' => 'required|exists:workers,id',
             'shift_id' => 'required|in:day,night',
@@ -37,6 +47,11 @@ class WorkerProductionController extends Controller
 
     public function getExisting(Request $request)
     {
+        // Check manage permission for worker daily production
+        if (!auth()->user()->hasPermission('manage worker daily production')) {
+            return response()->json(['error' => 'Permission denied!'], 403);
+        }
+
         $request->validate([
             'worker_id' => 'required|exists:workers,id',
             'shift_id' => 'required|in:day,night',
@@ -54,6 +69,11 @@ class WorkerProductionController extends Controller
 
     public function store(Request $request)
     {
+        // Check entry permission for worker daily production
+        if (!auth()->user()->hasPermission('entry worker daily production')) {
+            return back()->with('error', 'Permission denied!');
+        }
+
         $request->validate([
             'date' => 'required|date',
             'worker_id' => 'required|exists:workers,id',

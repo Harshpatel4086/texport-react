@@ -93,6 +93,26 @@
                 deferredPrompt = e;
             });
 
+            // Check if PWA is installed
+            function isPWAInstalled() {
+                // Check if running in standalone mode
+                if (window.matchMedia('(display-mode: standalone)').matches) {
+                    return true;
+                }
+                
+                // Check for iOS Safari standalone
+                if (window.navigator.standalone === true) {
+                    return true;
+                }
+                
+                // Check document referrer for installed PWA
+                if (document.referrer.startsWith('android-app://')) {
+                    return true;
+                }
+                
+                return false;
+            }
+
             // Cookie functions
             function setCookie(name, value, days) {
                 const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -108,6 +128,11 @@
 
             // Check if popup should be shown
             function shouldShowPopup() {
+                // Don't show if PWA is already installed
+                if (isPWAInstalled()) {
+                    return false;
+                }
+                
                 const lastDismissed = getCookie('pwa-popup-dismissed');
                 if (!lastDismissed) return true;
 

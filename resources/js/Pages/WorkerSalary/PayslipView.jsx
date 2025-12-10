@@ -6,10 +6,12 @@ import Button from '@/Components/Button';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
 import { formatMachineNumber } from '@/Utils/helpers';
+import { usePermissions } from '@/Utils/permissions';
 
 export default function PayslipView({ auth, payslip }) {
     useToastFlash();
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const { hasPermission } = usePermissions();
 
     const breadcrumbs = [
         { label: "Dashboard", href: route("dashboard") },
@@ -44,9 +46,11 @@ export default function PayslipView({ auth, payslip }) {
                                 <p className="text-gray-600 mt-2">Worker: {payslip.worker.name}</p>
                             </div>
                             <div className="flex gap-2">
-                                <Button onClick={handleDownload} variant="primary">
-                                    Download PDF
-                                </Button>
+                                {hasPermission('download worker payslip') && (
+                                    <Button onClick={handleDownload} variant="primary">
+                                        Download PDF
+                                    </Button>
+                                )}
                                 <Link href={route('worker-salary.payslips')}>
                                     <Button variant="outline">Back to Payslips</Button>
                                 </Link>

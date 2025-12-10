@@ -10,6 +10,11 @@ class MachineController extends Controller
 {
     public function index(Request $request)
     {
+        // Check manage permission for worker machines
+        if (!auth()->user()->hasPermission('manage worker machines')) {
+            return redirect()->route('dashboard')->with('error', 'Permission denied!');
+        }
+
         $query = Machine::where('user_id', createdBy());
 
         if ($request->filled('search')) {
@@ -62,6 +67,11 @@ class MachineController extends Controller
 
     public function store(Request $request)
     {
+        // Check create permission for worker machines
+        if (!auth()->user()->hasPermission('create worker machines')) {
+            return back()->with('error', 'Permission denied!');
+        }
+
         $request->validate([
             'number' => 'required|string|max:255|unique:machines,number,NULL,id,user_id,' . createdBy(),
             'description' => 'nullable|string',
@@ -82,6 +92,11 @@ class MachineController extends Controller
             abort(403);
         }
 
+        // Check edit permission for worker machines
+        if (!auth()->user()->hasPermission('edit worker machines')) {
+            return back()->with('error', 'Permission denied!');
+        }
+
         $request->validate([
             'number' => 'required|string|max:255|unique:machines,number,' . $machine->id . ',id,user_id,' . createdBy(),
             'description' => 'nullable|string',
@@ -99,6 +114,11 @@ class MachineController extends Controller
     {
         if ($machine->user_id !== createdBy()) {
             abort(403);
+        }
+
+        // Check delete permission for worker machines
+        if (!auth()->user()->hasPermission('delete worker machines')) {
+            return back()->with('error', 'Permission denied!');
         }
 
         $machine->delete();

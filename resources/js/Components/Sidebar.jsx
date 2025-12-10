@@ -31,13 +31,13 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
         ...(canManage('role') ? [{ name: 'Roles', href: '/roles', routeName: 'roles.index' }] : [])
     ];
 
-    // Worker management submenu (always available for factory owners)
+    // Worker management submenu based on permissions
     const workersSubmenu = [
-        { name: 'Workers', href: '/workers', routeName: 'workers.index' },
-        { name: 'Machines', href: '/machines', routeName: 'machines.index' },
-        { name: 'Machine Assignments', href: '/worker-machine-assignments', routeName: 'worker-machine-assignments.index' },
-        { name: 'Daily Production', href: '/worker-production', routeName: 'worker-production.index' },
-        { name: 'Salary Calculation', href: '/worker-salary', routeName: 'worker-salary.index' }
+        ...(canManage('workers') ? [{ name: 'Workers', href: '/workers', routeName: 'workers.index' }] : []),
+        ...(canManage('worker machines') ? [{ name: 'Machines', href: '/machines', routeName: 'machines.index' }] : []),
+        ...(canManage('worker machine assign') ? [{ name: 'Machine Assignments', href: '/worker-machine-assignments', routeName: 'worker-machine-assignments.index' }] : []),
+        ...(canManage('worker daily production') ? [{ name: 'Daily Production', href: '/worker-production', routeName: 'worker-production.index' }] : []),
+        ...(canManage('worker salary') ? [{ name: 'Salary Calculation', href: '/worker-salary', routeName: 'worker-salary.index' }] : [])
     ];
 
     const menuItems = [
@@ -57,12 +57,16 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                   },
               ]
             : []),
-        // Worker Management menu (always available for factory owners)
-        {
-            name: "Workers Management",
-            icon: MdWork,
-            submenu: workersSubmenu,
-        },
+        // Only show Workers Management menu if user has any submenu permissions
+        ...(workersSubmenu.length > 0
+            ? [
+                  {
+                      name: "Workers Management",
+                      icon: MdWork,
+                      submenu: workersSubmenu,
+                  },
+              ]
+            : []),
         // Show Parties as direct menu item
         ...(canManage("party")
             ? [

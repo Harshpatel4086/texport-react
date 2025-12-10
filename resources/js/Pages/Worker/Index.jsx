@@ -10,9 +10,11 @@ import WorkerActions from './WorkerActions';
 import { workerColumns } from './workerConfig.jsx';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
+import { usePermissions } from '@/Utils/permissions';
 
 export default function WorkerIndex(props) {
     const { auth = {}, workers = {}, filters = {} } = props;
+    const { canCreate, canEdit, canDelete, hasAnyAction } = usePermissions();
 
     useToastFlash();
 
@@ -50,21 +52,23 @@ export default function WorkerIndex(props) {
                     <main className="flex-1 overflow-y-auto p-4 lg:p-6">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
                             <h1 className="text-xl lg:text-2xl font-bold text-text">Worker Management</h1>
-                            <Button
-                                className="flex items-center space-x-2"
-                                tooltip="Add Worker"
-                                onClick={() => setModalState({ isOpen: true, mode: 'create', entity: null })}
-                            >
-                                <MdAdd className="w-5 h-5" />
-                                <span>Add Worker</span>
-                            </Button>
+                            {canCreate('workers') && (
+                                <Button
+                                    className="flex items-center space-x-2"
+                                    tooltip="Add Worker"
+                                    onClick={() => setModalState({ isOpen: true, mode: 'create', entity: null })}
+                                >
+                                    <MdAdd className="w-5 h-5" />
+                                    <span>Add Worker</span>
+                                </Button>
+                            )}
                         </div>
 
                         <DataTable
                             data={workers.data}
                             columns={[
                                 ...workerColumns,
-                                {
+                                ...(hasAnyAction('workers') ? [{
                                     key: "actions",
                                     label: "Actions",
                                     render: (item) => (
@@ -74,7 +78,7 @@ export default function WorkerIndex(props) {
                                             onDelete={handleDelete}
                                         />
                                     ),
-                                },
+                                }] : []),
                             ]}
                             searchPlaceholder="Search workers by name or phone..."
                             filters={filters}

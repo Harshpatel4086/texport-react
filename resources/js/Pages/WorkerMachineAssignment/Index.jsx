@@ -7,9 +7,11 @@ import FormField from '@/Components/FormField';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
 import { formatMachineNumber } from '@/Utils/helpers';
+import { usePermissions } from '@/Utils/permissions';
 
 export default function WorkerMachineAssignmentIndex(props) {
     const { auth = {}, workers = [], machines = [] } = props;
+    const { hasPermission } = usePermissions();
 
     useToastFlash();
 
@@ -169,13 +171,15 @@ export default function WorkerMachineAssignmentIndex(props) {
                                         </div>
                                     )}
 
-                                    <Button
-                                        type="submit"
-                                        disabled={processing || !data.worker_id || data.machine_ids.length === 0}
-                                        className="w-full"
-                                    >
-                                        Update Assignments
-                                    </Button>
+                                    {hasPermission('assign worker machine assign') && (
+                                        <Button
+                                            type="submit"
+                                            disabled={processing || !data.worker_id || data.machine_ids.length === 0}
+                                            className="w-full"
+                                        >
+                                            Update Assignments
+                                        </Button>
+                                    )}
                                 </form>
                             </div>
 

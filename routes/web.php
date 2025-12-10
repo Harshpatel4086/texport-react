@@ -80,7 +80,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Worker routes
     Route::resource('workers', WorkerController::class);
 
-    // Machine routes
+    // Machine routes (for worker module)
     Route::resource('machines', MachineController::class);
 
     // Worker Machine Assignment routes
@@ -96,6 +96,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Worker Salary routes
     Route::get('worker-salary', [WorkerSalaryController::class, 'index'])->name('worker-salary.index');
     Route::post('worker-salary/calculate', [WorkerSalaryController::class, 'calculate'])->name('worker-salary.calculate');
+    Route::post('worker-salary/generate-payslip', [WorkerSalaryController::class, 'generatePayslip'])->name('worker-salary.generate-payslip');
+    Route::get('worker-salary/payslips', [WorkerSalaryController::class, 'payslips'])->name('worker-salary.payslips');
+    Route::get('worker-salary/payslip/{id}', [WorkerSalaryController::class, 'viewPayslip'])->name('worker-salary.payslip.view');
     Route::get('worker-salary/report/{worker}', [WorkerSalaryController::class, 'report'])->name('worker-salary.report');
 
     // Settings routes

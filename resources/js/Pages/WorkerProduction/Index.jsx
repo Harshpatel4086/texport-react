@@ -6,10 +6,12 @@ import Button from '@/Components/Button';
 import FormField from '@/Components/FormField';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
+import { usePermissions } from '@/Utils/permissions';
 import axios from 'axios';
 
 export default function WorkerProductionIndex(props) {
     const { auth = {}, workers = [] } = props;
+    const { hasPermission } = usePermissions();
 
     useToastFlash();
 
@@ -221,7 +223,7 @@ export default function WorkerProductionIndex(props) {
                                     </div>
                                 )}
 
-                                {machines.length > 0 && (
+                                {machines.length > 0 && hasPermission('entry worker daily production') && (
                                     <div className="flex justify-end">
                                         <Button
                                             type="submit"

@@ -44,6 +44,37 @@ class PermissionSeeder extends Seeder
             'view attendance',
             'delete attendance',
 
+            // Workers Management
+            'manage workers',
+            'create workers',
+            'edit workers',
+            'delete workers',
+            'view workers',
+
+            // Worker Machines Management
+            'manage worker machines',
+            'create worker machines',
+            'edit worker machines',
+            'delete worker machines',
+            'view worker machines',
+
+            // Worker Machine Assignment
+            'manage worker machine assign',
+            'assign worker machine assign',
+
+            // Worker Daily Production
+            'manage worker daily production',
+            'entry worker daily production',
+
+            // Worker Salary Management
+            'manage worker salary',
+            'calculate worker salary',
+
+            // Worker Payslip Management
+            'generate worker payslip',
+            'view worker payslip',
+            'download worker payslip',
+
             // Product Management (example)
             // 'create product',
             // 'edit product',
@@ -60,6 +91,9 @@ class PermissionSeeder extends Seeder
             // 'view report',
             // 'export report',
         ];
+
+        // delete existing permissions and roles to avoid duplicates
+        Permission::whereIn('name', $permissions)->delete();
 
         // Create all permissions
         $allPermissions = [];

@@ -10,9 +10,11 @@ import MachineActions from './MachineActions';
 import { machineColumns } from './machineConfig.jsx';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
+import { usePermissions } from '@/Utils/permissions';
 
 export default function MachineIndex(props) {
     const { auth = {}, machines = {}, filters = {} } = props;
+    const { canCreate, canEdit, canDelete, hasAnyAction } = usePermissions();
 
     useToastFlash();
 
@@ -50,21 +52,23 @@ export default function MachineIndex(props) {
                     <main className="flex-1 overflow-y-auto p-4 lg:p-6">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 lg:mb-8 space-y-4 sm:space-y-0">
                             <h1 className="text-xl lg:text-2xl font-bold text-text">Machine Management</h1>
-                            <Button
-                                className="flex items-center space-x-2"
-                                tooltip="Add Machine"
-                                onClick={() => setModalState({ isOpen: true, mode: 'create', entity: null })}
-                            >
-                                <MdAdd className="w-5 h-5" />
-                                <span>Add Machine</span>
-                            </Button>
+                            {canCreate('worker machines') && (
+                                <Button
+                                    className="flex items-center space-x-2"
+                                    tooltip="Add Machine"
+                                    onClick={() => setModalState({ isOpen: true, mode: 'create', entity: null })}
+                                >
+                                    <MdAdd className="w-5 h-5" />
+                                    <span>Add Machine</span>
+                                </Button>
+                            )}
                         </div>
 
                         <DataTable
                             data={machines.data}
                             columns={[
                                 ...machineColumns,
-                                {
+                                ...(hasAnyAction('worker machines') ? [{
                                     key: "actions",
                                     label: "Actions",
                                     render: (item) => (
@@ -74,7 +78,7 @@ export default function MachineIndex(props) {
                                             onDelete={handleDelete}
                                         />
                                     ),
-                                },
+                                }] : []),
                             ]}
                             searchPlaceholder="Search machines by number or description..."
                             filters={filters}
