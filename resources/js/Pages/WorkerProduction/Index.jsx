@@ -58,12 +58,16 @@ export default function WorkerProductionIndex(props) {
 
             // Initialize entries for each machine with existing data if available
             const entries = machineList.map(machine => {
-                const existing = existingEntries.find(entry => entry.machine_id === machine.id);
+                const existing = existingEntries.find(entry => 
+                    parseInt(entry.machine_id) === parseInt(machine.id)
+                );
+                console.log('Machine:', machine.id, 'Existing:', existing);
                 return {
                     machine_id: machine.id,
-                    meters: existing ? existing.meters : '',
+                    meters: existing ? String(existing.meters || '') : '',
                 };
             });
+            console.log('Final entries:', entries);
             setData('entries', entries);
         } catch (error) {
             console.error('Error loading machines:', error);
@@ -200,7 +204,7 @@ export default function WorkerProductionIndex(props) {
                                                                 step="0.01"
                                                                 min="0"
                                                                 placeholder="Meters"
-                                                                value={entry?.meters || ''}
+                                                                value={entry?.meters ?? ''}
                                                                 onChange={(e) => updateMeterValue(machine.id, e.target.value)}
                                                                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary text-sm"
                                                                 required

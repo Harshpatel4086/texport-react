@@ -93,7 +93,7 @@ class PermissionSeeder extends Seeder
         ];
 
         // delete existing permissions and roles to avoid duplicates
-        Permission::whereIn('name', $permissions)->delete();
+        // Permission::whereIn('name', $permissions)->delete();
 
         // Create all permissions
         $allPermissions = [];
