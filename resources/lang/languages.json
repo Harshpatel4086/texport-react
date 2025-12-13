@@ -1,0 +1,28 @@
+{
+  "languages": [
+    {
+      "code": "en",
+      "name": "English",
+      "nativeName": "English",
+      "flag": "gb",
+      "direction": "ltr",
+      "default": true
+    },
+    {
+      "code": "hi",
+      "name": "Hindi",
+      "nativeName": "हिंदी",
+      "flag": "in",
+      "direction": "ltr",
+      "default": false
+    },
+    {
+      "code": "gu",
+      "name": "Gujarati",
+      "nativeName": "ગુજરાતી",
+      "flag": "in",
+      "direction": "ltr",
+      "default": false
+    }
+  ]
+}

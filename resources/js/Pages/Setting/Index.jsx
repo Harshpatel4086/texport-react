@@ -3,22 +3,33 @@ import { Head, useForm } from '@inertiajs/react';
 import Sidebar from '@/Components/Sidebar';
 import DashboardHeader from '@/Components/DashboardHeader';
 import Button from '@/Components/Button';
-import FormField from '@/Components/FormField';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
-import { FaSave } from 'react-icons/fa';
-import { MdAttachMoney } from 'react-icons/md';
+import { useLanguage } from '@/Contexts/LanguageContext';
+import {
+    MdAttachMoney,
+    MdInventory,
+    MdSave,
+    MdPerson,
+    MdNotifications,
+    MdSecurity,
+    MdLanguage,
+    MdPalette,
+    MdStorage
+} from 'react-icons/md';
 
 export default function SettingIndex(props) {
-    const { auth = {}, workerRate = '' } = props;
+    const { auth = {}, workerRate = '', lotMeterSize = '' } = props;
 
     useToastFlash();
+    const { t } = useLanguage();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('rate');
+    const [activeSection, setActiveSection] = useState('worker');
 
     const { data, setData, post, processing, errors } = useForm({
         rate: workerRate || '',
+        lot_meter_size: lotMeterSize || '',
     });
 
     const handleSubmit = (e) => {
@@ -26,13 +37,41 @@ export default function SettingIndex(props) {
         post(route('settings.worker-rate'));
     };
 
+    const handleLotSizeSubmit = (e) => {
+        e.preventDefault();
+        post(route('settings.lot-meter-size'));
+    };
+
     const breadcrumbs = [
-        { label: 'Dashboard', href: route('dashboard') },
-        { label: 'Settings' }
+        { label: t('dashboard'), href: route('dashboard') },
+        { label: t('settings') }
     ];
 
     const settingsSections = [
-        { id: 'rate', label: 'Worker Rate', icon: MdAttachMoney }
+        {
+            id: 'worker',
+            label: t('settings_worker_settings'),
+            icon: MdPerson,
+            description: t('settings_worker_rate_desc')
+        },
+        {
+            id: 'stock',
+            label: t('settings_stock_management'),
+            icon: MdInventory,
+            description: t('settings_stock_desc')
+        },
+        // {
+        //     id: 'notifications',
+        //     label: 'Notifications',
+        //     icon: MdNotifications,
+        //     // description: 'Manage notification preferences'
+        // },
+        // {
+        //     id: 'security',
+        //     label: 'Security',
+        //     icon: MdSecurity,
+        //     // description: 'Security and privacy settings'
+        // }
     ];
 
     return (
@@ -54,91 +93,268 @@ export default function SettingIndex(props) {
                     />
 
                     <main className="flex-1 overflow-y-auto p-4 lg:p-6">
+                        {/* Header */}
                         <div className="mb-6 lg:mb-8">
-                            <h1 className="text-xl lg:text-2xl font-bold text-text">
-                                Settings
+                            <h1 className="text-2xl lg:text-3xl font-bold text-text mb-2">
+                                {t('settings_title')}
                             </h1>
-                            <p className="text-gray-600 mt-2">
-                                Manage your application settings
-                            </p>
+                            {/* <p className="text-gray-600">
+                                Manage your application preferences and configurations
+                            </p> */}
                         </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 bg-white rounded-xl shadow-sm border border-gray-100 p-4">
-                            {/* Settings Sidebar */}
-                            <div className="lg:col-span-1">
-                                {/* <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4"> */}
-                                {/* <h2 className="text-lg font-semibold text-text mb-4">Settings Menu</h2> */}
-                                <nav className="space-y-2">
-                                    {settingsSections.map((section) => (
-                                        <button
-                                            key={section.id}
-                                            onClick={() =>
-                                                setActiveSection(section.id)
-                                            }
-                                            className={`w-full flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                                                activeSection === section.id
-                                                    ? "bg-primary text-white"
-                                                    : "text-gray-600 hover:bg-primary/5 hover:text-primary"
-                                            }`}
-                                        >
-                                            <section.icon className="mr-3 w-5 h-5" />
-                                            {section.label}
-                                        </button>
-                                    ))}
-                                </nav>
-                                {/* </div> */}
+                        <div className="grid grid-cols-1 xl:grid-cols-4 gap-6">
+                            {/* Settings Navigation */}
+                            <div className="xl:col-span-1">
+                                <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-4">
+                                    <h2 className="text-lg font-semibold text-text mb-4">Categories</h2>
+                                    <nav className="space-y-2">
+                                        {settingsSections.map((section) => {
+                                            const IconComponent = section.icon;
+                                            return (
+                                                <button
+                                                    key={section.id}
+                                                    onClick={() => setActiveSection(section.id)}
+                                                    className={`w-full flex items-start p-3 rounded-lg text-left transition-all duration-200 group ${
+                                                        activeSection === section.id
+                                                            ? "bg-primary text-white shadow-md"
+                                                            : "text-gray-600 hover:bg-gray-50 hover:text-primary"
+                                                    }`}
+                                                >
+                                                    <IconComponent className={`w-5 h-5 mt-0.5 mr-3 flex-shrink-0 ${
+                                                        activeSection === section.id ? 'text-white' : 'text-gray-400 group-hover:text-primary'
+                                                    }`} />
+                                                    <div>
+                                                        <div className="font-medium text-sm">{section.label}</div>
+                                                        <div className={`text-xs mt-1 ${
+                                                            activeSection === section.id ? 'text-white/80' : 'text-gray-500'
+                                                        }`}>
+                                                            {section.description}
+                                                        </div>
+                                                    </div>
+                                                </button>
+                                            );
+                                        })}
+                                    </nav>
+                                </div>
                             </div>
 
                             {/* Settings Content */}
-                            <div className="lg:col-span-3">
-                                {activeSection === "rate" && (
-                                    <div
-                                        id="rate-section"
-                                        className="bg-white rounded-xl shadow-sm border border-gray-100 p-6"
-                                    >
-                                        <h2 className="text-lg font-semibold text-text mb-4">
-                                            Worker Rate Settings
-                                        </h2>
-                                        <p className="text-gray-600 mb-6">
-                                            Set the rate per meter for worker
-                                            salary calculations
-                                        </p>
-
-                                        <form
-                                            onSubmit={handleSubmit}
-                                            className="space-y-4"
-                                        >
-                                            <FormField
-                                                label="Rate per Meter (₹)"
-                                                name="rate"
-                                                type="number"
-                                                step="0.01"
-                                                min="0"
-                                                value={data.rate}
-                                                onChange={(e) =>
-                                                    setData(
-                                                        "rate",
-                                                        e.target.value
-                                                    )
-                                                }
-                                                error={errors.rate}
-                                                required
-                                                placeholder="Enter rate per meter"
-                                            />
-
-                                            <div className="flex justify-end">
-                                                <Button
-                                                    type="submit"
-                                                    disabled={processing}
-                                                >
-                                                    {/* save icon */}
-                                                    <FaSave className="w-5 h-5 mr-2" />
-                                                    Save Changes
-                                                </Button>
+                            <div className="xl:col-span-3">
+                                <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+                                    {/* Worker Settings */}
+                                    {activeSection === "worker" && (
+                                        <div className="p-6">
+                                            <div className="flex items-center mb-6">
+                                                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
+                                                    <MdPerson className="w-6 h-6 text-primary" />
+                                                </div>
+                                                <div>
+                                                    <h2 className="text-xl font-semibold text-text">Worker Settings</h2>
+                                                    <p className="text-gray-600">Configure worker rates and production parameters</p>
+                                                </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                )}
+
+                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                {/* Worker Rate Card */}
+                                                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                                                    <div className="flex items-center mb-4">
+                                                        <MdAttachMoney className="w-5 h-5 text-green-600 mr-2" />
+                                                        <h3 className="font-semibold text-text">Rate per Meter</h3>
+                                                    </div>
+                                                    <p className="text-sm text-gray-600 mb-4">
+                                                        Set the payment rate per meter for worker salary calculations
+                                                    </p>
+
+                                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                                        <div>
+                                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                                Rate (₹)
+                                                            </label>
+                                                            <div className="relative">
+                                                                <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500">₹</span>
+                                                                <input
+                                                                    type="number"
+                                                                    step="0.01"
+                                                                    min="0"
+                                                                    value={data.rate}
+                                                                    onChange={(e) => setData('rate', e.target.value)}
+                                                                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                                                                    placeholder="0.00"
+                                                                    required
+                                                                />
+                                                            </div>
+                                                            {errors.rate && (
+                                                                <p className="text-red-500 text-sm mt-1">{errors.rate}</p>
+                                                            )}
+                                                        </div>
+
+                                                        <Button
+                                                            type="submit"
+                                                            disabled={processing}
+                                                            className="w-full"
+                                                        >
+                                                            <MdSave className="w-4 h-4 mr-2" />
+                                                            {processing ? 'Saving...' : 'Save Rate'}
+                                                        </Button>
+                                                    </form>
+                                                </div>
+
+                                                {/* Current Rate Display */}
+                                                <div className="bg-gradient-to-br from-primary/5 to-secondary/5 rounded-lg p-6 border border-primary/20">
+                                                    <div className="flex items-center mb-4">
+                                                        <MdStorage className="w-5 h-5 text-primary mr-2" />
+                                                        <h3 className="font-semibold text-text">Current Configuration</h3>
+                                                    </div>
+                                                    <div className="space-y-3">
+                                                        <div className="flex justify-between items-center">
+                                                            <span className="text-gray-600">Worker Rate:</span>
+                                                            <span className="font-semibold text-text">₹{workerRate || '0.00'}/meter</span>
+                                                        </div>
+                                                        <div className="flex justify-between items-center">
+                                                            <span className="text-gray-600">Status:</span>
+                                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                                                workerRate ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                                                            }`}>
+                                                                {workerRate ? 'Configured' : 'Not Set'}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Stock Settings */}
+                                    {activeSection === "stock" && (
+                                        <div className="p-6">
+                                            <div className="flex items-center mb-6">
+                                                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mr-4">
+                                                    <MdInventory className="w-6 h-6 text-secondary" />
+                                                </div>
+                                                <div>
+                                                    <h2 className="text-xl font-semibold text-text">Stock Management</h2>
+                                                    <p className="text-gray-600">Configure stock calculation and inventory settings</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                {/* Lot Size Configuration */}
+                                                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                                                    <div className="flex items-center mb-4">
+                                                        <MdInventory className="w-5 h-5 text-blue-600 mr-2" />
+                                                        <h3 className="font-semibold text-text">Lot Size Configuration</h3>
+                                                    </div>
+                                                    <p className="text-sm text-gray-600 mb-4">
+                                                        Define how many meters constitute one lot for stock calculations
+                                                    </p>
+
+                                                    <form onSubmit={handleLotSizeSubmit} className="space-y-4">
+                                                        <div>
+                                                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                                Meters per Lot
+                                                            </label>
+                                                            <div className="relative">
+                                                                <input
+                                                                    type="number"
+                                                                    step="0.01"
+                                                                    min="1"
+                                                                    value={data.lot_meter_size}
+                                                                    onChange={(e) => setData('lot_meter_size', e.target.value)}
+                                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                                                                    placeholder="Enter meters per lot"
+                                                                    required
+                                                                />
+                                                                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">meters</span>
+                                                            </div>
+                                                            {errors.lot_meter_size && (
+                                                                <p className="text-red-500 text-sm mt-1">{errors.lot_meter_size}</p>
+                                                            )}
+                                                        </div>
+
+                                                        <Button
+                                                            type="submit"
+                                                            disabled={processing}
+                                                            className="w-full"
+                                                        >
+                                                            <MdSave className="w-4 h-4 mr-2" />
+                                                            {processing ? 'Saving...' : 'Update Lot Size'}
+                                                        </Button>
+                                                    </form>
+                                                </div>
+
+                                                {/* Stock Summary */}
+                                                <div className="bg-gradient-to-br from-secondary/5 to-primary/5 rounded-lg p-6 border border-secondary/20">
+                                                    <div className="flex items-center mb-4">
+                                                        <MdStorage className="w-5 h-5 text-secondary mr-2" />
+                                                        <h3 className="font-semibold text-text">Stock Configuration</h3>
+                                                    </div>
+                                                    <div className="space-y-3">
+                                                        <div className="flex justify-between items-center">
+                                                            <span className="text-gray-600">Lot Size:</span>
+                                                            <span className="font-semibold text-text">{lotMeterSize || '0'} meters</span>
+                                                        </div>
+                                                        <div className="flex justify-between items-center">
+                                                            <span className="text-gray-600">Status:</span>
+                                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                                                lotMeterSize ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                                                            }`}>
+                                                                {lotMeterSize ? 'Configured' : 'Not Set'}
+                                                            </span>
+                                                        </div>
+                                                        <div className="pt-2 border-t border-gray-200">
+                                                            <p className="text-xs text-gray-500">
+                                                                This setting affects how stock is calculated and displayed throughout the system.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Notifications Settings */}
+                                    {activeSection === "notifications" && (
+                                        <div className="p-6">
+                                            <div className="flex items-center mb-6">
+                                                <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                                                    <MdNotifications className="w-6 h-6 text-yellow-600" />
+                                                </div>
+                                                <div>
+                                                    <h2 className="text-xl font-semibold text-text">Notification Settings</h2>
+                                                    <p className="text-gray-600">Manage your notification preferences</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-gray-50 rounded-lg p-6 text-center">
+                                                <MdNotifications className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                                                <h3 className="text-lg font-medium text-gray-600 mb-2">Coming Soon</h3>
+                                                <p className="text-gray-500">Notification settings will be available in a future update.</p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {/* Security Settings */}
+                                    {activeSection === "security" && (
+                                        <div className="p-6">
+                                            <div className="flex items-center mb-6">
+                                                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                                    <MdSecurity className="w-6 h-6 text-red-600" />
+                                                </div>
+                                                <div>
+                                                    <h2 className="text-xl font-semibold text-text">Security Settings</h2>
+                                                    <p className="text-gray-600">Manage security and privacy settings</p>
+                                                </div>
+                                            </div>
+
+                                            <div className="bg-gray-50 rounded-lg p-6 text-center">
+                                                <MdSecurity className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+                                                <h3 className="text-lg font-medium text-gray-600 mb-2">Coming Soon</h3>
+                                                <p className="text-gray-500">Security settings will be available in a future update.</p>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </main>

@@ -75,6 +75,11 @@ class PermissionSeeder extends Seeder
             'view worker payslip',
             'download worker payslip',
 
+            // Stock Management - For this permission also give the daily production entry Permission
+            'manage stock management',
+            'view stock management',
+            'refresh stock management',
+
             // Product Management (example)
             // 'create product',
             // 'edit product',

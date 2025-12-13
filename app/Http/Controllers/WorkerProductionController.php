@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Worker;
 use App\Models\WorkerMachineAssignment;
 use App\Models\WorkerDailyProductionEntry;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -101,6 +102,9 @@ class WorkerProductionController extends Controller
                 ]
             );
         }
+
+        // Update stock after production entry
+        Stock::updateStockFromProduction(createdBy(), $request->date);
 
         return back()->with('success', 'Production entries saved successfully.');
     }

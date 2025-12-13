@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\MachineController;
 use App\Http\Controllers\PartyManagementController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StaffManagementController;
 use App\Http\Controllers\StaffSalaryController;
+use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\WorkerMachineAssignmentController;
@@ -21,6 +23,23 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [LandingPageController::class, 'index'])->name('home');
+
+// Static pages
+Route::get('/about', function () {
+    return Inertia::render('About');
+})->name('about');
+
+Route::get('/pricing', function () {
+    return Inertia::render('Pricing');
+})->name('pricing');
+
+Route::get('/contact', function () {
+    return Inertia::render('Contact');
+})->name('contact');
+
+// Language routes (public access)
+Route::get('/api/languages', [LanguageController::class, 'getLanguages'])->name('languages');
+Route::get('/api/translations/{locale}', [LanguageController::class, 'getTranslations'])->name('translations');
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
@@ -104,6 +123,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Settings routes
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('settings/worker-rate', [SettingController::class, 'updateWorkerRate'])->name('settings.worker-rate');
+    Route::post('settings/lot-meter-size', [SettingController::class, 'updateLotMeterSize'])->name('settings.lot-meter-size');
+
+    // Stock Management routes
+    Route::get('stock', [StockController::class, 'index'])->name('stock.index');
+    Route::post('stock/refresh', [StockController::class, 'refreshStock'])->name('stock.refresh');
+    Route::post('stock/lot-size', [StockController::class, 'updateLotSize'])->name('stock.lot-size');
 });
 
 require __DIR__.'/auth.php';

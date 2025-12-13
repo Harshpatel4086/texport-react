@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { MdMenu, MdChevronRight } from 'react-icons/md';
 import Dropdown from '@/Components/Dropdown';
+import LanguageSwitcher from '@/Components/LanguageSwitcher';
 
 export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] }) {
     return (
@@ -8,7 +9,7 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
             {/* Main Header Row */}
             <div className="px-4 lg:px-6 py-3">
                 <div className="flex items-center justify-between">
-                    {/* Left Side - Mobile Menu + Breadcrumbs */}
+                    {/* Left Side - Mobile Menu + Language Switcher + Breadcrumbs */}
                     <div className="flex items-center min-w-0 flex-1">
                         {/* Mobile Menu Button */}
                         <button
@@ -24,16 +25,19 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
                                 {/* Fade effect for overflow indication */}
                                 <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none z-10 sm:hidden"></div>
 
-                                <nav
-                                    className="flex items-center text-sm overflow-x-auto overflow-y-hidden scrollbar-hide"
-                                >
+                                <nav className="flex items-center text-sm overflow-x-auto overflow-y-hidden scrollbar-hide">
                                     <div className="flex items-center space-x-1 sm:space-x-2 min-w-max pr-8 sm:pr-0">
                                         {breadcrumbs.map((item, index) => (
-                                            <div key={index} className="flex items-center">
+                                            <div
+                                                key={index}
+                                                className="flex items-center"
+                                            >
                                                 {index > 0 && (
                                                     <MdChevronRight className="w-3 h-3 sm:w-4 sm:h-4 text-gray-400 mx-1 sm:mx-2 flex-shrink-0" />
                                                 )}
-                                                {item.href && index !== breadcrumbs.length - 1 ? (
+                                                {item.href &&
+                                                index !==
+                                                    breadcrumbs.length - 1 ? (
                                                     <Link
                                                         href={item.href}
                                                         className="text-gray-600 hover:text-primary font-medium transition-colors text-sm whitespace-nowrap"
@@ -43,7 +47,9 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
                                                 ) : (
                                                     <span
                                                         className={
-                                                            index === breadcrumbs.length - 1
+                                                            index ===
+                                                            breadcrumbs.length -
+                                                                1
                                                                 ? "text-primary font-semibold text-sm whitespace-nowrap"
                                                                 : "text-gray-900 font-medium text-sm whitespace-nowrap"
                                                         }
@@ -57,10 +63,15 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
                                 </nav>
                             </div>
                         )}
+                        {/* Mobile Language Switcher */}
+                        <div className="lg:hidden mr-3">
+                            <LanguageSwitcher />
+                        </div>
                     </div>
 
-                    {/* Right Side - User Profile (Desktop Only) */}
-                    <div className="hidden lg:flex items-center">
+                    {/* Right Side - Language Switcher + User Profile (Desktop Only) */}
+                    <div className="hidden lg:flex items-center space-x-4">
+                        <LanguageSwitcher />
                         <div className="relative">
                             <Dropdown>
                                 <Dropdown.Trigger>
@@ -74,7 +85,9 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
                                             </div>
                                         </div>
                                         <div className="w-9 h-9 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center text-white font-medium">
-                                            {user?.name?.charAt(0)?.toUpperCase() || "T"}
+                                            {user?.name
+                                                ?.charAt(0)
+                                                ?.toUpperCase() || "T"}
                                         </div>
                                         <svg
                                             className="w-4 h-4 text-gray-400 group-hover:text-primary transition-colors"
