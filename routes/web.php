@@ -13,6 +13,7 @@ use App\Http\Controllers\StaffManagementController;
 use App\Http\Controllers\StaffSalaryController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubscriptionsController;
+use App\Http\Controllers\TakaController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\WorkerMachineAssignmentController;
 use App\Http\Controllers\WorkerProductionController;
@@ -75,12 +76,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('staff', StaffManagementController::class);
 
     // Staff Salary routes
-    Route::resource('staff-salaries', StaffSalaryController::class);
+    // Route::resource('staff-salaries', StaffSalaryController::class);
 
     // Attendance routes
-    Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
-    Route::post('attendance', [AttendanceController::class, 'store'])->name('attendance.store');
-    Route::get('attendance/history/{staff}', [AttendanceController::class, 'history'])->name('attendance.history');
+    // Route::get('attendance', [AttendanceController::class, 'index'])->name('attendance.index');
+    // Route::post('attendance', [AttendanceController::class, 'store'])->name('attendance.store');
+    // Route::get('attendance/history/{staff}', [AttendanceController::class, 'history'])->name('attendance.history');
 
     // Role routes
     Route::resource('roles', RoleManagementController::class);
@@ -123,12 +124,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Settings routes
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('settings/worker-rate', [SettingController::class, 'updateWorkerRate'])->name('settings.worker-rate');
-    Route::post('settings/lot-meter-size', [SettingController::class, 'updateLotMeterSize'])->name('settings.lot-meter-size');
 
     // Stock Management routes
     Route::get('stock', [StockController::class, 'index'])->name('stock.index');
     Route::post('stock/refresh', [StockController::class, 'refreshStock'])->name('stock.refresh');
-    Route::post('stock/lot-size', [StockController::class, 'updateLotSize'])->name('stock.lot-size');
+
+    // Taka Management routes
+    Route::resource('takas', TakaController::class)->except(['show', 'create', 'edit']);
 });
 
 require __DIR__.'/auth.php';

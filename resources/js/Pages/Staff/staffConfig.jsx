@@ -1,14 +1,15 @@
 import React from 'react';
+import { MdEmail, MdPhone } from 'react-icons/md';
 
 export const staffFields = [
     { name: 'name', label: 'Name', placeholder: 'Enter staff name', required: true },
     { name: 'email', label: 'Email', type: 'email', placeholder: 'Enter email address', required: true },
     { name: 'phone_number', label: 'Phone Number', placeholder: 'Enter phone number', required: false },
     { name: 'role', label: 'Role', type: 'select', placeholder: 'Select a role', required: true },
-    { name: 'salary_type', label: 'Salary Type', type: 'select', placeholder: 'Select salary type', required: true, options: [
-        { value: 'monthly', label: 'Monthly' },
-    ]},
-    { name: 'salary_amount', label: 'Salary Amount', type: 'number', placeholder: 'Enter salary amount', required: false, step: '0.01', min: '0' },
+    // { name: 'salary_type', label: 'Salary Type', type: 'select', placeholder: 'Select salary type', required: true, options: [
+    //     { value: 'monthly', label: 'Monthly' },
+    // ]},
+    // { name: 'salary_amount', label: 'Salary Amount', type: 'number', placeholder: 'Enter salary amount', required: false, step: '0.01', min: '0' },
     { name: 'password', label: 'Password', type: 'password', placeholder: 'Create password', required: true },
 ];
 
@@ -33,11 +34,11 @@ export const staffColumns = [
                         {item.name}
                     </div>
                     <div className="text-sm text-gray-500">
-                        {item.email}
+                        <MdEmail className='inline-block mr-1' /> {item.email}
                     </div>
                     {item.staff_detail?.phone_number && (
                         <div className="text-xs text-gray-400">
-                            📞 {item.staff_detail.phone_number}
+                            <MdPhone className='inline-block mr-1' /> {item.staff_detail.phone_number}
                         </div>
                     )}
                 </div>
@@ -54,29 +55,29 @@ export const staffColumns = [
             </span>
         ),
     },
-    {
-        key: "salary_info",
-        label: "Salary",
-        render: (item) => (
-            <div className="text-sm">
-                {item.staff_detail ? (
-                    <>
-                        <div className="font-medium text-text">
-                            {item.staff_detail.salary_amount ?
-                                `₹${parseFloat(item.staff_detail.salary_amount).toLocaleString()}` :
-                                'Not Set'
-                            }
-                        </div>
-                        <div className="text-xs text-gray-500 capitalize">
-                            {item.staff_detail.salary_type?.replace('_', ' ') || 'Monthly'}
-                        </div>
-                    </>
-                ) : (
-                    <span className="text-gray-400">Not Set</span>
-                )}
-            </div>
-        ),
-    },
+    // {
+    //     key: "salary_info",
+    //     label: "Salary",
+    //     render: (item) => (
+    //         <div className="text-sm">
+    //             {item.staff_detail ? (
+    //                 <>
+    //                     <div className="font-medium text-text">
+    //                         {item.staff_detail.salary_amount ?
+    //                             `₹${parseFloat(item.staff_detail.salary_amount).toLocaleString()}` :
+    //                             'Not Set'
+    //                         }
+    //                     </div>
+    //                     <div className="text-xs text-gray-500 capitalize">
+    //                         {item.staff_detail.salary_type?.replace('_', ' ') || 'Monthly'}
+    //                     </div>
+    //                 </>
+    //             ) : (
+    //                 <span className="text-gray-400">Not Set</span>
+    //             )}
+    //         </div>
+    //     ),
+    // },
     {
         key: "created_at",
         label: "Created",

@@ -88,9 +88,9 @@ class MachineController extends Controller
 
     public function update(Request $request, Machine $machine)
     {
-        if ($machine->user_id != createdBy()) {
-            abort(403);
-        }
+        // if ($machine->user_id != createdBy()) {
+        //     abort(403);
+        // }
 
         // Check edit permission for worker machines
         if (!auth()->user()->hasPermission('edit worker machines')) {
@@ -112,9 +112,9 @@ class MachineController extends Controller
 
     public function destroy(Machine $machine)
     {
-        if ($machine->user_id !== createdBy()) {
-            abort(403);
-        }
+        // if ($machine->user_id !== createdBy()) {
+        //     abort(403);
+        // }
 
         // Check delete permission for worker machines
         if (!auth()->user()->hasPermission('delete worker machines')) {

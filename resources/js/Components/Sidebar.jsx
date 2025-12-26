@@ -16,7 +16,8 @@ import {
     MdSchedule,
     MdPrecisionManufacturing,
     MdWork,
-    MdInventory
+    MdInventory,
+    MdLabel
 } from 'react-icons/md';
 import { usePermissions } from '@/Utils/permissions';
 import { useLanguage } from '@/Contexts/LanguageContext';
@@ -30,23 +31,23 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
 
     // Build submenu items based on permissions
     const usersSubmenu = [
-        ...(canManage('staff') ? [{ name: t('nav_staff'), href: '/staff', routeName: 'staff.index' }] : []),
-        ...(canManage('staff salary') ? [{ name: t('nav_staff_salaries'), href: '/staff-salaries', routeName: 'staff-salaries.index' }] : []),
-        ...(canManage('role') ? [{ name: t('nav_roles'), href: '/roles', routeName: 'roles.index' }] : [])
+        ...(canManage('staff') ? [{ name: t('Staff'), href: '/staff', routeName: 'staff.index' }] : []),
+        // ...(canManage('staff salary') ? [{ name: t('Staff Salaries'), href: '/staff-salaries', routeName: 'staff-salaries.index' }] : []),
+        ...(canManage('role') ? [{ name: t('Roles'), href: '/roles', routeName: 'roles.index' }] : [])
     ];
 
     // Worker management submenu based on permissions
     const workersSubmenu = [
-        ...(canManage('workers') ? [{ name: t('nav_workers'), href: '/workers', routeName: 'workers.index' }] : []),
-        ...(canManage('worker machines') ? [{ name: t('nav_machines'), href: '/machines', routeName: 'machines.index' }] : []),
-        ...(canManage('worker machine assign') ? [{ name: t('nav_machine_assignments'), href: '/worker-machine-assignments', routeName: 'worker-machine-assignments.index' }] : []),
-        ...(canManage('worker daily production') ? [{ name: t('nav_daily_production'), href: '/worker-production', routeName: 'worker-production.index' }] : []),
-        ...(canManage('worker salary') ? [{ name: t('nav_salary_calculation'), href: '/worker-salary', routeName: 'worker-salary.index' }] : [])
+        ...(canManage('workers') ? [{ name: t('Workers'), href: '/workers', routeName: 'workers.index' }] : []),
+        ...(canManage('worker machines') ? [{ name: t('Machines'), href: '/machines', routeName: 'machines.index' }] : []),
+        ...(canManage('worker machine assign') ? [{ name: t('Machine Assignments'), href: '/worker-machine-assignments', routeName: 'worker-machine-assignments.index' }] : []),
+        ...(canManage('worker daily production') ? [{ name: t('Daily Production'), href: '/worker-production', routeName: 'worker-production.index' }] : []),
+        ...(canManage('worker salary') ? [{ name: t('Salary Calculation'), href: '/worker-salary', routeName: 'worker-salary.index' }] : [])
     ];
 
     const menuItems = [
         {
-            name: t('dashboard'),
+            name: t('Dashboard'),
             icon: MdDashboard,
             href: "/dashboard",
             routeName: "dashboard",
@@ -55,7 +56,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
         ...(usersSubmenu.length > 0
             ? [
                   {
-                      name: t('nav_users'),
+                      name: t('Users'),
                       icon: MdPeople,
                       submenu: usersSubmenu,
                   },
@@ -65,7 +66,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
         ...(workersSubmenu.length > 0
             ? [
                   {
-                      name: t('nav_workers'),
+                      name: t('Workers Management'),
                       icon: MdWork,
                       submenu: workersSubmenu,
                   },
@@ -75,38 +76,51 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
         ...(canManage("party")
             ? [
                   {
-                      name: t('nav_parties'),
+                      name: t('Parties'),
                       icon: MdBusiness,
                       href: "/parties",
                       routeName: "parties.index",
                   },
               ]
             : []),
-        // Show Attendance as direct menu item
-        ...(canManage("attendance")
-            ? [
-                  {
-                      name: t('nav_attendance'),
-                      icon: MdSchedule,
-                      href: "/attendance",
-                      routeName: "attendance.index",
-                  },
-              ]
-            : []),
+
+            // Show Attendance as direct menu item
+        // ...(canManage("attendance")
+        //     ? [
+        //           {
+        //               name: t('Attendance'),
+        //               icon: MdSchedule,
+        //               href: "/attendance",
+        //               routeName: "attendance.index",
+        //           },
+        //       ]
+        //     : []),
+
         // Stock Management - requires both permissions
-        ...(canManage("stock management") && canManage("worker daily production")
+        ...(canManage("stock management")
             ? [
                   {
-                      name: t('nav_stock'),
+                      name: t('Stock Management'),
                       icon: MdInventory,
                       href: "/stock",
                       routeName: "stock.index",
                   },
               ]
             : []),
+        // Taka Management
+        ...(canManage("taka")
+            ? [
+                  {
+                      name: t('Taka Management'),
+                      icon: MdLabel,
+                      href: "/takas",
+                      routeName: "takas.index",
+                  },
+              ]
+            : []),
         // Settings menu
         {
-            name: t('settings'),
+            name: t('Settings'),
             icon: MdSettings,
             href: "/settings",
             routeName: "settings.index",
@@ -285,7 +299,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                                 onClick={() => setIsOpen(false)}
                             >
                                 <MdPerson className="w-5 h-5 mr-3" />
-                                {t('user_profile_settings')}
+                                {t('Profile Settings')}
                             </Link>
 
                             <Link
@@ -296,7 +310,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                                 onClick={() => setIsOpen(false)}
                             >
                                 <MdLogout className="w-5 h-5 mr-3" />
-                                {t('user_sign_out')}
+                                {t('Sign Out')}
                             </Link>
                         </div>
                     </div>

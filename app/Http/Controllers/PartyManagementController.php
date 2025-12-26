@@ -101,9 +101,9 @@ class PartyManagementController extends Controller
 
     public function update(Request $request, Party $party)
     {
-        if ($party->created_by != createdBy()) {
-            abort(403);
-        }
+        // if ($party->created_by != createdBy()) {
+        //     abort(403);
+        // }
 
         if (!auth()->user()->hasPermission('edit party')) {
             return back()->with('error', 'Permission denied!');
@@ -134,9 +134,9 @@ class PartyManagementController extends Controller
 
     public function destroy(Party $party)
     {
-        if ($party->created_by !== createdBy()) {
-            abort(403);
-        }
+        // if ($party->created_by !== createdBy()) {
+        //     abort(403);
+        // }
 
         if (!auth()->user()->hasPermission('delete party')) {
             return back()->with('error', 'Permission denied!');

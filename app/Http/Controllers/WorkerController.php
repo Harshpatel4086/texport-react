@@ -93,9 +93,9 @@ class WorkerController extends Controller
 
     public function update(Request $request, Worker $worker)
     {
-        if ($worker->user_id != createdBy()) {
-            abort(403);
-        }
+        // if ($worker->user_id != createdBy()) {
+        //     abort(403);
+        // }
 
         // Check edit permission for workers
         if (!auth()->user()->hasPermission('edit workers')) {
@@ -117,10 +117,10 @@ class WorkerController extends Controller
 
     public function destroy(Worker $worker)
     {
-        if ($worker->user_id !== createdBy()) {
-            // abort(403);
-            return back()->with('error', 'You are not authorized to delete this worker.');
-        }
+        // if ($worker->user_id !== createdBy()) {
+        //     // abort(403);
+        //     return back()->with('error', 'You are not authorized to delete this worker.');
+        // }
 
         // Check delete permission for workers
         if (!auth()->user()->hasPermission('delete workers')) {

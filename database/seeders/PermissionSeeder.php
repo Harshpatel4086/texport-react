@@ -80,6 +80,12 @@ class PermissionSeeder extends Seeder
             'view stock management',
             'refresh stock management',
 
+            // Taka Management
+            'manage taka',
+            'create taka',
+            'edit taka',
+            'delete taka',
+
             // Product Management (example)
             // 'create product',
             // 'edit product',

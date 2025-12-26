@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2025 at 07:13 PM
+-- Generation Time: Dec 26, 2025 at 10:03 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,17 +43,13 @@ CREATE TABLE `attendances` (
 
 INSERT INTO `attendances` (`id`, `staff_id`, `date`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 10, '2025-11-06', 'present', 1, '2025-11-06 12:49:21', '2025-11-06 12:53:06'),
-(2, 13, '2025-11-06', 'absent', 1, '2025-11-06 12:58:55', '2025-11-06 13:07:08'),
 (3, 14, '2025-11-06', 'absent', 11, '2025-11-06 13:01:56', '2025-11-06 13:01:56'),
-(4, 13, '2025-11-07', 'present', 1, '2025-11-06 13:07:27', '2025-11-06 13:07:27'),
 (5, 10, '2025-11-07', 'absent', 1, '2025-11-06 13:07:32', '2025-11-06 13:07:32'),
-(6, 13, '2025-11-05', 'present', 1, '2025-11-06 13:07:57', '2025-11-06 13:07:57'),
 (7, 10, '2025-11-05', 'present', 1, '2025-11-06 13:08:03', '2025-11-06 13:08:03'),
-(8, 13, '2025-11-03', 'absent', 1, '2025-11-06 13:08:15', '2025-11-06 13:08:15'),
 (9, 10, '2025-11-03', 'absent', 1, '2025-11-06 13:08:16', '2025-11-06 13:08:16'),
 (10, 14, '2025-11-07', 'present', 11, '2025-11-07 10:17:06', '2025-11-07 10:17:06'),
-(11, 13, '2025-10-30', 'absent', 1, '2025-11-07 11:13:17', '2025-11-07 11:13:17'),
-(12, 10, '2025-10-30', 'present', 1, '2025-11-07 11:13:19', '2025-11-07 11:13:19');
+(12, 10, '2025-10-30', 'present', 1, '2025-11-07 11:13:19', '2025-11-07 11:13:19'),
+(14, 10, '2025-12-06', 'absent', 1, '2025-12-06 03:26:11', '2025-12-06 05:07:33');
 
 -- --------------------------------------------------------
 
@@ -67,6 +63,22 @@ CREATE TABLE `cache` (
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('larabug.textiletexportappin-get-this-is-a-test-exception-from-the-larabug-console-59-cxampphtdocstexport-reactvendorlarabuglarabugsrccommandstestcommandphp-exception', 's:165:\"larabug.textiletexportappin-get-this-is-a-test-exception-from-the-larabug-console-59-cxampphtdocstexport-reactvendorlarabuglarabugsrccommandstestcommandphp-exception\";', 1766779442),
+('laratrust_permissions_for_role_1', 'a:48:{i:0;a:7:{s:2:\"id\";i:30;s:4:\"name\";s:11:\"manage role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:30;}}i:1;a:7:{s:2:\"id\";i:31;s:4:\"name\";s:11:\"create role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:31;}}i:2;a:7:{s:2:\"id\";i:32;s:4:\"name\";s:9:\"edit role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:32;}}i:3;a:7:{s:2:\"id\";i:33;s:4:\"name\";s:11:\"delete role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:33;}}i:4;a:7:{s:2:\"id\";i:34;s:4:\"name\";s:12:\"manage staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:34;}}i:5;a:7:{s:2:\"id\";i:35;s:4:\"name\";s:12:\"create staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:35;}}i:6;a:7:{s:2:\"id\";i:36;s:4:\"name\";s:10:\"edit staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:36;}}i:7;a:7:{s:2:\"id\";i:37;s:4:\"name\";s:12:\"delete staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:37;}}i:8;a:7:{s:2:\"id\";i:38;s:4:\"name\";s:19:\"manage staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:38;}}i:9;a:7:{s:2:\"id\";i:39;s:4:\"name\";s:19:\"create staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:39;}}i:10;a:7:{s:2:\"id\";i:40;s:4:\"name\";s:17:\"edit staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:40;}}i:11;a:7:{s:2:\"id\";i:41;s:4:\"name\";s:19:\"delete staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:41;}}i:12;a:7:{s:2:\"id\";i:42;s:4:\"name\";s:12:\"manage party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:42;}}i:13;a:7:{s:2:\"id\";i:43;s:4:\"name\";s:12:\"create party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:43;}}i:14;a:7:{s:2:\"id\";i:44;s:4:\"name\";s:10:\"edit party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:44;}}i:15;a:7:{s:2:\"id\";i:45;s:4:\"name\";s:10:\"view party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:45;}}i:16;a:7:{s:2:\"id\";i:46;s:4:\"name\";s:12:\"delete party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:46;}}i:17;a:7:{s:2:\"id\";i:47;s:4:\"name\";s:17:\"manage attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:47;}}i:18;a:7:{s:2:\"id\";i:48;s:4:\"name\";s:17:\"create attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:48;}}i:19;a:7:{s:2:\"id\";i:49;s:4:\"name\";s:15:\"edit attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:49;}}i:20;a:7:{s:2:\"id\";i:50;s:4:\"name\";s:15:\"view attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:50;}}i:21;a:7:{s:2:\"id\";i:51;s:4:\"name\";s:17:\"delete attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:51;}}i:22;a:7:{s:2:\"id\";i:52;s:4:\"name\";s:14:\"manage workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:52;}}i:23;a:7:{s:2:\"id\";i:53;s:4:\"name\";s:14:\"create workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:53;}}i:24;a:7:{s:2:\"id\";i:54;s:4:\"name\";s:12:\"edit workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:54;}}i:25;a:7:{s:2:\"id\";i:55;s:4:\"name\";s:14:\"delete workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:55;}}i:26;a:7:{s:2:\"id\";i:56;s:4:\"name\";s:12:\"view workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:56;}}i:27;a:7:{s:2:\"id\";i:57;s:4:\"name\";s:22:\"manage worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:57;}}i:28;a:7:{s:2:\"id\";i:58;s:4:\"name\";s:22:\"create worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:58;}}i:29;a:7:{s:2:\"id\";i:59;s:4:\"name\";s:20:\"edit worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:59;}}i:30;a:7:{s:2:\"id\";i:60;s:4:\"name\";s:22:\"delete worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:60;}}i:31;a:7:{s:2:\"id\";i:61;s:4:\"name\";s:20:\"view worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:61;}}i:32;a:7:{s:2:\"id\";i:62;s:4:\"name\";s:28:\"manage worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:62;}}i:33;a:7:{s:2:\"id\";i:63;s:4:\"name\";s:28:\"assign worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:63;}}i:34;a:7:{s:2:\"id\";i:64;s:4:\"name\";s:30:\"manage worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:64;}}i:35;a:7:{s:2:\"id\";i:65;s:4:\"name\";s:29:\"entry worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:65;}}i:36;a:7:{s:2:\"id\";i:66;s:4:\"name\";s:20:\"manage worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:66;}}i:37;a:7:{s:2:\"id\";i:67;s:4:\"name\";s:23:\"calculate worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:67;}}i:38;a:7:{s:2:\"id\";i:68;s:4:\"name\";s:23:\"generate worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:68;}}i:39;a:7:{s:2:\"id\";i:69;s:4:\"name\";s:19:\"view worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:69;}}i:40;a:7:{s:2:\"id\";i:70;s:4:\"name\";s:23:\"download worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:70;}}i:41;a:7:{s:2:\"id\";i:71;s:4:\"name\";s:23:\"manage stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:71;}}i:42;a:7:{s:2:\"id\";i:72;s:4:\"name\";s:21:\"view stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:72;}}i:43;a:7:{s:2:\"id\";i:73;s:4:\"name\";s:24:\"refresh stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:73;}}i:44;a:7:{s:2:\"id\";i:115;s:4:\"name\";s:11:\"manage taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:115;}}i:45;a:7:{s:2:\"id\";i:116;s:4:\"name\";s:11:\"create taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:116;}}i:46;a:7:{s:2:\"id\";i:117;s:4:\"name\";s:9:\"edit taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:117;}}i:47;a:7:{s:2:\"id\";i:118;s:4:\"name\";s:11:\"delete taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:118;}}}', 1766779892),
+('laratrust_permissions_for_role_10', 'a:2:{i:0;a:7:{s:2:\"id\";i:71;s:4:\"name\";s:23:\"manage stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:10;s:13:\"permission_id\";i:71;}}i:1;a:7:{s:2:\"id\";i:73;s:4:\"name\";s:24:\"refresh stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:10;s:13:\"permission_id\";i:73;}}}', 1766780851),
+('laratrust_permissions_for_role_11', 'a:27:{i:0;a:7:{s:2:\"id\";i:34;s:4:\"name\";s:12:\"manage staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:34;}}i:1;a:7:{s:2:\"id\";i:35;s:4:\"name\";s:12:\"create staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:35;}}i:2;a:7:{s:2:\"id\";i:36;s:4:\"name\";s:10:\"edit staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:36;}}i:3;a:7:{s:2:\"id\";i:37;s:4:\"name\";s:12:\"delete staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:37;}}i:4;a:7:{s:2:\"id\";i:38;s:4:\"name\";s:19:\"manage staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:38;}}i:5;a:7:{s:2:\"id\";i:39;s:4:\"name\";s:19:\"create staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:39;}}i:6;a:7:{s:2:\"id\";i:40;s:4:\"name\";s:17:\"edit staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:40;}}i:7;a:7:{s:2:\"id\";i:41;s:4:\"name\";s:19:\"delete staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:41;}}i:8;a:7:{s:2:\"id\";i:52;s:4:\"name\";s:14:\"manage workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:52;}}i:9;a:7:{s:2:\"id\";i:53;s:4:\"name\";s:14:\"create workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:53;}}i:10;a:7:{s:2:\"id\";i:54;s:4:\"name\";s:12:\"edit workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:54;}}i:11;a:7:{s:2:\"id\";i:55;s:4:\"name\";s:14:\"delete workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:55;}}i:12;a:7:{s:2:\"id\";i:56;s:4:\"name\";s:12:\"view workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:56;}}i:13;a:7:{s:2:\"id\";i:57;s:4:\"name\";s:22:\"manage worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:57;}}i:14;a:7:{s:2:\"id\";i:58;s:4:\"name\";s:22:\"create worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:58;}}i:15;a:7:{s:2:\"id\";i:59;s:4:\"name\";s:20:\"edit worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:59;}}i:16;a:7:{s:2:\"id\";i:60;s:4:\"name\";s:22:\"delete worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:60;}}i:17;a:7:{s:2:\"id\";i:61;s:4:\"name\";s:20:\"view worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:61;}}i:18;a:7:{s:2:\"id\";i:62;s:4:\"name\";s:28:\"manage worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:62;}}i:19;a:7:{s:2:\"id\";i:63;s:4:\"name\";s:28:\"assign worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:63;}}i:20;a:7:{s:2:\"id\";i:64;s:4:\"name\";s:30:\"manage worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:64;}}i:21;a:7:{s:2:\"id\";i:65;s:4:\"name\";s:29:\"entry worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:65;}}i:22;a:7:{s:2:\"id\";i:66;s:4:\"name\";s:20:\"manage worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:66;}}i:23;a:7:{s:2:\"id\";i:67;s:4:\"name\";s:23:\"calculate worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:67;}}i:24;a:7:{s:2:\"id\";i:68;s:4:\"name\";s:23:\"generate worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:68;}}i:25;a:7:{s:2:\"id\";i:69;s:4:\"name\";s:19:\"view worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:69;}}i:26;a:7:{s:2:\"id\";i:70;s:4:\"name\";s:23:\"download worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:70;}}}', 1766778756),
+('laratrust_permissions_for_users_1', 'a:0:{}', 1766780308),
+('laratrust_permissions_for_users_11', 'a:0:{}', 1766779760),
+('laratrust_permissions_for_users_14', 'a:0:{}', 1766778501),
+('laratrust_roles_for_users_1', 'a:1:{i:0;a:8:{s:2:\"id\";i:1;s:10:\"created_by\";N;s:4:\"name\";s:5:\"owner\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:10:\"updated_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:5:\"pivot\";a:3:{s:9:\"user_type\";s:15:\"App\\Models\\User\";s:7:\"user_id\";i:1;s:7:\"role_id\";i:1;}}}', 1766780308),
+('laratrust_roles_for_users_11', 'a:1:{i:0;a:8:{s:2:\"id\";i:1;s:10:\"created_by\";N;s:4:\"name\";s:5:\"owner\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:10:\"updated_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:5:\"pivot\";a:3:{s:9:\"user_type\";s:15:\"App\\Models\\User\";s:7:\"user_id\";i:11;s:7:\"role_id\";i:1;}}}', 1766779760),
+('laratrust_roles_for_users_14', 'a:1:{i:0;a:8:{s:2:\"id\";i:10;s:10:\"created_by\";i:11;s:4:\"name\";s:5:\"Admin\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T18:22:28.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T18:22:41.000000Z\";s:5:\"pivot\";a:3:{s:9:\"user_type\";s:15:\"App\\Models\\User\";s:7:\"user_id\";i:14;s:7:\"role_id\";i:10;}}}', 1766778501);
+
 -- --------------------------------------------------------
 
 --
@@ -78,6 +90,36 @@ CREATE TABLE `cache_locks` (
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fabric_stocks`
+--
+
+CREATE TABLE `fabric_stocks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `fabric_type` varchar(255) NOT NULL,
+  `gsm` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `lot_no` varchar(255) NOT NULL,
+  `roll_count` int(11) NOT NULL,
+  `total_weight` decimal(10,2) NOT NULL,
+  `rate` decimal(10,2) NOT NULL,
+  `vendor_party_id` bigint(20) UNSIGNED NOT NULL,
+  `received_date` date NOT NULL,
+  `remarks` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `fabric_stocks`
+--
+
+INSERT INTO `fabric_stocks` (`id`, `user_id`, `fabric_type`, `gsm`, `color`, `lot_no`, `roll_count`, `total_weight`, `rate`, `vendor_party_id`, `received_date`, `remarks`, `created_at`, `updated_at`) VALUES
+(1, 11, 'Cotton', '200', 'White', 'CT-240120-001', 20, 1000.00, 180.00, 7, '2025-12-01', 'Premium quality for bed sheets', '2025-12-12 12:28:51', '2025-12-12 12:28:51');
 
 -- --------------------------------------------------------
 
@@ -133,6 +175,59 @@ CREATE TABLE `job_batches` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `machines`
+--
+
+CREATE TABLE `machines` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `number` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `machines`
+--
+
+INSERT INTO `machines` (`id`, `user_id`, `number`, `description`, `created_at`, `updated_at`) VALUES
+(1, 1, '1', 'This is machine 1', '2025-12-06 04:24:46', '2025-12-06 05:38:47'),
+(2, 1, '2', NULL, '2025-12-06 04:24:49', '2025-12-06 04:24:49'),
+(3, 1, '3', NULL, '2025-12-06 04:24:52', '2025-12-06 04:24:52'),
+(4, 1, '4', NULL, '2025-12-06 04:24:57', '2025-12-06 04:24:57'),
+(5, 1, '5', NULL, '2025-12-06 04:25:00', '2025-12-06 04:25:00'),
+(6, 1, '6', NULL, '2025-12-06 04:25:03', '2025-12-06 04:25:03'),
+(7, 1, '7', NULL, '2025-12-06 04:25:05', '2025-12-06 04:25:05'),
+(8, 1, '8', NULL, '2025-12-06 04:25:08', '2025-12-06 04:25:08'),
+(9, 1, '9', NULL, '2025-12-06 04:25:16', '2025-12-06 04:25:16'),
+(10, 1, '10', NULL, '2025-12-06 04:25:20', '2025-12-06 04:25:20'),
+(11, 1, '11', NULL, '2025-12-06 04:25:23', '2025-12-06 04:25:23'),
+(12, 1, '12', NULL, '2025-12-06 04:26:17', '2025-12-06 04:26:17'),
+(13, 1, '13', NULL, '2025-12-06 04:26:24', '2025-12-06 04:26:24'),
+(14, 1, '14', NULL, '2025-12-06 04:26:28', '2025-12-06 04:26:28'),
+(15, 1, '15', NULL, '2025-12-06 04:26:32', '2025-12-06 04:26:32'),
+(16, 1, '16', NULL, '2025-12-06 04:26:35', '2025-12-06 04:26:35'),
+(17, 1, '17', NULL, '2025-12-06 04:26:39', '2025-12-06 04:26:39'),
+(18, 1, '18', NULL, '2025-12-06 04:26:43', '2025-12-06 04:26:43'),
+(19, 1, '19', NULL, '2025-12-06 04:26:46', '2025-12-06 04:26:46'),
+(20, 1, '20', NULL, '2025-12-06 04:26:50', '2025-12-06 04:26:50'),
+(21, 1, '21', NULL, '2025-12-06 04:26:54', '2025-12-06 04:26:54'),
+(22, 1, '22', NULL, '2025-12-06 04:26:57', '2025-12-06 04:26:57'),
+(23, 1, '23', NULL, '2025-12-06 04:27:00', '2025-12-06 04:27:00'),
+(24, 1, '24', NULL, '2025-12-06 04:27:03', '2025-12-06 04:27:03'),
+(25, 1, '26', NULL, '2025-12-06 05:12:26', '2025-12-06 05:19:30'),
+(26, 1, '25', NULL, '2025-12-06 05:19:15', '2025-12-06 05:19:15'),
+(27, 1, '30', NULL, '2025-12-06 10:40:21', '2025-12-06 10:40:21'),
+(28, 11, '1', NULL, '2025-12-07 00:26:12', '2025-12-07 00:26:12'),
+(29, 11, '2', NULL, '2025-12-07 00:26:15', '2025-12-07 00:26:15'),
+(30, 11, '3', NULL, '2025-12-07 00:26:18', '2025-12-07 00:26:18'),
+(31, 11, '4', NULL, '2025-12-07 00:26:22', '2025-12-07 00:26:22'),
+(32, 11, '5', NULL, '2025-12-07 00:26:24', '2025-12-07 00:26:24');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -157,7 +252,23 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2025_11_05_183212_add_party_number_to_parties_table', 4),
 (9, '2025_11_06_164427_create_staff_details_table', 5),
 (11, '2025_11_06_181257_create_attendances_table', 6),
-(12, '2025_01_15_120000_create_staff_salaries_table', 7);
+(12, '2025_01_15_120000_create_staff_salaries_table', 7),
+(13, '2025_01_16_000001_create_workers_table', 8),
+(14, '2025_01_16_000002_create_machines_table', 8),
+(15, '2025_01_16_000003_create_worker_machine_assignments_table', 9),
+(16, '2025_01_16_000004_create_worker_daily_production_entries_table', 9),
+(17, '2025_01_16_000005_create_settings_table', 9),
+(19, '2025_12_07_055244_create_payslips_table', 10),
+(24, '2025_01_17_000001_create_user_push_subscriptions_table', 11),
+(25, '2025_01_20_000001_create_fabric_stocks_table', 12),
+(26, '2025_01_20_000002_create_production_stocks_table', 12),
+(27, '2025_01_20_000003_create_stock_ledgers_table', 12),
+(28, '2025_01_20_000004_create_stock_dispatches_table', 12),
+(30, '2025_01_17_000003_create_meter_based_stocks_table', 13),
+(31, '2025_01_17_000004_modify_stocks_table_to_meter_based', 14),
+(32, '2025_01_17_000005_ensure_stocks_foreign_key', 15),
+(33, '2025_12_13_064412_create_stocks_table', 14),
+(34, '2025_01_18_000001_create_takas_table', 16);
 
 -- --------------------------------------------------------
 
@@ -204,6 +315,44 @@ CREATE TABLE `password_reset_tokens` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_reset_tokens`
+--
+
+INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
+('harsh@gmail.com', '$2y$12$KbbBVYGyw625H87jaCQ4ZeZgh76U1eqvrhRT4AtGIzv3LiHxJzYWm', '2025-11-09 04:41:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payslips`
+--
+
+CREATE TABLE `payslips` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `worker_id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `date_from` date NOT NULL,
+  `date_to` date NOT NULL,
+  `shift_id` varchar(255) DEFAULT NULL,
+  `total_meters` decimal(10,2) NOT NULL,
+  `rate` decimal(10,2) NOT NULL,
+  `total_salary` decimal(10,2) NOT NULL,
+  `calculation_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`calculation_data`)),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `payslips`
+--
+
+INSERT INTO `payslips` (`id`, `worker_id`, `user_id`, `date_from`, `date_to`, `shift_id`, `total_meters`, `rate`, `total_salary`, `calculation_data`, `created_at`, `updated_at`) VALUES
+(1, 6, 11, '2025-12-01', '2025-12-15', NULL, 47.00, 2.00, 94.00, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-07 00:40:14', '2025-12-07 00:40:14'),
+(2, 6, 11, '2025-12-01', '2025-12-15', 'day', 47.00, 2.00, 94.00, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-07 00:46:16', '2025-12-07 00:46:16'),
+(3, 6, 11, '2025-12-01', '2025-12-15', NULL, 47.00, 2.50, 117.50, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-07 01:35:18', '2025-12-07 01:35:18'),
+(4, 6, 11, '2025-12-01', '2025-12-10', 'day', 47.00, 2.50, 117.50, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-10 10:43:54', '2025-12-10 10:43:54');
+
 -- --------------------------------------------------------
 
 --
@@ -224,35 +373,61 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'manage user', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
-(2, 'create user', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
-(3, 'view user', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
-(4, 'edit user', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
-(5, 'delete user', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
-(6, 'create product', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
-(7, 'edit product', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
-(8, 'manage staff', NULL, NULL, '2025-11-04 10:15:25', '2025-11-04 10:15:25'),
-(9, 'create staff', NULL, NULL, '2025-11-04 10:15:25', '2025-11-04 10:15:25'),
-(10, 'edit staff', NULL, NULL, '2025-11-04 10:15:25', '2025-11-04 10:15:25'),
-(11, 'delete staff', NULL, NULL, '2025-11-04 10:15:25', '2025-11-04 10:15:25'),
-(12, 'manage role', NULL, NULL, '2025-11-04 10:32:06', '2025-11-04 10:32:06'),
-(13, 'create role', NULL, NULL, '2025-11-04 10:32:06', '2025-11-04 10:32:06'),
-(14, 'edit role', NULL, NULL, '2025-11-04 10:32:06', '2025-11-04 10:32:06'),
-(15, 'delete role', NULL, NULL, '2025-11-04 10:32:06', '2025-11-04 10:32:06'),
-(16, 'manage party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
-(17, 'create party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
-(18, 'edit party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
-(19, 'view party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
-(20, 'delete party', NULL, NULL, '2025-11-05 11:43:16', '2025-11-05 11:43:16'),
-(21, 'manage attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
-(22, 'create attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
-(23, 'edit attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
-(24, 'view attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
-(25, 'delete attendance', NULL, NULL, '2025-11-06 11:34:05', '2025-11-06 11:34:05'),
-(26, 'manage staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01'),
-(27, 'create staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01'),
-(28, 'edit staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01'),
-(29, 'delete staff salary', NULL, NULL, '2025-11-07 11:01:01', '2025-11-07 11:01:01');
+(1, 'manage user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
+(2, 'create user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
+(3, 'view user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
+(4, 'edit user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
+(5, 'delete user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
+(6, 'create product', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
+(7, 'edit product', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
+(30, 'manage role', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(31, 'create role', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(32, 'edit role', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(33, 'delete role', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(34, 'manage staff', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(35, 'create staff', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(36, 'edit staff', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(37, 'delete staff', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(38, 'manage staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(39, 'create staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(40, 'edit staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(41, 'delete staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(42, 'manage party', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(43, 'create party', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
+(44, 'edit party', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(45, 'view party', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(46, 'delete party', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(47, 'manage attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(48, 'create attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(49, 'edit attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(50, 'view attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(51, 'delete attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(52, 'manage workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(53, 'create workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(54, 'edit workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(55, 'delete workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(56, 'view workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(57, 'manage worker machines', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(58, 'create worker machines', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(59, 'edit worker machines', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(60, 'delete worker machines', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(61, 'view worker machines', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(62, 'manage worker machine assign', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(63, 'assign worker machine assign', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(64, 'manage worker daily production', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(65, 'entry worker daily production', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(66, 'manage worker salary', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(67, 'calculate worker salary', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(68, 'generate worker payslip', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(69, 'view worker payslip', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(70, 'download worker payslip', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
+(71, 'manage stock management', NULL, NULL, '2025-12-13 06:53:12', '2025-12-13 06:53:12'),
+(72, 'view stock management', NULL, NULL, '2025-12-13 06:53:12', '2025-12-13 06:53:12'),
+(73, 'refresh stock management', NULL, NULL, '2025-12-13 06:53:12', '2025-12-13 06:53:12'),
+(115, 'manage taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29'),
+(116, 'create taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29'),
+(117, 'edit taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29'),
+(118, 'delete taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29');
 
 -- --------------------------------------------------------
 
@@ -270,83 +445,83 @@ CREATE TABLE `permission_role` (
 --
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
-(1, 2),
-(1, 5),
-(1, 6),
-(2, 5),
-(2, 6),
-(3, 5),
-(3, 6),
-(4, 5),
-(4, 6),
-(5, 5),
-(5, 6),
-(6, 4),
-(6, 5),
-(6, 6),
-(6, 8),
-(7, 5),
-(7, 6),
-(7, 8),
-(8, 1),
-(8, 2),
-(8, 5),
-(8, 6),
-(8, 8),
-(9, 1),
-(9, 2),
-(9, 5),
-(9, 6),
-(9, 8),
-(10, 1),
-(10, 5),
-(10, 6),
-(10, 8),
-(11, 1),
-(11, 5),
-(11, 6),
-(11, 8),
-(12, 1),
-(12, 5),
-(12, 6),
-(12, 7),
-(13, 1),
-(13, 5),
-(13, 6),
-(13, 7),
-(14, 1),
-(14, 5),
-(14, 6),
-(14, 7),
-(15, 1),
-(15, 5),
-(15, 6),
-(15, 7),
-(16, 1),
-(16, 2),
-(17, 1),
-(17, 2),
-(17, 7),
-(18, 1),
-(19, 1),
-(20, 1),
-(21, 1),
-(21, 8),
-(22, 1),
-(22, 8),
-(23, 1),
-(24, 1),
-(25, 1),
-(26, 1),
-(26, 2),
-(26, 8),
-(27, 1),
-(27, 2),
-(27, 8),
-(28, 1),
-(28, 2),
-(29, 1),
-(29, 2);
+(30, 1),
+(31, 1),
+(32, 1),
+(33, 1),
+(34, 1),
+(34, 11),
+(35, 1),
+(35, 11),
+(36, 1),
+(36, 11),
+(37, 1),
+(37, 11),
+(38, 1),
+(38, 11),
+(39, 1),
+(39, 11),
+(40, 1),
+(40, 11),
+(41, 1),
+(41, 11),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(52, 11),
+(53, 1),
+(53, 11),
+(54, 1),
+(54, 11),
+(55, 1),
+(55, 11),
+(56, 1),
+(56, 11),
+(57, 1),
+(57, 11),
+(58, 1),
+(58, 11),
+(59, 1),
+(59, 11),
+(60, 1),
+(60, 11),
+(61, 1),
+(61, 11),
+(62, 1),
+(62, 11),
+(63, 1),
+(63, 11),
+(64, 1),
+(64, 11),
+(65, 1),
+(65, 11),
+(66, 1),
+(66, 11),
+(67, 1),
+(67, 11),
+(68, 1),
+(68, 11),
+(69, 1),
+(69, 11),
+(70, 1),
+(70, 11),
+(71, 1),
+(71, 10),
+(72, 1),
+(73, 1),
+(73, 10),
+(115, 1),
+(116, 1),
+(117, 1),
+(118, 1);
 
 -- --------------------------------------------------------
 
@@ -359,6 +534,34 @@ CREATE TABLE `permission_user` (
   `user_id` bigint(20) UNSIGNED NOT NULL,
   `user_type` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `production_stocks`
+--
+
+CREATE TABLE `production_stocks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `production_date` date NOT NULL,
+  `machine_id` bigint(20) UNSIGNED NOT NULL,
+  `worker_id` bigint(20) UNSIGNED NOT NULL,
+  `fabric_type` varchar(255) NOT NULL,
+  `roll_count` int(11) NOT NULL,
+  `total_weight` decimal(10,2) NOT NULL,
+  `quality_grade` enum('A','B','C','Reject') NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `production_stocks`
+--
+
+INSERT INTO `production_stocks` (`id`, `user_id`, `production_date`, `machine_id`, `worker_id`, `fabric_type`, `roll_count`, `total_weight`, `quality_grade`, `created_at`, `updated_at`) VALUES
+(1, 11, '2025-12-10', 28, 6, 'Cotton', 50, 500.00, 'A', '2025-12-12 12:29:34', '2025-12-12 12:30:58'),
+(2, 11, '2025-12-11', 29, 7, 'Cotton', 200, 1000.00, 'A', '2025-12-12 12:32:50', '2025-12-12 12:32:50');
 
 -- --------------------------------------------------------
 
@@ -383,11 +586,11 @@ CREATE TABLE `roles` (
 INSERT INTO `roles` (`id`, `created_by`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
 (1, NULL, 'owner', NULL, NULL, '2025-11-04 09:40:55', '2025-11-04 09:40:55'),
 (2, 1, 'Manager', NULL, NULL, '2025-11-04 09:44:09', '2025-11-04 09:44:09'),
-(4, 11, 'Manager', NULL, NULL, '2025-11-05 10:51:57', '2025-11-05 10:51:57'),
-(5, 11, 'Admin', NULL, NULL, '2025-11-05 10:52:31', '2025-11-05 10:52:31'),
 (6, 1, 'Admin', NULL, NULL, '2025-11-05 10:53:05', '2025-11-05 10:53:05'),
 (7, 1, 'Demo role', NULL, NULL, '2025-11-05 12:35:17', '2025-11-05 12:35:17'),
-(8, 1, 'Supervisor', NULL, NULL, '2025-11-07 11:09:51', '2025-11-07 11:09:51');
+(8, 1, 'Supervisor', NULL, NULL, '2025-11-07 11:09:51', '2025-11-07 11:09:51'),
+(10, 11, 'Admin', NULL, NULL, '2025-12-26 12:52:28', '2025-12-26 12:52:41'),
+(11, 11, 'Manager', NULL, NULL, '2025-12-26 12:53:10', '2025-12-26 12:53:10');
 
 -- --------------------------------------------------------
 
@@ -418,7 +621,12 @@ INSERT INTO `role_user` (`role_id`, `user_id`, `user_type`) VALUES
 (1, 11, 'App\\Models\\User'),
 (2, 12, 'App\\Models\\User'),
 (7, 13, 'App\\Models\\User'),
-(5, 14, 'App\\Models\\User');
+(10, 14, 'App\\Models\\User'),
+(1, 15, 'App\\Models\\User'),
+(11, 16, 'App\\Models\\User'),
+(1, 17, 'App\\Models\\User'),
+(11, 18, 'App\\Models\\User'),
+(11, 19, 'App\\Models\\User');
 
 -- --------------------------------------------------------
 
@@ -440,8 +648,34 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('SN88ljlOITU7XB86EnGYO6dJUPUnNOupDnC1MJ7P', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMVhwcUFxbU8wZk5Hb3RFNG9wYlpGUlE5cTUzSjlXZEJlZkJ2YVRRNCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTA7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzY6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zdGFmZi1zYWxhcmllcyI7fX0=', 1762539079),
-('vIuwyG8dyEMNGYzBXyf0tlc62hayV0SQqZifX1Ye', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTmc5RXgzVGNqZTFIdlQ5T21CMk1ia3BLdFEzWTRzbEpNSzlYeDJ0NSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czo4ODoiaHR0cDovLzEyNy4wLjAuMTo4MDAwL3N0YWZmLXNhbGFyaWVzP2RpcmVjdGlvbj1kZXNjJnBlcl9wYWdlPTEwJnNlYXJjaD0mc29ydD1zYWxhcnlfZGF0ZSI7fX0=', 1762539084);
+('dJjxyGMZTBHONXqPpqjneG38nbyMLTYXJC8ErNT3', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZ1ROM2l6VnlTb2V3TjBJSGEwT1R1ZUxrVk12OGpZTWVkb2tObUx3MCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTQ7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9fQ==', 1766774903),
+('LPEVlYL0p1IyLxbrBGvB2NGJV1pNAgMqg8LwdROa', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSWtDUzdMM3VmVVc5UXg2aHZtVEtWdG9WTG5FMmkwQ2V4YWl5R1BqMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTQ7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9fQ==', 1766777253),
+('V1Lt21v2jUtBzZmqArHWqCk8q6LnETvzNqLECiwt', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoieDFZT2RpYzNzYVZsaHZjZExoa0ViaXBNSnJtWm0wQ00xd3pEOWRobSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTE7fQ==', 1766779335),
+('X6NJYu7Kr0unmZ9ctqjEjt9MFRUASFdYZeVVaiLa', 18, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRmZIek1pekdxQk1Zc3lENXBJSmJ0QjNXbTNKaURldElvWExQUDBSNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTg7fQ==', 1766775156);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `key` varchar(255) NOT NULL,
+  `value` text NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `key`, `value`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 'worker_per_meter_rate', '3', 1, '2025-12-06 08:33:51', '2025-12-06 08:33:51'),
+(2, 'worker_per_meter_rate', '2.5', 11, '2025-12-07 01:34:29', '2025-12-07 01:34:29'),
+(3, 'lot_meter_size', '100', 11, '2025-12-13 01:22:33', '2025-12-13 03:00:56');
 
 -- --------------------------------------------------------
 
@@ -466,8 +700,8 @@ CREATE TABLE `staff_details` (
 
 INSERT INTO `staff_details` (`id`, `user_id`, `phone_number`, `salary_type`, `salary_amount`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, 10, NULL, 'monthly', 1000.00, 1, '2025-11-06 11:18:28', '2025-11-07 11:23:00'),
-(2, 13, '1234567890', 'per_meter', 200.00, 1, '2025-11-06 12:58:29', '2025-11-07 10:46:11'),
-(3, 14, '1234567890', 'per_meter', 100.00, 11, '2025-11-06 13:01:49', '2025-11-06 13:01:49');
+(3, 14, '1234567890', 'monthly', 100.00, 11, '2025-11-06 13:01:49', '2025-12-26 13:16:54'),
+(4, 16, '1234567890', 'monthly', 2.00, 11, '2025-11-09 05:23:18', '2025-12-26 13:16:49');
 
 -- --------------------------------------------------------
 
@@ -494,8 +728,106 @@ CREATE TABLE `staff_salaries` (
 --
 
 INSERT INTO `staff_salaries` (`id`, `staff_id`, `staff_salary`, `salary_type`, `meter`, `working_days`, `total_salary`, `salary_date`, `created_by`, `created_at`, `updated_at`) VALUES
-(2, 14, 100.00, 'per_meter', 14.00, NULL, 1400.00, '2025-11-07', 11, '2025-11-07 10:57:22', '2025-11-07 10:57:22'),
-(3, 10, 2000.00, 'monthly', NULL, 12, 24000.00, '2025-10-27', 1, '2025-11-07 11:08:40', '2025-11-07 11:22:35');
+(2, 14, 100.00, 'monthly', 14.00, NULL, 1400.00, '2025-11-07', 11, '2025-11-07 10:57:22', '2025-11-07 10:57:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stocks`
+--
+
+CREATE TABLE `stocks` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `total_meters` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stocks`
+--
+
+INSERT INTO `stocks` (`id`, `user_id`, `date`, `total_meters`, `created_at`, `updated_at`) VALUES
+(310, 11, '2025-12-26', 37.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32'),
+(311, 11, '2025-12-13', 275.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32'),
+(312, 11, '2025-12-12', 41.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32'),
+(313, 11, '2025-12-07', 47.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_dispatches`
+--
+
+CREATE TABLE `stock_dispatches` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `challan_number` varchar(255) NOT NULL,
+  `party_id` bigint(20) UNSIGNED NOT NULL,
+  `dispatch_date` date NOT NULL,
+  `fabric_type` varchar(255) NOT NULL,
+  `roll_count` int(11) NOT NULL,
+  `total_weight` decimal(10,2) NOT NULL,
+  `remarks` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_ledgers`
+--
+
+CREATE TABLE `stock_ledgers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `transaction_type` enum('IN','OUT') NOT NULL,
+  `transaction_date` date NOT NULL,
+  `fabric_type` varchar(255) NOT NULL,
+  `quantity_rolls` int(11) NOT NULL,
+  `weight` decimal(10,2) NOT NULL,
+  `reason` enum('Production','Dispatch','Purchase','Return','Adjustment') NOT NULL,
+  `linked_record_type` varchar(255) DEFAULT NULL,
+  `linked_record_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `stock_ledgers`
+--
+
+INSERT INTO `stock_ledgers` (`id`, `user_id`, `transaction_type`, `transaction_date`, `fabric_type`, `quantity_rolls`, `weight`, `reason`, `linked_record_type`, `linked_record_id`, `remarks`, `created_at`, `updated_at`) VALUES
+(1, 11, 'IN', '2025-12-01', 'Cotton', 20, 1000.00, 'Purchase', 'FabricStock', 1, 'Fabric stock received from sfr', '2025-12-12 12:28:51', '2025-12-12 12:28:51'),
+(2, 11, 'IN', '2025-12-10', 'Cotton', 5, 50.00, 'Production', 'ProductionStock', 1, 'Production by Rohit on Machine 1', '2025-12-12 12:29:34', '2025-12-12 12:29:34'),
+(3, 11, 'IN', '2025-12-11', 'Cotton', 200, 1000.00, 'Production', 'ProductionStock', 2, 'Production by Mohit on Machine 2', '2025-12-12 12:32:50', '2025-12-12 12:32:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `takas`
+--
+
+CREATE TABLE `takas` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `taka_number` varchar(255) NOT NULL,
+  `meter` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `takas`
+--
+
+INSERT INTO `takas` (`id`, `user_id`, `taka_number`, `meter`, `created_at`, `updated_at`) VALUES
+(1, 11, '1', 220.00, '2025-12-26 13:45:45', '2025-12-26 13:45:45'),
+(2, 1, '1', 500.00, '2025-12-26 13:48:34', '2025-12-26 13:48:34');
 
 -- --------------------------------------------------------
 
@@ -522,11 +854,125 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `role`, `created_by`, `is_staff`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Harsh', 'test@example.com', '2025-11-04 09:40:56', '$2y$12$dLx78tABGwrk.LY5qjKmkexpdRrbnzd8INBOITxwcba29l/AmbCei', 'owner', NULL, 0, 'rRUtx1AVVb5tCytbJW7U4MoiI9VoSZ7HwbBsK14r6Uh0DFcswrmONH4Mai2w', '2025-11-04 09:40:56', '2025-11-06 12:47:04'),
+(1, 'Harsh', 'test@example.com', '2025-11-04 09:40:56', '$2y$12$dLx78tABGwrk.LY5qjKmkexpdRrbnzd8INBOITxwcba29l/AmbCei', 'owner', NULL, 0, 'Bv4EEOFNee9mpcB17yYaS6MvBDjHGREXdM1t1AN0CfLeSP2j1qPcdywAR7AN', '2025-11-04 09:40:56', '2025-11-06 12:47:04'),
 (10, 'divy', 'divy@gmail.com', NULL, '$2y$12$vqh8/Xm8K/T1.u4t0i9fPeiRGErA3URug2DDhabUBnFUBcGlD2Psm', 'Manager', 1, 1, NULL, '2025-11-05 10:26:06', '2025-11-07 11:15:14'),
-(11, 'harsh', 'harsh@gmail.com', NULL, '$2y$12$V0znjbRMJx2Fm2dre.aRn.neno/gvQukjvtDzfgN7K4B3hiO9ucda', 'owner', NULL, 0, NULL, '2025-11-05 10:48:47', '2025-11-05 10:48:47'),
-(13, 'demo staff', 'demo@staff.com', NULL, '$2y$12$NZ8kwOcjgWqHWoaNufCl7ubw3AvGHrodk/kMymn9IGp9uAjI38ziy', 'Demo role', 1, 1, NULL, '2025-11-06 12:58:29', '2025-11-06 12:58:29'),
-(14, 'New Staff', 'new@staff.com', NULL, '$2y$12$JuaTIZZB6C4/dg0AkbAz7.8E2aa2u4BKwIAzJ4Xe8qoIZBPevgpZS', 'Admin', 11, 1, NULL, '2025-11-06 13:01:49', '2025-11-06 13:01:49');
+(11, 'harsh', 'hp004086@gmail.com', '2025-11-09 10:37:41', '$2y$12$V0znjbRMJx2Fm2dre.aRn.neno/gvQukjvtDzfgN7K4B3hiO9ucda', 'owner', NULL, 0, NULL, '2025-11-05 10:48:47', '2025-11-09 10:37:41'),
+(14, 'New Staff', 'new@staff.com', NULL, '$2y$12$cJg5UFtUBuEp1exvYm2Mo.7qFeFz059.3mU8tyAtPdPXk8iTlFyWe', 'Admin', 11, 1, NULL, '2025-11-06 13:01:49', '2025-12-26 12:54:23'),
+(15, 'demo', 'demo@test.com', NULL, '$2y$12$FhAKfqDcifDvDTsrviuqCu2cxqoDBP6xhbpGGuTFylsiAhq7BYmzm', 'owner', NULL, 0, NULL, '2025-11-09 05:22:31', '2025-11-09 05:22:31'),
+(16, 'staff1', 'staff1@gmail.com', NULL, '$2y$12$QQfj5vgXBJPzvcwrcgVe9u31O2aoyih7BaZCQzhYszvv9Z8wu7ZIm', 'Manager', 11, 1, NULL, '2025-11-09 05:23:18', '2025-11-09 05:23:18'),
+(17, 'sdf', 'sdf@sfe.sdf', NULL, '$2y$12$gSNG28nwBWM9pDId4ny8LO6mCr2e.lMzVox0mdJWCGvVv20TcYRzO', 'owner', NULL, 0, NULL, '2025-11-09 06:50:52', '2025-11-09 06:50:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_push_subscriptions`
+--
+
+CREATE TABLE `user_push_subscriptions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `endpoint` text NOT NULL,
+  `p256dh` varchar(255) NOT NULL,
+  `auth` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `user_push_subscriptions`
+--
+
+INSERT INTO `user_push_subscriptions` (`id`, `user_id`, `endpoint`, `p256dh`, `auth`, `created_at`, `updated_at`) VALUES
+(1, 11, 'https://fcm.googleapis.com/fcm/send/cr9NojS0XF4:APA91bG9CPtFWhVsqQ1l8XxOqrb9yFws0j9S3Gpq4IC2b57dbFYBLvFBVe58QZVYYwQymFYP_x4EUY4AitZWa1lQHGwagfUrfqcswNsSfClOS0z124iFFjVCy3aJjBBdP7qPrpcYsXyv', 'BNHSHn3xI3ee8eO5RqZmYKcGOVxPtSMRMileU77qsrwdeCKXYJFI-4Py_N6DjK0kMM0hnDQVq1CejPNX8Lif0FE', 'XOFqAe7GmXt4hl751BEcBQ', '2025-12-07 08:19:17', '2025-12-07 08:19:17'),
+(2, 11, 'https://fcm.googleapis.com/fcm/send/dHrzXKksN24:APA91bFRrF0vivQmiwLWwRFEjRRkK-AyUKLQzWOqLaO7K6KHbki4v5PEA5FwzGncuNl5C-s40ePCvCHGtFJHaX2sfGyhAfas5whtmdKJJCzIiKjkLFDz4Ejb4dWaoj9SA9DOkaGTtUXa', 'BLE-vApEehYodQj3koOHDAH3nAu4njP7457Yb55FzzORn8Ssxzx0k6FMgFV80Jv8Caozf0PyEqva2wsLdI_14EU', 'cpM78PhXDRmTKUYww7xGuA', '2025-12-07 08:22:13', '2025-12-07 08:22:13'),
+(3, 11, 'https://fcm.googleapis.com/fcm/send/c9J_iVe7_V0:APA91bHQ6oTuZZOEx-6XPbN1-vFFktkBpQzZZMzjprRjGlIGcwY-Zei2xxSBejpanmOzIC7cRwIeA0KYmIzw9nvHc5-rU8kmCmZBNiyOdwb13y9GM4RCrztw5DP1sVLi_YZaz9-FgjWD', 'BEUd0O8mptW6BoC26iD01MM77L7oS-V3HQ-eqOb7jKxwStprE4oZvS0F52JIo2wnBNik1sraEfT7NPuMtp-5T_A', 'l1DmCKMiDaIbkLaBxAu5ZA', '2025-12-07 09:11:47', '2025-12-07 09:11:47'),
+(4, 11, 'https://updates.push.services.mozilla.com/wpush/v2/gAAAAABpNZl3VgSCvEHlLOuKfv2hAUulLnRU5_rW4OsyFFPKrhmT8NzzXHpIIviKIPOC7yZeSYHyAq8U4b7ebhHQfgX_9vNkETFZp5eN1PEGEG26YuvfLDxcbnVG-dmMSpWUoMERc4r04C9pkx_k5U866_LtUuIeuTNXIA3t_MsZhYeiGxsgd7s', 'BPb1WrcnmntQDGaGO0xkQfgYHYF444I5hauMwSCMWj14B8gzrIvf-I3BL8PWsxkPkZ7TcBCix5jTFqs99nLWHg8', 'MhfH_W0KZo_HPA3uM_9UGg', '2025-12-07 09:42:55', '2025-12-07 09:42:55'),
+(5, 11, 'https://fcm.googleapis.com/fcm/send/fUlHO-GW58E:APA91bE0Bw-Uva5J5MRLaiPF7NukFEQ7zoyBOhbpDmOSaZXVVLdWa24KvKM5ydN1KbjwnqLzjCmIl2g4O2mLfVUYJwBWBAzInHgKXndNqUoPRscYMATUkrMF-dQg8GAnDt0hTZhM92NX', 'BBZxGNFvYorgjcNTnmp4bB7z2F-fQ6F-ND_ZIJIDKuuxdlhYbuzPDrk2-CAZIdCXTKZUKG0F1YRDbd4rN_CIAhk', 'Jll0Tsf-QNEurqdnKfPWYw', '2025-12-10 10:11:31', '2025-12-26 12:16:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `workers`
+--
+
+CREATE TABLE `workers` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `workers`
+--
+
+INSERT INTO `workers` (`id`, `user_id`, `name`, `phone`, `created_at`, `updated_at`) VALUES
+(6, 11, 'Rohit', '+911234567890', '2025-12-07 00:26:06', '2025-12-07 01:22:48'),
+(7, 11, 'Mohit', NULL, '2025-12-07 08:22:30', '2025-12-07 08:22:30'),
+(9, 11, 'Demo', NULL, '2025-12-07 08:26:43', '2025-12-07 08:26:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `worker_daily_production_entries`
+--
+
+CREATE TABLE `worker_daily_production_entries` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `worker_id` bigint(20) UNSIGNED NOT NULL,
+  `machine_id` bigint(20) UNSIGNED NOT NULL,
+  `shift_id` enum('day','night') NOT NULL,
+  `meters` decimal(10,2) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `worker_daily_production_entries`
+--
+
+INSERT INTO `worker_daily_production_entries` (`id`, `user_id`, `date`, `worker_id`, `machine_id`, `shift_id`, `meters`, `created_at`, `updated_at`) VALUES
+(13, 11, '2025-12-07', 6, 28, 'day', 12.00, '2025-12-07 00:27:12', '2025-12-07 00:27:12'),
+(14, 11, '2025-12-07', 6, 29, 'day', 15.00, '2025-12-07 00:27:12', '2025-12-07 00:27:12'),
+(15, 11, '2025-12-07', 6, 30, 'day', 20.00, '2025-12-07 00:27:12', '2025-12-07 00:27:12'),
+(16, 11, '2025-12-12', 6, 28, 'day', 12.00, '2025-12-12 09:06:59', '2025-12-12 09:06:59'),
+(17, 11, '2025-12-12', 6, 29, 'day', 15.00, '2025-12-12 09:06:59', '2025-12-12 09:06:59'),
+(18, 11, '2025-12-12', 6, 30, 'day', 14.00, '2025-12-12 09:06:59', '2025-12-12 09:06:59'),
+(19, 11, '2025-12-13', 6, 28, 'day', 150.00, '2025-12-13 01:23:07', '2025-12-13 01:29:54'),
+(20, 11, '2025-12-13', 6, 29, 'day', 100.00, '2025-12-13 01:23:07', '2025-12-13 03:01:28'),
+(21, 11, '2025-12-13', 6, 30, 'day', 25.00, '2025-12-13 01:23:07', '2025-12-13 01:23:07'),
+(22, 11, '2025-12-26', 6, 28, 'day', 7.00, '2025-12-26 12:35:58', '2025-12-26 12:35:58'),
+(23, 11, '2025-12-26', 6, 29, 'day', 20.00, '2025-12-26 12:35:58', '2025-12-26 12:35:58'),
+(24, 11, '2025-12-26', 6, 30, 'day', 10.00, '2025-12-26 12:35:58', '2025-12-26 12:35:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `worker_machine_assignments`
+--
+
+CREATE TABLE `worker_machine_assignments` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `worker_id` bigint(20) UNSIGNED NOT NULL,
+  `machine_id` bigint(20) UNSIGNED NOT NULL,
+  `shift_id` enum('day','night') NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `worker_machine_assignments`
+--
+
+INSERT INTO `worker_machine_assignments` (`id`, `user_id`, `worker_id`, `machine_id`, `shift_id`, `created_at`, `updated_at`) VALUES
+(13, 11, 6, 28, 'day', '2025-12-07 00:26:34', '2025-12-07 00:26:34'),
+(14, 11, 6, 29, 'day', '2025-12-07 00:26:34', '2025-12-07 00:26:34'),
+(15, 11, 6, 30, 'day', '2025-12-07 00:26:34', '2025-12-07 00:26:34');
 
 --
 -- Indexes for dumped tables
@@ -553,6 +999,14 @@ ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
 
 --
+-- Indexes for table `fabric_stocks`
+--
+ALTER TABLE `fabric_stocks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fabric_stocks_user_id_foreign` (`user_id`),
+  ADD KEY `fabric_stocks_vendor_party_id_foreign` (`vendor_party_id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -571,6 +1025,13 @@ ALTER TABLE `jobs`
 --
 ALTER TABLE `job_batches`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `machines`
+--
+ALTER TABLE `machines`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `machines_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `migrations`
@@ -592,6 +1053,14 @@ ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
+-- Indexes for table `payslips`
+--
+ALTER TABLE `payslips`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `payslips_worker_id_foreign` (`worker_id`),
+  ADD KEY `payslips_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
@@ -611,6 +1080,15 @@ ALTER TABLE `permission_role`
 ALTER TABLE `permission_user`
   ADD PRIMARY KEY (`user_id`,`permission_id`,`user_type`),
   ADD KEY `permission_user_permission_id_foreign` (`permission_id`);
+
+--
+-- Indexes for table `production_stocks`
+--
+ALTER TABLE `production_stocks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `production_stocks_user_id_foreign` (`user_id`),
+  ADD KEY `production_stocks_machine_id_foreign` (`machine_id`),
+  ADD KEY `production_stocks_worker_id_foreign` (`worker_id`);
 
 --
 -- Indexes for table `roles`
@@ -636,6 +1114,14 @@ ALTER TABLE `sessions`
   ADD KEY `sessions_last_activity_index` (`last_activity`);
 
 --
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `settings_key_user_id_unique` (`key`,`user_id`),
+  ADD KEY `settings_user_id_foreign` (`user_id`);
+
+--
 -- Indexes for table `staff_details`
 --
 ALTER TABLE `staff_details`
@@ -652,12 +1138,72 @@ ALTER TABLE `staff_salaries`
   ADD KEY `staff_salaries_created_by_foreign` (`created_by`);
 
 --
+-- Indexes for table `stocks`
+--
+ALTER TABLE `stocks`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `stocks_user_id_date_unique` (`user_id`,`date`);
+
+--
+-- Indexes for table `stock_dispatches`
+--
+ALTER TABLE `stock_dispatches`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `stock_dispatches_challan_number_unique` (`challan_number`),
+  ADD KEY `stock_dispatches_user_id_foreign` (`user_id`),
+  ADD KEY `stock_dispatches_party_id_foreign` (`party_id`);
+
+--
+-- Indexes for table `stock_ledgers`
+--
+ALTER TABLE `stock_ledgers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `stock_ledgers_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `takas`
+--
+ALTER TABLE `takas`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `takas_user_id_taka_number_unique` (`user_id`,`taka_number`),
+  ADD KEY `takas_user_id_index` (`user_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`),
   ADD KEY `users_created_by_foreign` (`created_by`);
+
+--
+-- Indexes for table `user_push_subscriptions`
+--
+ALTER TABLE `user_push_subscriptions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `user_push_subscriptions_endpoint_unique` (`endpoint`) USING HASH,
+  ADD KEY `user_push_subscriptions_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `workers`
+--
+ALTER TABLE `workers`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `workers_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `worker_daily_production_entries`
+--
+ALTER TABLE `worker_daily_production_entries`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `worker_daily_production_entries_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `worker_machine_assignments`
+--
+ALTER TABLE `worker_machine_assignments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `worker_machine_assignments_user_id_foreign` (`user_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -667,7 +1213,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `fabric_stocks`
+--
+ALTER TABLE `fabric_stocks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -682,10 +1234,16 @@ ALTER TABLE `jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `machines`
+--
+ALTER TABLE `machines`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `parties`
@@ -694,22 +1252,40 @@ ALTER TABLE `parties`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `payslips`
+--
+ALTER TABLE `payslips`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+
+--
+-- AUTO_INCREMENT for table `production_stocks`
+--
+ALTER TABLE `production_stocks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `staff_details`
 --
 ALTER TABLE `staff_details`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `staff_salaries`
@@ -718,10 +1294,58 @@ ALTER TABLE `staff_salaries`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `stocks`
+--
+ALTER TABLE `stocks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=314;
+
+--
+-- AUTO_INCREMENT for table `stock_dispatches`
+--
+ALTER TABLE `stock_dispatches`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `stock_ledgers`
+--
+ALTER TABLE `stock_ledgers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `takas`
+--
+ALTER TABLE `takas`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `user_push_subscriptions`
+--
+ALTER TABLE `user_push_subscriptions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `workers`
+--
+ALTER TABLE `workers`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `worker_daily_production_entries`
+--
+ALTER TABLE `worker_daily_production_entries`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT for table `worker_machine_assignments`
+--
+ALTER TABLE `worker_machine_assignments`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables
@@ -735,10 +1359,30 @@ ALTER TABLE `attendances`
   ADD CONSTRAINT `attendances_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `fabric_stocks`
+--
+ALTER TABLE `fabric_stocks`
+  ADD CONSTRAINT `fabric_stocks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fabric_stocks_vendor_party_id_foreign` FOREIGN KEY (`vendor_party_id`) REFERENCES `parties` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `machines`
+--
+ALTER TABLE `machines`
+  ADD CONSTRAINT `machines_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `parties`
 --
 ALTER TABLE `parties`
   ADD CONSTRAINT `parties_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `payslips`
+--
+ALTER TABLE `payslips`
+  ADD CONSTRAINT `payslips_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `payslips_worker_id_foreign` FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`);
 
 --
 -- Constraints for table `permission_role`
@@ -754,6 +1398,14 @@ ALTER TABLE `permission_user`
   ADD CONSTRAINT `permission_user_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `production_stocks`
+--
+ALTER TABLE `production_stocks`
+  ADD CONSTRAINT `production_stocks_machine_id_foreign` FOREIGN KEY (`machine_id`) REFERENCES `machines` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `production_stocks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `production_stocks_worker_id_foreign` FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `roles`
 --
 ALTER TABLE `roles`
@@ -764,6 +1416,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `role_user`
   ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `settings`
+--
+ALTER TABLE `settings`
+  ADD CONSTRAINT `settings_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `staff_details`
@@ -780,10 +1438,59 @@ ALTER TABLE `staff_salaries`
   ADD CONSTRAINT `staff_salaries_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `stocks`
+--
+ALTER TABLE `stocks`
+  ADD CONSTRAINT `stocks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `stock_dispatches`
+--
+ALTER TABLE `stock_dispatches`
+  ADD CONSTRAINT `stock_dispatches_party_id_foreign` FOREIGN KEY (`party_id`) REFERENCES `parties` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `stock_dispatches_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `stock_ledgers`
+--
+ALTER TABLE `stock_ledgers`
+  ADD CONSTRAINT `stock_ledgers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `takas`
+--
+ALTER TABLE `takas`
+  ADD CONSTRAINT `takas_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_push_subscriptions`
+--
+ALTER TABLE `user_push_subscriptions`
+  ADD CONSTRAINT `user_push_subscriptions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `workers`
+--
+ALTER TABLE `workers`
+  ADD CONSTRAINT `workers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `worker_daily_production_entries`
+--
+ALTER TABLE `worker_daily_production_entries`
+  ADD CONSTRAINT `worker_daily_production_entries_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `worker_machine_assignments`
+--
+ALTER TABLE `worker_machine_assignments`
+  ADD CONSTRAINT `worker_machine_assignments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

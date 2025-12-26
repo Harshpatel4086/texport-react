@@ -114,9 +114,9 @@ class StaffSalaryController extends Controller
 
     public function update(Request $request, StaffSalary $staffSalary)
     {
-        if ($staffSalary->created_by !== createdBy()) {
-            abort(403);
-        }
+        // if ($staffSalary->created_by !== createdBy()) {
+        //     abort(403);
+        // }
 
         if (!auth()->user()->hasPermission('edit staff salary')) {
             return back()->with('error', 'Permission denied!');
@@ -150,9 +150,9 @@ class StaffSalaryController extends Controller
 
     public function destroy(StaffSalary $staffSalary)
     {
-        if ($staffSalary->created_by !== createdBy()) {
-            abort(403);
-        }
+        // if ($staffSalary->created_by !== createdBy()) {
+        //     abort(403);
+        // }
 
         if (!auth()->user()->hasPermission('delete staff salary')) {
             return back()->with('error', 'Permission denied!');

@@ -19,7 +19,7 @@ import {
 } from 'react-icons/md';
 
 export default function SettingIndex(props) {
-    const { auth = {}, workerRate = '', lotMeterSize = '' } = props;
+    const { auth = {}, workerRate = '' } = props;
 
     useToastFlash();
     const { t } = useLanguage();
@@ -29,7 +29,6 @@ export default function SettingIndex(props) {
 
     const { data, setData, post, processing, errors } = useForm({
         rate: workerRate || '',
-        lot_meter_size: lotMeterSize || '',
     });
 
     const handleSubmit = (e) => {
@@ -37,28 +36,19 @@ export default function SettingIndex(props) {
         post(route('settings.worker-rate'));
     };
 
-    const handleLotSizeSubmit = (e) => {
-        e.preventDefault();
-        post(route('settings.lot-meter-size'));
-    };
+
 
     const breadcrumbs = [
-        { label: t('dashboard'), href: route('dashboard') },
-        { label: t('settings') }
+        { label: t('Dashboard'), href: route('dashboard') },
+        { label: t('Settings') }
     ];
 
     const settingsSections = [
         {
             id: 'worker',
-            label: t('settings_worker_settings'),
+            label: t('Worker Settings'),
             icon: MdPerson,
-            description: t('settings_worker_rate_desc')
-        },
-        {
-            id: 'stock',
-            label: t('settings_stock_management'),
-            icon: MdInventory,
-            description: t('settings_stock_desc')
+            description: t('Configure worker rates and production parameters')
         },
         // {
         //     id: 'notifications',
@@ -96,7 +86,7 @@ export default function SettingIndex(props) {
                         {/* Header */}
                         <div className="mb-6 lg:mb-8">
                             <h1 className="text-2xl lg:text-3xl font-bold text-text mb-2">
-                                {t('settings_title')}
+                                {t('Settings')}
                             </h1>
                             {/* <p className="text-gray-600">
                                 Manage your application preferences and configurations
@@ -225,93 +215,7 @@ export default function SettingIndex(props) {
                                         </div>
                                     )}
 
-                                    {/* Stock Settings */}
-                                    {activeSection === "stock" && (
-                                        <div className="p-6">
-                                            <div className="flex items-center mb-6">
-                                                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mr-4">
-                                                    <MdInventory className="w-6 h-6 text-secondary" />
-                                                </div>
-                                                <div>
-                                                    <h2 className="text-xl font-semibold text-text">Stock Management</h2>
-                                                    <p className="text-gray-600">Configure stock calculation and inventory settings</p>
-                                                </div>
-                                            </div>
 
-                                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                                                {/* Lot Size Configuration */}
-                                                <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-                                                    <div className="flex items-center mb-4">
-                                                        <MdInventory className="w-5 h-5 text-blue-600 mr-2" />
-                                                        <h3 className="font-semibold text-text">Lot Size Configuration</h3>
-                                                    </div>
-                                                    <p className="text-sm text-gray-600 mb-4">
-                                                        Define how many meters constitute one lot for stock calculations
-                                                    </p>
-
-                                                    <form onSubmit={handleLotSizeSubmit} className="space-y-4">
-                                                        <div>
-                                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                                Meters per Lot
-                                                            </label>
-                                                            <div className="relative">
-                                                                <input
-                                                                    type="number"
-                                                                    step="0.01"
-                                                                    min="1"
-                                                                    value={data.lot_meter_size}
-                                                                    onChange={(e) => setData('lot_meter_size', e.target.value)}
-                                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
-                                                                    placeholder="Enter meters per lot"
-                                                                    required
-                                                                />
-                                                                <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500">meters</span>
-                                                            </div>
-                                                            {errors.lot_meter_size && (
-                                                                <p className="text-red-500 text-sm mt-1">{errors.lot_meter_size}</p>
-                                                            )}
-                                                        </div>
-
-                                                        <Button
-                                                            type="submit"
-                                                            disabled={processing}
-                                                            className="w-full"
-                                                        >
-                                                            <MdSave className="w-4 h-4 mr-2" />
-                                                            {processing ? 'Saving...' : 'Update Lot Size'}
-                                                        </Button>
-                                                    </form>
-                                                </div>
-
-                                                {/* Stock Summary */}
-                                                <div className="bg-gradient-to-br from-secondary/5 to-primary/5 rounded-lg p-6 border border-secondary/20">
-                                                    <div className="flex items-center mb-4">
-                                                        <MdStorage className="w-5 h-5 text-secondary mr-2" />
-                                                        <h3 className="font-semibold text-text">Stock Configuration</h3>
-                                                    </div>
-                                                    <div className="space-y-3">
-                                                        <div className="flex justify-between items-center">
-                                                            <span className="text-gray-600">Lot Size:</span>
-                                                            <span className="font-semibold text-text">{lotMeterSize || '0'} meters</span>
-                                                        </div>
-                                                        <div className="flex justify-between items-center">
-                                                            <span className="text-gray-600">Status:</span>
-                                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                                                lotMeterSize ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                                                            }`}>
-                                                                {lotMeterSize ? 'Configured' : 'Not Set'}
-                                                            </span>
-                                                        </div>
-                                                        <div className="pt-2 border-t border-gray-200">
-                                                            <p className="text-xs text-gray-500">
-                                                                This setting affects how stock is calculated and displayed throughout the system.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )}
 
                                     {/* Notifications Settings */}
                                     {activeSection === "notifications" && (

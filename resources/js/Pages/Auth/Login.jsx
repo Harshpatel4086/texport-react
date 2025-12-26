@@ -1,6 +1,8 @@
 import { Head, Link, useForm } from '@inertiajs/react';
+import { useLanguage } from '@/Contexts/LanguageContext';
 
 export default function Login({ status, canResetPassword }) {
+    const { t } = useLanguage();
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -16,7 +18,7 @@ export default function Login({ status, canResetPassword }) {
 
     return (
         <>
-            <Head title="Login" />
+            <Head title={t('Login')} />
 
             <div className="min-h-screen bg-background flex">
                 {/* Left Side - Gradient Background */}
@@ -28,11 +30,10 @@ export default function Login({ status, canResetPassword }) {
                             className="w-64 h-64 object-contain mx-auto mb-8"
                         /> */}
                         <h2 className="text-3xl font-bold mb-4">
-                            Your Digital Textile Partner
+                            {t('Your Digital Textile Partner')}
                         </h2>
                         <p className="text-lg opacity-90">
-                            Manage, track, and grow your global textile business
-                            with TexPortApp.
+                            {t('Manage, track, and grow your global textile business with TexPortApp.')}
                         </p>
                     </div>
                 </div>
@@ -52,10 +53,10 @@ export default function Login({ status, canResetPassword }) {
                                 />
                             </Link>
                             <h1 className="text-2xl font-bold text-text mb-2">
-                                Sign In
+                                {t('Sign In')}
                             </h1>
                             <p className="text-gray-600">
-                                Welcome back! Please enter your details
+                                {t('Welcome back! Please enter your details')}
                             </p>
                         </div>
 
@@ -68,7 +69,7 @@ export default function Login({ status, canResetPassword }) {
                         <form onSubmit={submit} className="space-y-6">
                             <div>
                                 <label className="block text-sm font-medium text-text mb-2">
-                                    Email
+                                    {t('Email')}
                                 </label>
                                 <input
                                     type="email"
@@ -77,7 +78,7 @@ export default function Login({ status, canResetPassword }) {
                                         setData("email", e.target.value)
                                     }
                                     className="w-full px-4 py-3 border border-neutral rounded-lg text-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                                    placeholder="Enter your email"
+                                    placeholder={t('Enter your email')}
                                     required
                                 />
                                 {errors.email && (
@@ -89,7 +90,7 @@ export default function Login({ status, canResetPassword }) {
 
                             <div>
                                 <label className="block text-sm font-medium text-text mb-2">
-                                    Password
+                                    {t('Password')}
                                 </label>
                                 <input
                                     type="password"
@@ -98,7 +99,7 @@ export default function Login({ status, canResetPassword }) {
                                         setData("password", e.target.value)
                                     }
                                     className="w-full px-4 py-3 border border-neutral rounded-lg text-text placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
-                                    placeholder="Enter your password"
+                                    placeholder={t('Enter your password')}
                                     required
                                 />
                                 {errors.password && (
@@ -122,7 +123,7 @@ export default function Login({ status, canResetPassword }) {
                                         className="w-4 h-4 text-primary bg-white border-neutral rounded focus:ring-primary"
                                     />
                                     <span className="ml-2 text-sm text-text">
-                                        Remember me
+                                        {t('Remember me')}
                                     </span>
                                 </label>
 
@@ -131,7 +132,7 @@ export default function Login({ status, canResetPassword }) {
                                         href={route("password.request")}
                                         className="text-sm text-primary hover:text-primary-600 font-medium"
                                     >
-                                        Forgot password?
+                                        {t('Forgot password?')}
                                     </Link>
                                 )}
                             </div>
@@ -141,18 +142,18 @@ export default function Login({ status, canResetPassword }) {
                                 disabled={processing}
                                 className="w-full bg-primary hover:bg-primary-600 text-white py-3 px-4 rounded-lg font-medium transition-colors disabled:opacity-50"
                             >
-                                {processing ? "Signing in..." : "Sign In"}
+                                {processing ? t('Signing in...') : t('Sign In')}
                             </button>
                         </form>
 
                         <div className="mt-6 text-center">
                             <p className="text-gray-600">
-                                Don't have an account?{" "}
+                                {t('Don\'t have an account?')}{" "}
                                 <Link
                                     href={route("register")}
                                     className="text-primary hover:text-primary-600 font-medium"
                                 >
-                                    Sign up for free
+                                    {t('Sign up for free')}
                                 </Link>
                             </p>
                         </div>

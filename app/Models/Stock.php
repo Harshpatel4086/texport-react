@@ -13,16 +13,12 @@ class Stock extends Model
     protected $fillable = [
         'user_id',
         'date',
-        'lot_number',
         'total_meters',
-        'meters_per_lot',
-        'total_lots',
     ];
 
     protected $casts = [
         'date' => 'date',
         'total_meters' => 'decimal:2',
-        'meters_per_lot' => 'decimal:2',
     ];
 
     public function user()
@@ -32,36 +28,23 @@ class Stock extends Model
 
     public static function updateStockFromProduction($userId, $date)
     {
-        $metersPerLot = Setting::getValue('lot_meter_size', $userId);
-
-        if (!$metersPerLot) {
-            return false;
-        }
-
         // Calculate total meters from all machines for the date
         $totalMeters = WorkerDailyProductionEntry::where('user_id', $userId)
             ->where('date', $date)
             ->sum('meters');
 
         if ($totalMeters > 0) {
-            $totalLots = floor($totalMeters / $metersPerLot);
+            // Delete existing stock for this date first
+            self::where('user_id', $userId)
+                ->where('date', $date)
+                ->delete();
 
-            if ($totalLots > 0) {
-                // Delete existing stock for this date first
-                self::where('user_id', $userId)
-                    ->where('date', $date)
-                    ->delete();
-
-                // Create new stock entry
-                self::create([
-                    'user_id' => $userId,
-                    'date' => $date,
-                    'lot_number' => 1,
-                    'total_meters' => $totalMeters,
-                    'meters_per_lot' => $metersPerLot,
-                    'total_lots' => $totalLots,
-                ]);
-            }
+            // Create new stock entry
+            self::create([
+                'user_id' => $userId,
+                'date' => $date,
+                'total_meters' => $totalMeters,
+            ]);
         }
 
         return true;
@@ -89,12 +72,6 @@ class Stock extends Model
 
     public static function calculateAllStock($userId)
     {
-        $metersPerLot = Setting::getValue('lot_meter_size', $userId);
-        
-        if (!$metersPerLot) {
-            return ['error' => 'Please set lot meter size in settings first.'];
-        }
-
         // Get all production dates for the user
         $productionData = WorkerDailyProductionEntry::where('user_id', $userId)
             ->with('machine')
@@ -108,9 +85,8 @@ class Stock extends Model
         
         foreach ($productionData as $date => $machines) {
             $dateTotal = $machines->sum('total_meters');
-            $totalLots = floor($dateTotal / $metersPerLot);
             
-            if ($totalLots > 0) {
+            if ($dateTotal > 0) {
                 // Clear existing stock for this date
                 self::where('user_id', $userId)
                     ->where('date', $date)
@@ -120,18 +96,13 @@ class Stock extends Model
                 self::create([
                     'user_id' => $userId,
                     'date' => $date,
-                    'lot_number' => 1,
                     'total_meters' => $dateTotal,
-                    'meters_per_lot' => $metersPerLot,
-                    'total_lots' => $totalLots,
                 ]);
             }
             
             $stockData[Carbon::parse($date)->format('d-m-Y')] = [
                 'date' => $date,
                 'total_meters' => $dateTotal,
-                'total_lots' => $totalLots,
-                'meters_per_lot' => $metersPerLot,
                 'machines' => $machines->map(function($machine) {
                     return [
                         'machine_id' => $machine->machine_id,
@@ -143,5 +114,10 @@ class Stock extends Model
         }
         
         return ['stocks' => $stockData, 'error' => null];
+    }
+
+    public static function getTotalAvailableMeters($userId)
+    {
+        return self::where('user_id', $userId)->sum('total_meters');
     }
 }

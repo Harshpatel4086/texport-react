@@ -91,9 +91,9 @@ class RoleManagementController extends Controller
 
     public function update(Request $request, Role $role)
     {
-        if ($role->created_by !== auth()->id()) {
-            abort(403);
-        }
+        // if ($role->created_by !== auth()->id()) {
+        //     abort(403);
+        // }
 
         // Check edit permission for roles
         if (!auth()->user()->hasPermission('edit role')) {
@@ -120,9 +120,9 @@ class RoleManagementController extends Controller
 
     public function destroy(Role $role)
     {
-        if ($role->created_by !== auth()->id()) {
-            abort(403);
-        }
+        // if ($role->created_by !== auth()->id()) {
+        //     abort(403);
+        // }
 
         // Check delete permission for roles
         if (!auth()->user()->hasPermission('delete role')) {

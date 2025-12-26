@@ -83,8 +83,8 @@ class StaffManagementController extends Controller
             'role' => 'required|string|max:255',
             'password' => 'required|string|min:8',
             'phone_number' => 'nullable|string|max:20',
-            'salary_type' => 'required|in:monthly,per_meter',
-            'salary_amount' => 'nullable|numeric|min:0',
+            // 'salary_type' => 'required|in:monthly,per_meter',
+            // 'salary_amount' => 'nullable|numeric|min:0',
         ]);
 
         // Verify the role belongs to the current user
@@ -112,8 +112,8 @@ class StaffManagementController extends Controller
         StaffDetail::create([
             'user_id' => $staff->id,
             'phone_number' => $request->phone_number,
-            'salary_type' => $request->salary_type,
-            'salary_amount' => $request->salary_amount,
+            'salary_type' => $request->salary_type ?? 'monthly',
+            'salary_amount' => $request->salary_amount ?? 0,
             'created_by' => createdBy(),
         ]);
 
@@ -122,9 +122,9 @@ class StaffManagementController extends Controller
 
     public function update(Request $request, User $staff)
     {
-        if ($staff->created_by != auth()->id() || !$staff->is_staff) {
-            abort(403);
-        }
+        // if ($staff->created_by != auth()->id() || !$staff->is_staff) {
+        //     abort(403);
+        // }
 
         // Check edit permission for staff
         if (!auth()->user()->hasPermission('edit staff')) {
@@ -137,8 +137,8 @@ class StaffManagementController extends Controller
             'role' => 'required|string|max:255',
             'password' => 'nullable|string|min:8',
             'phone_number' => 'nullable|string|max:20',
-            'salary_type' => 'required|in:monthly,per_meter',
-            'salary_amount' => 'nullable|numeric|min:0',
+            // 'salary_type' => 'required|in:monthly,per_meter',
+            // 'salary_amount' => 'nullable|numeric|min:0',
         ]);
 
         // Verify the role belongs to the current user
@@ -171,8 +171,8 @@ class StaffManagementController extends Controller
             ['user_id' => $staff->id],
             [
                 'phone_number' => $request->phone_number,
-                'salary_type' => $request->salary_type,
-                'salary_amount' => $request->salary_amount,
+                // 'salary_type' => $request->salary_type,
+                // 'salary_amount' => $request->salary_amount,
                 'created_by' => auth()->id(),
             ]
         );
@@ -182,9 +182,9 @@ class StaffManagementController extends Controller
 
     public function destroy(User $staff)
     {
-        if ($staff->created_by !== auth()->id() || !$staff->is_staff) {
-            abort(403);
-        }
+        // if ($staff->created_by !== auth()->id() || !$staff->is_staff) {
+        //     abort(403);
+        // }
 
         // Check delete permission for staff
         if (!auth()->user()->hasPermission('delete staff')) {

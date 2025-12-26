@@ -17,40 +17,33 @@ class DashboardController extends Controller
     {
         $user = auth()->user()->load('roles.permissions');
         $userId = createdBy();
-        
+
         // Get stock data for dashboard
-        $lotMeterSize = Setting::getValue('lot_meter_size', $userId);
         $stockResult = Stock::calculateAllStock($userId);
         $stockData = $stockResult['stocks'] ?? [];
-        
+
         // Get stock summary
-        $totalLots = 0;
-        $totalMeters = 0;
+        $totalMeters = Stock::getTotalAvailableMeters($userId);
         $stockChartData = [];
-        
+
         foreach ($stockData as $date => $stock) {
-            $totalLots += $stock['total_lots'];
-            $totalMeters += $stock['total_meters'];
             $stockChartData[] = [
                 'date' => $date,
-                'lots' => $stock['total_lots'],
                 'meters' => $stock['total_meters']
             ];
         }
-        
+
         // Get recent activities
         $activities = $this->getRecentActivities($userId);
-        
+
         // Get production chart data (last 7 days)
         $productionChart = $this->getProductionChartData($userId);
-        
+
         return Inertia::render('Dashboard', [
             'userRoles' => $user->roles,
             'vapidPublicKey' => config('app.vapid_public_key'),
             'stockData' => array_slice($stockData, 0, 5, true), // Last 5 days
-            'lotMeterSize' => $lotMeterSize,
             'stockSummary' => [
-                'totalLots' => $totalLots,
                 'totalMeters' => $totalMeters,
                 'chartData' => array_reverse(array_slice($stockChartData, 0, 7))
             ],
@@ -58,11 +51,11 @@ class DashboardController extends Controller
             'productionChart' => $productionChart
         ]);
     }
-    
+
     private function getRecentActivities($userId)
     {
         $activities = [];
-        
+
         // Staff activities
         $staffs = StaffDetail::where('user_id', $userId)
             ->latest()
@@ -76,7 +69,7 @@ class DashboardController extends Controller
                 'time' => $staff->created_at
             ];
         }
-        
+
         // Worker activities
         $workers = Worker::where('user_id', $userId)
             ->latest()
@@ -90,7 +83,7 @@ class DashboardController extends Controller
                 'time' => $worker->created_at
             ];
         }
-        
+
         // Machine activities
         $machines = Machine::where('user_id', $userId)
             ->latest()
@@ -104,7 +97,7 @@ class DashboardController extends Controller
                 'time' => $machine->created_at
             ];
         }
-        
+
         // Production activities
         $productions = WorkerDailyProductionEntry::where('user_id', $userId)
             ->with('worker')
@@ -119,15 +112,15 @@ class DashboardController extends Controller
                 'time' => $production->created_at
             ];
         }
-        
+
         // Sort by time and take latest 10
         usort($activities, function($a, $b) {
             return $b['time'] <=> $a['time'];
         });
-        
+
         return array_slice($activities, 0, 10);
     }
-    
+
     private function getProductionChartData($userId)
     {
         $last7Days = [];
@@ -136,13 +129,13 @@ class DashboardController extends Controller
             $meters = WorkerDailyProductionEntry::where('user_id', $userId)
                 ->where('date', $date)
                 ->sum('meters');
-            
+
             $last7Days[] = [
                 'date' => Carbon::parse($date)->format('M d'),
                 'meters' => $meters
             ];
         }
-        
+
         return $last7Days;
     }
 }

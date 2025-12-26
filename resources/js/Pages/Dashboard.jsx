@@ -5,6 +5,7 @@ import DashboardHeader from '@/Components/DashboardHeader';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
 import usePushNotifications from '@/Hooks/usePushNotifications';
+import { useLanguage } from '@/Contexts/LanguageContext';
 import {
     MdInventory,
     MdFactory,
@@ -17,12 +18,14 @@ import {
     MdAssessment
 } from 'react-icons/md';
 
-export default function Dashboard({ auth, userRoles, userPermissions, vapidPublicKey, stockData, lotMeterSize, stockSummary, activities, productionChart }) {
+export default function Dashboard({ auth, userRoles, userPermissions, vapidPublicKey, stockData, stockSummary, activities, productionChart }) {
     // Handle flash messages as toasts
     useToastFlash();
 
     // Initialize push notifications
     usePushNotifications(vapidPublicKey);
+
+    const { t } = useLanguage();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [productionTooltip, setProductionTooltip] = useState({ show: false, x: 0, y: 0, data: null });
@@ -44,22 +47,22 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                     <DashboardHeader
                         user={auth.user}
                         onMenuClick={() => setSidebarOpen(true)}
-                        breadcrumbs={[{ label: 'Dashboard' }]}
+                        breadcrumbs={[{ label: t('Dashboard') }]}
                     />
 
                     <main className="flex-1 overflow-y-auto p-4 lg:p-6">
                         {/* Stats Cards */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-6 lg:mb-8">
                             {/* Stock Summary Card */}
-                            <div className="bg-gradient-to-r from-blue-500 to-blue-600 p-6 rounded-xl text-white">
+                            <div className="bg-primary p-6 rounded-xl text-white">
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <div className="text-sm opacity-90 mb-1">Total Stock</div>
+                                        <div className="text-sm opacity-90 mb-1">{t('Total Stock')}</div>
                                         <div className="text-2xl font-bold mb-1">
-                                            {stockSummary?.totalLots || 0} Lots
+                                            {stockSummary?.totalMeters || 0}m
                                         </div>
                                         <div className="text-xs opacity-75">
-                                            {stockSummary?.totalMeters || 0}m total
+                                            {t('Total meters available')}
                                         </div>
                                     </div>
                                     <MdInventory className="text-4xl opacity-80" />
@@ -67,14 +70,14 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                             </div>
 
                             {/* Production Card */}
-                            <div className="bg-gradient-to-r from-green-500 to-green-600 p-6 rounded-xl text-white">
+                            <div className="bg-secondary p-6 rounded-xl text-white">
                                 <div className="flex items-center justify-between">
                                     <div>
-                                        <div className="text-sm opacity-90 mb-1">Today's Production</div>
+                                        <div className="text-sm opacity-90 mb-1">{t('Today\'s Production')}</div>
                                         <div className="text-2xl font-bold mb-1">
                                             {productionChart?.[6]?.meters || 0}m
                                         </div>
-                                        <div className="text-xs opacity-75">Meters produced</div>
+                                        <div className="text-xs opacity-75">{t('Meters produced')}</div>
                                     </div>
                                     <MdFactory className="text-4xl opacity-80" />
                                 </div>
@@ -95,8 +98,8 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                             {/* Production Chart */}
                             <div className="bg-white p-6 rounded-xl border border-neutral shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
-                                    <h2 className="text-lg font-semibold text-text">Production Trend</h2>
-                                    <span className="text-sm text-gray-500">Last 7 days</span>
+                                    <h2 className="text-lg font-semibold text-text">{t('Production Trend')}</h2>
+                                    <span className="text-sm text-gray-500">{t('Last 7 days')}</span>
                                 </div>
                                 <div className="h-48 relative">
                                     {productionChart && productionChart.length > 0 ? (
@@ -190,7 +193,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                     ) : (
                                         <div className="h-full flex flex-col items-center justify-center text-gray-400">
                                             <MdBarChart className="text-4xl mb-2" />
-                                            <span>No production data</span>
+                                            <span>{t('No production data')}</span>
                                         </div>
                                     )}
                                 </div>
@@ -199,8 +202,8 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                             {/* Stock Chart */}
                             <div className="bg-white p-6 rounded-xl border border-neutral shadow-sm">
                                 <div className="flex items-center justify-between mb-4">
-                                    <h2 className="text-lg font-semibold text-text">Stock Overview</h2>
-                                    <a href={route('stock.index')} className="text-sm text-primary hover:text-primary-600">View All</a>
+                                    <h2 className="text-lg font-semibold text-text">{t('Stock Overview')}</h2>
+                                    <a href={route('stock.index')} className="text-sm text-primary hover:text-primary-600">{t('View All')}</a>
                                 </div>
                                 <div className="h-48 relative">
                                     {stockSummary?.chartData && stockSummary.chartData.length > 0 ? (
@@ -217,10 +220,10 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                             <rect width="100%" height="100%" fill="url(#stockGrid)" />
 
                                             {(() => {
-                                                const maxLots = Math.max(...stockSummary.chartData.map(d => d.lots), 1);
+                                                const maxMeters = Math.max(...stockSummary.chartData.map(d => d.meters), 1);
                                                 const points = stockSummary.chartData.map((day, index) => {
                                                     const x = (index / (stockSummary.chartData.length - 1)) * 350 + 25;
-                                                    const y = 150 - ((day.lots / maxLots) * 120);
+                                                    const y = 150 - ((day.meters / maxMeters) * 120);
                                                     return `${x},${y}`;
                                                 }).join(' ');
 
@@ -229,7 +232,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                                 // Y-axis labels
                                                 const yLabels = [];
                                                 for (let i = 0; i <= 4; i++) {
-                                                    const value = Math.round((maxLots / 4) * (4 - i));
+                                                    const value = Math.round((maxMeters / 4) * (4 - i));
                                                     const y = 30 + (i * 30);
                                                     yLabels.push({ value, y });
                                                 }
@@ -246,7 +249,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                                                 className="text-xs fill-gray-400"
                                                                 fontSize="9"
                                                             >
-                                                                {label.value}
+                                                                {label.value}m
                                                             </text>
                                                         ))}
 
@@ -262,7 +265,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                                         />
                                                         {stockSummary.chartData.map((day, index) => {
                                                             const x = (index / (stockSummary.chartData.length - 1)) * 350 + 25;
-                                                            const y = 150 - ((day.lots / maxLots) * 120);
+                                                            const y = 150 - ((day.meters / maxMeters) * 120);
                                                             return (
                                                                 <g key={index}>
                                                                     <circle
@@ -279,7 +282,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                                                                 show: true,
                                                                                 x: rect.left + rect.width / 2,
                                                                                 y: rect.top - 10,
-                                                                                data: { date: day.date, lots: day.lots }
+                                                                                data: { date: day.date, meters: day.meters }
                                                                             });
                                                                         }}
                                                                         onMouseLeave={() => setStockTooltip({ show: false, x: 0, y: 0, data: null })}
@@ -303,7 +306,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                     ) : (
                                         <div className="h-full flex flex-col items-center justify-center text-gray-400">
                                             <MdInventory className="text-4xl mb-2" />
-                                            <span>{!lotMeterSize ? 'Set lot size in settings' : 'No stock data'}</span>
+                                            <span>{t('No stock data')}</span>
                                         </div>
                                     )}
                                 </div>
@@ -314,8 +317,8 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                 {/* Recent Activities */}
                                 <div className="bg-white p-6 rounded-xl border border-neutral shadow-sm">
                                     <div className="flex items-center justify-between mb-4">
-                                        <h2 className="text-lg font-semibold text-text">Recent Activities</h2>
-                                        <span className="text-sm text-gray-500">Latest updates</span>
+                                        <h2 className="text-lg font-semibold text-text">{t('Recent Activities')}</h2>
+                                        <span className="text-sm text-gray-500">{t('Latest updates')}</span>
                                     </div>
                                     <div className="space-y-3 max-h-64 overflow-y-auto">
                                         {activities && activities.length > 0 ? activities.map((activity, index) => {
@@ -343,7 +346,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                             );
                                         }) : (
                                             <div className="text-center py-4 text-gray-500">
-                                                No recent activities
+                                                {t('No recent activities')}
                                             </div>
                                         )}
                                     </div>
@@ -352,36 +355,29 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                                 {/* Stock Details */}
                                 <div className="bg-white p-6 rounded-xl border border-neutral shadow-sm">
                                     <div className="flex items-center justify-between mb-4">
-                                        <h2 className="text-lg font-semibold text-text">Recent Stock</h2>
-                                        <a href={route('stock.index')} className="text-sm text-primary hover:text-primary-600">View All</a>
+                                        <h2 className="text-lg font-semibold text-text">{t('Recent Stock')}</h2>
+                                        <a href={route('stock.index')} className="text-sm text-primary hover:text-primary-600">{t('View All')}</a>
                                     </div>
-                                    {!lotMeterSize ? (
-                                        <div className="text-center py-4">
-                                            <p className="text-gray-500 mb-2">⚠️ Lot meter size not set</p>
-                                            <a href={route('settings.index')} className="text-sm text-primary hover:text-primary-600">
-                                                Configure in Settings
-                                            </a>
-                                        </div>
-                                    ) : Object.keys(stockData).length > 0 ? (
+                                    {Object.keys(stockData).length > 0 ? (
                                         <div className="space-y-3">
                                             {Object.entries(stockData).slice(0, 3).map(([date, stockItem]) => (
                                                 <div key={date} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
                                                     <div>
                                                         <div className="font-medium text-text">{date}</div>
                                                         <div className="text-sm text-gray-500">
-                                                            {stockItem.total_meters} meters total
+                                                            {t('Daily production')}
                                                         </div>
                                                     </div>
                                                     <div className="text-right">
-                                                        <div className="font-medium text-primary">{stockItem.total_lots} Lots</div>
-                                                        <div className="text-xs text-gray-500">{lotMeterSize}m/lot</div>
+                                                        <div className="font-medium text-primary">{stockItem.total_meters}m</div>
+                                                        <div className="text-xs text-gray-500">{t('meters')}</div>
                                                     </div>
                                                 </div>
                                             ))}
                                         </div>
                                     ) : (
                                         <div className="text-center py-4">
-                                            <p className="text-gray-500">No stock data available</p>
+                                            <p className="text-gray-500">{t('No stock data available')}</p>
                                         </div>
                                     )}
                                 </div>
@@ -403,7 +399,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                     }}
                 >
                     <div className="font-medium">{productionTooltip.data?.date}</div>
-                    <div>{productionTooltip.data?.meters}m produced</div>
+                    <div>{productionTooltip.data?.meters}m {t('produced')}</div>
                 </div>
             )}
 
@@ -417,7 +413,7 @@ export default function Dashboard({ auth, userRoles, userPermissions, vapidPubli
                     }}
                 >
                     <div className="font-medium">{stockTooltip.data?.date}</div>
-                    <div>{stockTooltip.data?.lots} lots</div>
+                    <div>{stockTooltip.data?.meters}m {t('produced')}</div>
                 </div>
             )}
         </>
