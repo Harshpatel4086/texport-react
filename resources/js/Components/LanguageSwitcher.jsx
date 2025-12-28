@@ -34,16 +34,18 @@ export default function LanguageSwitcher({ className = '' }) {
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    class="lucide lucide-globe h-4 w-4"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="lucide lucide-globe h-4 w-4"
                 >
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
                     <path d="M2 12h20"></path>
                 </svg>
-                <span className="text-gray-700 font-medium">{currentLang?.nativeName}</span>
+                <span className="text-gray-700 font-medium">
+                    {currentLang?.nativeName}
+                </span>
                 <FlagIcon countryCode={currentLang?.flag} />
                 <MdExpandMore
                     className={`w-3 h-3 text-gray-600 transition-transform ${

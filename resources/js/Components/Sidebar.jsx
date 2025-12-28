@@ -16,8 +16,7 @@ import {
     MdSchedule,
     MdPrecisionManufacturing,
     MdWork,
-    MdInventory,
-    MdLabel
+    MdInventory
 } from 'react-icons/md';
 import { usePermissions } from '@/Utils/permissions';
 import { useLanguage } from '@/Contexts/LanguageContext';
@@ -84,6 +83,20 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
               ]
             : []),
 
+        // Show Challan as direct menu item
+        ...(canManage("challan")
+            ? [
+                  {
+                      name: t('Challan'),
+                      icon: MdLocalShipping,
+                      href: "/challans",
+                      routeName: "challans.index",
+                  },
+              ]
+            : []),
+
+
+
             // Show Attendance as direct menu item
         // ...(canManage("attendance")
         //     ? [
@@ -107,17 +120,7 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                   },
               ]
             : []),
-        // Taka Management
-        ...(canManage("taka")
-            ? [
-                  {
-                      name: t('Taka Management'),
-                      icon: MdLabel,
-                      href: "/takas",
-                      routeName: "takas.index",
-                  },
-              ]
-            : []),
+
         // Settings menu
         {
             name: t('Settings'),

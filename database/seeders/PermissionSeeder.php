@@ -25,10 +25,10 @@ class PermissionSeeder extends Seeder
             'delete staff',
 
             // Staff Salary Management
-            'manage staff salary',
-            'create staff salary',
-            'edit staff salary',
-            'delete staff salary',
+            // 'manage staff salary',
+            // 'create staff salary',
+            // 'edit staff salary',
+            // 'delete staff salary',
 
             // Party Management
             'manage party',
@@ -37,12 +37,19 @@ class PermissionSeeder extends Seeder
             'view party',
             'delete party',
 
+            // Challan Management
+            'manage challan',
+            'create challan',
+            'edit challan',
+            'view challan',
+            'delete challan',
+
             // Attendance Management
-            'manage attendance',
-            'create attendance',
-            'edit attendance',
-            'view attendance',
-            'delete attendance',
+            // 'manage attendance',
+            // 'create attendance',
+            // 'edit attendance',
+            // 'view attendance',
+            // 'delete attendance',
 
             // Workers Management
             'manage workers',
@@ -75,36 +82,22 @@ class PermissionSeeder extends Seeder
             'view worker payslip',
             'download worker payslip',
 
-            // Stock Management - For this permission also give the daily production entry Permission
+            // Stock Management
             'manage stock management',
             'view stock management',
             'refresh stock management',
-
-            // Taka Management
-            'manage taka',
-            'create taka',
-            'edit taka',
-            'delete taka',
-
-            // Product Management (example)
-            // 'create product',
-            // 'edit product',
-
-            // Order Management (example)
-            // 'manage order',
-            // 'create order',
-            // 'view order',
-            // 'edit order',
-            // 'delete order',
-            // 'export order',
-
-            // Report Management (example)
-            // 'view report',
-            // 'export report',
         ];
 
-        // delete existing permissions and roles to avoid duplicates
-        // Permission::whereIn('name', $permissions)->delete();
+        // Remove taka permissions from all roles
+        $takaPermissions = ['manage taka', 'create taka', 'edit taka', 'delete taka', 'manage staff salary', 'create staff salary', 'edit staff salary', 'delete staff salary', 'manage attendance', 'create attendance', 'edit attendance', 'view attendance', 'delete attendance', 'manage user', 'create user', 'edit user', 'delete user', 'view user', 'create product', 'edit product'];
+        $takaPermissionIds = Permission::whereIn('name', $takaPermissions)->pluck('id');
+
+        if ($takaPermissionIds->isNotEmpty()) {
+            // Remove taka permissions from all roles
+            \DB::table('permission_role')->whereIn('permission_id', $takaPermissionIds)->delete();
+            // Delete taka permissions
+            Permission::whereIn('name', $takaPermissions)->delete();
+        }
 
         // Create all permissions
         $allPermissions = [];

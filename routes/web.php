@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\ChallanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LandingPageController;
@@ -13,7 +14,6 @@ use App\Http\Controllers\StaffManagementController;
 use App\Http\Controllers\StaffSalaryController;
 use App\Http\Controllers\StockController;
 use App\Http\Controllers\SubscriptionsController;
-use App\Http\Controllers\TakaController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\WorkerMachineAssignmentController;
 use App\Http\Controllers\WorkerProductionController;
@@ -41,6 +41,10 @@ Route::get('/contact', function () {
 // Language routes (public access)
 Route::get('/api/languages', [LanguageController::class, 'getLanguages'])->name('languages');
 Route::get('/api/translations/{locale}', [LanguageController::class, 'getTranslations'])->name('translations');
+
+// Public Challan View (no auth required)
+Route::get('/challan/{encryptedId}', [ChallanController::class, 'publicView'])->name('challans.public');
+
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
     Artisan::call('config:clear');
@@ -89,6 +93,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Party routes
     Route::resource('parties', PartyManagementController::class);
 
+    // Challan routes
+    Route::resource('challans', ChallanController::class);
+    Route::post('challans/check-stock', [ChallanController::class, 'checkStock'])->name('challans.check-stock');
+
+
+
     // Worker Salary routes
     Route::get('worker-salary', [WorkerSalaryController::class, 'index'])->name('worker-salary.index');
     Route::post('worker-salary/calculate', [WorkerSalaryController::class, 'calculate'])->name('worker-salary.calculate');
@@ -124,13 +134,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Settings routes
     Route::get('settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('settings/worker-rate', [SettingController::class, 'updateWorkerRate'])->name('settings.worker-rate');
+    Route::post('settings/business-details', [SettingController::class, 'updateBusinessDetails'])->name('settings.business-details');
 
     // Stock Management routes
     Route::get('stock', [StockController::class, 'index'])->name('stock.index');
     Route::post('stock/refresh', [StockController::class, 'refreshStock'])->name('stock.refresh');
 
-    // Taka Management routes
-    Route::resource('takas', TakaController::class)->except(['show', 'create', 'edit']);
+
 });
 
 require __DIR__.'/auth.php';

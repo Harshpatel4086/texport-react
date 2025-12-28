@@ -7,6 +7,7 @@ export default function Button({
     size = "md", 
     className = "", 
     disabled = false,
+    processing = false,
     ...props 
 }) {
     const baseClasses = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
@@ -30,7 +31,7 @@ export default function Button({
     const button = (
         <button 
             className={`${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`}
-            disabled={disabled}
+            disabled={disabled || processing}
             {...props}
         >
             {children}

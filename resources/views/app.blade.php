@@ -131,6 +131,11 @@
 
             // Check if popup should be shown
             function shouldShowPopup() {
+                // Don't show on public challan pages
+                if (window.location.pathname.startsWith('/challan/')) {
+                    return false;
+                }
+                
                 // Don't show if PWA is already installed
                 if (isPWAInstalled()) {
                     return false;

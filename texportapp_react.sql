@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2025 at 10:03 PM
+-- Generation Time: Dec 28, 2025 at 04:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -63,22 +63,6 @@ CREATE TABLE `cache` (
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `cache`
---
-
-INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
-('larabug.textiletexportappin-get-this-is-a-test-exception-from-the-larabug-console-59-cxampphtdocstexport-reactvendorlarabuglarabugsrccommandstestcommandphp-exception', 's:165:\"larabug.textiletexportappin-get-this-is-a-test-exception-from-the-larabug-console-59-cxampphtdocstexport-reactvendorlarabuglarabugsrccommandstestcommandphp-exception\";', 1766779442),
-('laratrust_permissions_for_role_1', 'a:48:{i:0;a:7:{s:2:\"id\";i:30;s:4:\"name\";s:11:\"manage role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:30;}}i:1;a:7:{s:2:\"id\";i:31;s:4:\"name\";s:11:\"create role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:31;}}i:2;a:7:{s:2:\"id\";i:32;s:4:\"name\";s:9:\"edit role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:32;}}i:3;a:7:{s:2:\"id\";i:33;s:4:\"name\";s:11:\"delete role\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:33;}}i:4;a:7:{s:2:\"id\";i:34;s:4:\"name\";s:12:\"manage staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:34;}}i:5;a:7:{s:2:\"id\";i:35;s:4:\"name\";s:12:\"create staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:35;}}i:6;a:7:{s:2:\"id\";i:36;s:4:\"name\";s:10:\"edit staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:36;}}i:7;a:7:{s:2:\"id\";i:37;s:4:\"name\";s:12:\"delete staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:37;}}i:8;a:7:{s:2:\"id\";i:38;s:4:\"name\";s:19:\"manage staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:38;}}i:9;a:7:{s:2:\"id\";i:39;s:4:\"name\";s:19:\"create staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:39;}}i:10;a:7:{s:2:\"id\";i:40;s:4:\"name\";s:17:\"edit staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:40;}}i:11;a:7:{s:2:\"id\";i:41;s:4:\"name\";s:19:\"delete staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:41;}}i:12;a:7:{s:2:\"id\";i:42;s:4:\"name\";s:12:\"manage party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:42;}}i:13;a:7:{s:2:\"id\";i:43;s:4:\"name\";s:12:\"create party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:43;}}i:14;a:7:{s:2:\"id\";i:44;s:4:\"name\";s:10:\"edit party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:44;}}i:15;a:7:{s:2:\"id\";i:45;s:4:\"name\";s:10:\"view party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:45;}}i:16;a:7:{s:2:\"id\";i:46;s:4:\"name\";s:12:\"delete party\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:46;}}i:17;a:7:{s:2:\"id\";i:47;s:4:\"name\";s:17:\"manage attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:47;}}i:18;a:7:{s:2:\"id\";i:48;s:4:\"name\";s:17:\"create attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:48;}}i:19;a:7:{s:2:\"id\";i:49;s:4:\"name\";s:15:\"edit attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:49;}}i:20;a:7:{s:2:\"id\";i:50;s:4:\"name\";s:15:\"view attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:50;}}i:21;a:7:{s:2:\"id\";i:51;s:4:\"name\";s:17:\"delete attendance\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:51;}}i:22;a:7:{s:2:\"id\";i:52;s:4:\"name\";s:14:\"manage workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:52;}}i:23;a:7:{s:2:\"id\";i:53;s:4:\"name\";s:14:\"create workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:53;}}i:24;a:7:{s:2:\"id\";i:54;s:4:\"name\";s:12:\"edit workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:54;}}i:25;a:7:{s:2:\"id\";i:55;s:4:\"name\";s:14:\"delete workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:55;}}i:26;a:7:{s:2:\"id\";i:56;s:4:\"name\";s:12:\"view workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:56;}}i:27;a:7:{s:2:\"id\";i:57;s:4:\"name\";s:22:\"manage worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:57;}}i:28;a:7:{s:2:\"id\";i:58;s:4:\"name\";s:22:\"create worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:58;}}i:29;a:7:{s:2:\"id\";i:59;s:4:\"name\";s:20:\"edit worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:59;}}i:30;a:7:{s:2:\"id\";i:60;s:4:\"name\";s:22:\"delete worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:60;}}i:31;a:7:{s:2:\"id\";i:61;s:4:\"name\";s:20:\"view worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:61;}}i:32;a:7:{s:2:\"id\";i:62;s:4:\"name\";s:28:\"manage worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:62;}}i:33;a:7:{s:2:\"id\";i:63;s:4:\"name\";s:28:\"assign worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:63;}}i:34;a:7:{s:2:\"id\";i:64;s:4:\"name\";s:30:\"manage worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:64;}}i:35;a:7:{s:2:\"id\";i:65;s:4:\"name\";s:29:\"entry worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:65;}}i:36;a:7:{s:2:\"id\";i:66;s:4:\"name\";s:20:\"manage worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:66;}}i:37;a:7:{s:2:\"id\";i:67;s:4:\"name\";s:23:\"calculate worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:67;}}i:38;a:7:{s:2:\"id\";i:68;s:4:\"name\";s:23:\"generate worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:68;}}i:39;a:7:{s:2:\"id\";i:69;s:4:\"name\";s:19:\"view worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:69;}}i:40;a:7:{s:2:\"id\";i:70;s:4:\"name\";s:23:\"download worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:70;}}i:41;a:7:{s:2:\"id\";i:71;s:4:\"name\";s:23:\"manage stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:71;}}i:42;a:7:{s:2:\"id\";i:72;s:4:\"name\";s:21:\"view stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:72;}}i:43;a:7:{s:2:\"id\";i:73;s:4:\"name\";s:24:\"refresh stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:73;}}i:44;a:7:{s:2:\"id\";i:115;s:4:\"name\";s:11:\"manage taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:115;}}i:45;a:7:{s:2:\"id\";i:116;s:4:\"name\";s:11:\"create taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:116;}}i:46;a:7:{s:2:\"id\";i:117;s:4:\"name\";s:9:\"edit taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:117;}}i:47;a:7:{s:2:\"id\";i:118;s:4:\"name\";s:11:\"delete taka\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T19:11:29.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:1;s:13:\"permission_id\";i:118;}}}', 1766779892),
-('laratrust_permissions_for_role_10', 'a:2:{i:0;a:7:{s:2:\"id\";i:71;s:4:\"name\";s:23:\"manage stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:10;s:13:\"permission_id\";i:71;}}i:1;a:7:{s:2:\"id\";i:73;s:4:\"name\";s:24:\"refresh stock management\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-13T12:23:12.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:10;s:13:\"permission_id\";i:73;}}}', 1766780851),
-('laratrust_permissions_for_role_11', 'a:27:{i:0;a:7:{s:2:\"id\";i:34;s:4:\"name\";s:12:\"manage staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:34;}}i:1;a:7:{s:2:\"id\";i:35;s:4:\"name\";s:12:\"create staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:35;}}i:2;a:7:{s:2:\"id\";i:36;s:4:\"name\";s:10:\"edit staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:36;}}i:3;a:7:{s:2:\"id\";i:37;s:4:\"name\";s:12:\"delete staff\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:37;}}i:4;a:7:{s:2:\"id\";i:38;s:4:\"name\";s:19:\"manage staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:38;}}i:5;a:7:{s:2:\"id\";i:39;s:4:\"name\";s:19:\"create staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:39;}}i:6;a:7:{s:2:\"id\";i:40;s:4:\"name\";s:17:\"edit staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:40;}}i:7;a:7:{s:2:\"id\";i:41;s:4:\"name\";s:19:\"delete staff salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:45.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:41;}}i:8;a:7:{s:2:\"id\";i:52;s:4:\"name\";s:14:\"manage workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:52;}}i:9;a:7:{s:2:\"id\";i:53;s:4:\"name\";s:14:\"create workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:53;}}i:10;a:7:{s:2:\"id\";i:54;s:4:\"name\";s:12:\"edit workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:54;}}i:11;a:7:{s:2:\"id\";i:55;s:4:\"name\";s:14:\"delete workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:55;}}i:12;a:7:{s:2:\"id\";i:56;s:4:\"name\";s:12:\"view workers\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:56;}}i:13;a:7:{s:2:\"id\";i:57;s:4:\"name\";s:22:\"manage worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:57;}}i:14;a:7:{s:2:\"id\";i:58;s:4:\"name\";s:22:\"create worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:58;}}i:15;a:7:{s:2:\"id\";i:59;s:4:\"name\";s:20:\"edit worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:59;}}i:16;a:7:{s:2:\"id\";i:60;s:4:\"name\";s:22:\"delete worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:60;}}i:17;a:7:{s:2:\"id\";i:61;s:4:\"name\";s:20:\"view worker machines\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:61;}}i:18;a:7:{s:2:\"id\";i:62;s:4:\"name\";s:28:\"manage worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:62;}}i:19;a:7:{s:2:\"id\";i:63;s:4:\"name\";s:28:\"assign worker machine assign\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:63;}}i:20;a:7:{s:2:\"id\";i:64;s:4:\"name\";s:30:\"manage worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:64;}}i:21;a:7:{s:2:\"id\";i:65;s:4:\"name\";s:29:\"entry worker daily production\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:65;}}i:22;a:7:{s:2:\"id\";i:66;s:4:\"name\";s:20:\"manage worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:66;}}i:23;a:7:{s:2:\"id\";i:67;s:4:\"name\";s:23:\"calculate worker salary\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:67;}}i:24;a:7:{s:2:\"id\";i:68;s:4:\"name\";s:23:\"generate worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:68;}}i:25;a:7:{s:2:\"id\";i:69;s:4:\"name\";s:19:\"view worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:69;}}i:26;a:7:{s:2:\"id\";i:70;s:4:\"name\";s:23:\"download worker payslip\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-10T11:29:46.000000Z\";s:5:\"pivot\";a:2:{s:7:\"role_id\";i:11;s:13:\"permission_id\";i:70;}}}', 1766778756),
-('laratrust_permissions_for_users_1', 'a:0:{}', 1766780308),
-('laratrust_permissions_for_users_11', 'a:0:{}', 1766779760),
-('laratrust_permissions_for_users_14', 'a:0:{}', 1766778501),
-('laratrust_roles_for_users_1', 'a:1:{i:0;a:8:{s:2:\"id\";i:1;s:10:\"created_by\";N;s:4:\"name\";s:5:\"owner\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:10:\"updated_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:5:\"pivot\";a:3:{s:9:\"user_type\";s:15:\"App\\Models\\User\";s:7:\"user_id\";i:1;s:7:\"role_id\";i:1;}}}', 1766780308),
-('laratrust_roles_for_users_11', 'a:1:{i:0;a:8:{s:2:\"id\";i:1;s:10:\"created_by\";N;s:4:\"name\";s:5:\"owner\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:10:\"updated_at\";s:27:\"2025-11-04T15:10:55.000000Z\";s:5:\"pivot\";a:3:{s:9:\"user_type\";s:15:\"App\\Models\\User\";s:7:\"user_id\";i:11;s:7:\"role_id\";i:1;}}}', 1766779760),
-('laratrust_roles_for_users_14', 'a:1:{i:0;a:8:{s:2:\"id\";i:10;s:10:\"created_by\";i:11;s:4:\"name\";s:5:\"Admin\";s:12:\"display_name\";N;s:11:\"description\";N;s:10:\"created_at\";s:27:\"2025-12-26T18:22:28.000000Z\";s:10:\"updated_at\";s:27:\"2025-12-26T18:22:41.000000Z\";s:5:\"pivot\";a:3:{s:9:\"user_type\";s:15:\"App\\Models\\User\";s:7:\"user_id\";i:14;s:7:\"role_id\";i:10;}}}', 1766778501);
-
 -- --------------------------------------------------------
 
 --
@@ -90,6 +74,152 @@ CREATE TABLE `cache_locks` (
   `owner` varchar(255) NOT NULL,
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `challans`
+--
+
+CREATE TABLE `challans` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `challan_number` int(11) NOT NULL,
+  `party_id` bigint(20) UNSIGNED NOT NULL,
+  `total_meter` decimal(10,2) NOT NULL,
+  `total_lots` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `created_by` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `challans`
+--
+
+INSERT INTO `challans` (`id`, `challan_number`, `party_id`, `total_meter`, `total_lots`, `date`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 7, 718.00, 1, '2025-12-27', 11, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(2, 2, 7, 26.00, 1, '2025-12-27', 11, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(3, 3, 7, 160.00, 1, '2025-12-28', 11, '2025-12-28 08:21:16', '2025-12-28 08:26:42'),
+(4, 4, 7, 723.99, 5, '2025-12-28', 11, '2025-12-28 09:09:50', '2025-12-28 10:16:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `challan_items`
+--
+
+CREATE TABLE `challan_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `challan_id` bigint(20) UNSIGNED NOT NULL,
+  `sr_number` int(11) NOT NULL,
+  `meter` decimal(8,2) NOT NULL,
+  `group_number` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `challan_items`
+--
+
+INSERT INTO `challan_items` (`id`, `challan_id`, `sr_number`, `meter`, `group_number`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 90.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(2, 1, 2, 95.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(3, 1, 3, 85.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(4, 1, 4, 80.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(5, 1, 5, 70.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(6, 1, 6, 50.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(7, 1, 7, 45.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(8, 1, 8, 25.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(9, 1, 9, 35.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(10, 1, 10, 38.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(11, 1, 11, 50.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(12, 1, 12, 55.00, 1, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(13, 2, 1, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(14, 2, 2, 2.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(15, 2, 3, 3.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(16, 2, 4, 4.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(17, 2, 5, 2.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(18, 2, 6, 3.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(19, 2, 7, 5.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(20, 2, 8, 2.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(21, 2, 9, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(22, 2, 10, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(23, 2, 11, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(24, 2, 12, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(73, 3, 1, 10.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(74, 3, 2, 11.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(75, 3, 3, 12.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(76, 3, 4, 13.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(77, 3, 5, 14.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(78, 3, 6, 15.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(79, 3, 7, 10.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(80, 3, 8, 11.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(81, 3, 9, 12.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(82, 3, 10, 13.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(83, 3, 11, 14.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(84, 3, 12, 25.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
+(181, 4, 1, 10.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(182, 4, 2, 11.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(183, 4, 3, 12.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(184, 4, 4, 13.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(185, 4, 5, 14.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(186, 4, 6, 15.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(187, 4, 7, 10.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(188, 4, 8, 11.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(189, 4, 9, 12.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(190, 4, 10, 13.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(191, 4, 11, 14.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(192, 4, 12, 15.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(193, 4, 13, 10.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(194, 4, 14, 11.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(195, 4, 15, 12.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(196, 4, 16, 13.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(197, 4, 17, 14.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(198, 4, 18, 15.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(199, 4, 19, 16.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(200, 4, 20, 17.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(201, 4, 21, 18.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(202, 4, 22, 19.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(203, 4, 23, 20.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(204, 4, 24, 25.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(205, 4, 25, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(206, 4, 26, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(207, 4, 27, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(208, 4, 28, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(209, 4, 29, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(210, 4, 30, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(211, 4, 31, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(212, 4, 32, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(213, 4, 33, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(214, 4, 34, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(215, 4, 35, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(216, 4, 36, 10.99, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(217, 4, 37, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(218, 4, 38, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(219, 4, 39, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(220, 4, 40, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(221, 4, 41, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(222, 4, 42, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(223, 4, 43, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(224, 4, 44, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(225, 4, 45, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(226, 4, 46, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(227, 4, 47, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(228, 4, 48, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(229, 4, 49, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(230, 4, 50, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(231, 4, 51, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(232, 4, 52, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(233, 4, 53, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(234, 4, 54, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(235, 4, 55, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(236, 4, 56, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(237, 4, 57, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(238, 4, 58, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(239, 4, 59, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
+(240, 4, 60, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08');
 
 -- --------------------------------------------------------
 
@@ -223,7 +353,8 @@ INSERT INTO `machines` (`id`, `user_id`, `number`, `description`, `created_at`, 
 (29, 11, '2', NULL, '2025-12-07 00:26:15', '2025-12-07 00:26:15'),
 (30, 11, '3', NULL, '2025-12-07 00:26:18', '2025-12-07 00:26:18'),
 (31, 11, '4', NULL, '2025-12-07 00:26:22', '2025-12-07 00:26:22'),
-(32, 11, '5', NULL, '2025-12-07 00:26:24', '2025-12-07 00:26:24');
+(32, 11, '5', NULL, '2025-12-07 00:26:24', '2025-12-07 00:26:24'),
+(34, 11, '6', NULL, '2025-12-27 10:55:33', '2025-12-27 10:55:33');
 
 -- --------------------------------------------------------
 
@@ -268,7 +399,15 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2025_01_17_000004_modify_stocks_table_to_meter_based', 14),
 (32, '2025_01_17_000005_ensure_stocks_foreign_key', 15),
 (33, '2025_12_13_064412_create_stocks_table', 14),
-(34, '2025_01_18_000001_create_takas_table', 16);
+(34, '2025_01_18_000001_create_takas_table', 16),
+(35, '2025_01_18_000002_add_date_to_takas_table', 17),
+(36, '2025_12_27_100840_create_challans_table', 18),
+(37, '2025_12_27_100845_create_challan_items_table', 18),
+(38, '2025_12_27_141534_add_soft_deletes_to_takas_table', 19),
+(39, '2025_12_27_161027_drop_takas_table', 20),
+(40, '2025_12_27_161043_drop_challans_and_challan_items_tables', 20),
+(41, '2025_01_18_000001_create_challans_table', 21),
+(42, '2025_01_18_000002_create_challan_items_table', 21);
 
 -- --------------------------------------------------------
 
@@ -351,7 +490,8 @@ INSERT INTO `payslips` (`id`, `worker_id`, `user_id`, `date_from`, `date_to`, `s
 (1, 6, 11, '2025-12-01', '2025-12-15', NULL, 47.00, 2.00, 94.00, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-07 00:40:14', '2025-12-07 00:40:14'),
 (2, 6, 11, '2025-12-01', '2025-12-15', 'day', 47.00, 2.00, 94.00, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-07 00:46:16', '2025-12-07 00:46:16'),
 (3, 6, 11, '2025-12-01', '2025-12-15', NULL, 47.00, 2.50, 117.50, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-07 01:35:18', '2025-12-07 01:35:18'),
-(4, 6, 11, '2025-12-01', '2025-12-10', 'day', 47.00, 2.50, 117.50, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-10 10:43:54', '2025-12-10 10:43:54');
+(4, 6, 11, '2025-12-01', '2025-12-10', 'day', 47.00, 2.50, 117.50, '[{\"id\":13,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"12.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":14,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":15,\"user_id\":11,\"date\":\"2025-12-07T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-07T05:57:12.000000Z\",\"updated_at\":\"2025-12-07T05:57:12.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}}]', '2025-12-10 10:43:54', '2025-12-10 10:43:54'),
+(5, 6, 11, '2025-12-16', '2025-12-31', NULL, 382.00, 2.50, 955.00, '[{\"id\":22,\"user_id\":11,\"date\":\"2025-12-26T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"7.00\",\"created_at\":\"2025-12-26T18:05:58.000000Z\",\"updated_at\":\"2025-12-26T18:05:58.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":23,\"user_id\":11,\"date\":\"2025-12-26T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"20.00\",\"created_at\":\"2025-12-26T18:05:58.000000Z\",\"updated_at\":\"2025-12-26T18:05:58.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":24,\"user_id\":11,\"date\":\"2025-12-26T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"10.00\",\"created_at\":\"2025-12-26T18:05:58.000000Z\",\"updated_at\":\"2025-12-26T18:05:58.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}},{\"id\":25,\"user_id\":11,\"date\":\"2025-12-27T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":28,\"shift_id\":\"day\",\"meters\":\"250.00\",\"created_at\":\"2025-12-27T15:34:45.000000Z\",\"updated_at\":\"2025-12-27T16:27:44.000000Z\",\"machine\":{\"id\":28,\"user_id\":11,\"number\":\"1\",\"description\":null,\"created_at\":\"2025-12-07T05:56:12.000000Z\",\"updated_at\":\"2025-12-07T05:56:12.000000Z\"}},{\"id\":26,\"user_id\":11,\"date\":\"2025-12-27T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":29,\"shift_id\":\"day\",\"meters\":\"35.00\",\"created_at\":\"2025-12-27T15:34:45.000000Z\",\"updated_at\":\"2025-12-27T15:34:45.000000Z\",\"machine\":{\"id\":29,\"user_id\":11,\"number\":\"2\",\"description\":null,\"created_at\":\"2025-12-07T05:56:15.000000Z\",\"updated_at\":\"2025-12-07T05:56:15.000000Z\"}},{\"id\":27,\"user_id\":11,\"date\":\"2025-12-27T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":30,\"shift_id\":\"day\",\"meters\":\"15.00\",\"created_at\":\"2025-12-27T15:34:45.000000Z\",\"updated_at\":\"2025-12-27T15:34:45.000000Z\",\"machine\":{\"id\":30,\"user_id\":11,\"number\":\"3\",\"description\":null,\"created_at\":\"2025-12-07T05:56:18.000000Z\",\"updated_at\":\"2025-12-07T05:56:18.000000Z\"}},{\"id\":28,\"user_id\":11,\"date\":\"2025-12-27T00:00:00.000000Z\",\"worker_id\":6,\"machine_id\":31,\"shift_id\":\"day\",\"meters\":\"45.00\",\"created_at\":\"2025-12-27T16:27:28.000000Z\",\"updated_at\":\"2025-12-27T16:27:28.000000Z\",\"machine\":{\"id\":31,\"user_id\":11,\"number\":\"4\",\"description\":null,\"created_at\":\"2025-12-07T05:56:22.000000Z\",\"updated_at\":\"2025-12-07T05:56:22.000000Z\"}}]', '2025-12-27 11:00:22', '2025-12-27 11:00:22');
 
 -- --------------------------------------------------------
 
@@ -373,13 +513,6 @@ CREATE TABLE `permissions` (
 --
 
 INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'manage user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
-(2, 'create user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
-(3, 'view user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
-(4, 'edit user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
-(5, 'delete user', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
-(6, 'create product', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
-(7, 'edit product', NULL, NULL, '2025-11-04 04:10:55', '2025-11-04 04:10:55'),
 (30, 'manage role', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
 (31, 'create role', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
 (32, 'edit role', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
@@ -388,20 +521,11 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (35, 'create staff', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
 (36, 'edit staff', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
 (37, 'delete staff', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
-(38, 'manage staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
-(39, 'create staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
-(40, 'edit staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
-(41, 'delete staff salary', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
 (42, 'manage party', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
 (43, 'create party', NULL, NULL, '2025-12-10 05:59:45', '2025-12-10 05:59:45'),
 (44, 'edit party', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
 (45, 'view party', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
 (46, 'delete party', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
-(47, 'manage attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
-(48, 'create attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
-(49, 'edit attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
-(50, 'view attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
-(51, 'delete attendance', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
 (52, 'manage workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
 (53, 'create workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
 (54, 'edit workers', NULL, NULL, '2025-12-10 05:59:46', '2025-12-10 05:59:46'),
@@ -424,10 +548,11 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (71, 'manage stock management', NULL, NULL, '2025-12-13 06:53:12', '2025-12-13 06:53:12'),
 (72, 'view stock management', NULL, NULL, '2025-12-13 06:53:12', '2025-12-13 06:53:12'),
 (73, 'refresh stock management', NULL, NULL, '2025-12-13 06:53:12', '2025-12-13 06:53:12'),
-(115, 'manage taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29'),
-(116, 'create taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29'),
-(117, 'edit taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29'),
-(118, 'delete taka', NULL, NULL, '2025-12-26 13:41:29', '2025-12-26 13:41:29');
+(119, 'manage challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
+(120, 'create challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
+(121, 'edit challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
+(122, 'view challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
+(123, 'delete challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58');
 
 -- --------------------------------------------------------
 
@@ -446,8 +571,11 @@ CREATE TABLE `permission_role` (
 
 INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (30, 1),
+(30, 10),
 (31, 1),
+(31, 10),
 (32, 1),
+(32, 10),
 (33, 1),
 (34, 1),
 (34, 11),
@@ -457,24 +585,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (36, 11),
 (37, 1),
 (37, 11),
-(38, 1),
-(38, 11),
-(39, 1),
-(39, 11),
-(40, 1),
-(40, 11),
-(41, 1),
-(41, 11),
 (42, 1),
 (43, 1),
 (44, 1),
 (45, 1),
 (46, 1),
-(47, 1),
-(48, 1),
-(49, 1),
-(50, 1),
-(51, 1),
 (52, 1),
 (52, 11),
 (53, 1),
@@ -518,10 +633,11 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (72, 1),
 (73, 1),
 (73, 10),
-(115, 1),
-(116, 1),
-(117, 1),
-(118, 1);
+(119, 1),
+(120, 1),
+(121, 1),
+(122, 1),
+(123, 1);
 
 -- --------------------------------------------------------
 
@@ -590,7 +706,8 @@ INSERT INTO `roles` (`id`, `created_by`, `name`, `display_name`, `description`, 
 (7, 1, 'Demo role', NULL, NULL, '2025-11-05 12:35:17', '2025-11-05 12:35:17'),
 (8, 1, 'Supervisor', NULL, NULL, '2025-11-07 11:09:51', '2025-11-07 11:09:51'),
 (10, 11, 'Admin', NULL, NULL, '2025-12-26 12:52:28', '2025-12-26 12:52:41'),
-(11, 11, 'Manager', NULL, NULL, '2025-12-26 12:53:10', '2025-12-26 12:53:10');
+(11, 11, 'Manager', NULL, NULL, '2025-12-26 12:53:10', '2025-12-26 12:53:10'),
+(12, 14, 'demo', NULL, NULL, '2025-12-27 10:53:55', '2025-12-27 10:53:55');
 
 -- --------------------------------------------------------
 
@@ -648,10 +765,14 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('dJjxyGMZTBHONXqPpqjneG38nbyMLTYXJC8ErNT3', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZ1ROM2l6VnlTb2V3TjBJSGEwT1R1ZUxrVk12OGpZTWVkb2tObUx3MCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTQ7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9fQ==', 1766774903),
-('LPEVlYL0p1IyLxbrBGvB2NGJV1pNAgMqg8LwdROa', 14, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiSWtDUzdMM3VmVVc5UXg2aHZtVEtWdG9WTG5FMmkwQ2V4YWl5R1BqMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTQ7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9fQ==', 1766777253),
-('V1Lt21v2jUtBzZmqArHWqCk8q6LnETvzNqLECiwt', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoieDFZT2RpYzNzYVZsaHZjZExoa0ViaXBNSnJtWm0wQ00xd3pEOWRobSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTE7fQ==', 1766779335),
-('X6NJYu7Kr0unmZ9ctqjEjt9MFRUASFdYZeVVaiLa', 18, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiRmZIek1pekdxQk1Zc3lENXBJSmJ0QjNXbTNKaURldElvWExQUDBSNSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTg7fQ==', 1766775156);
+('8pwgDPkds4dpzqJ9o891pssmkWznILsHyAXYSRVu', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTzVoZndTSHdMOFNtSmcya0NLN0lGbGdIb3pKakExdjR3UGNwWFNMdCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766934228),
+('bdZd99jO5C6PknKgXiPrj8YGbJYvZsGXx3cj8JqA', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieTVRMmM4T01WelF5bFVRSWg4MFV1T1Z5c1BiRXJMd1RZV0t2V2J2RSI7czozOiJ1cmwiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3RyYW5zbGF0aW9ucy9lbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjExO30=', 1766937481),
+('bIRnO58lFxNUQBMEbTB7F8GE9uvKCSxj7qYiv5xB', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZWNuNmg5b0lWR21WSUVIYmdDZ0VKWXVNQ1RpNWczSk9mSEo1ZkJiMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766935335),
+('Ix3ToV4UH6mDj13EBOvqLWztujU1Q6bck1NNxgtJ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZnBoR1lFVTJFOHZWbHJVT2dOMXZ3ZlU2clFScmg3MnhIekZnR0dkVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766934133),
+('N2bwbaegP5hS1t8wd2F4XDouWtltaPXM3lmLGjbK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVWl2amZiWWQ1RHozcUt2bDlMbUdHWVdHSGVLVnl3aXViblljT3NsbCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766937433),
+('O8KhsGhqz61dn3AVGkfwa8aa2RjubAnhL44PWUBv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVVhEVWU5ZVdNN1RPcHp1MXFaTTEweTVyMGFsRm5OTE1vSUpScUZoQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766934353),
+('temA0PHqTCfRGHlbJuavLhySTkEL9AD20ghVBOLS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoieEtUam5oa0oxWDFBQTBGUDBYT3RrbXFtMmJmOG5yZTk4bHdPSEQybCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766936699),
+('vAWUCqon00F38S7GH4gBBcty84AcudIKY5ukM91C', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiN0tROHFmZ3BEVUlETHNzSkN4dWY2R1BSY284YW52YUlrVnJHSXlrOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766936669);
 
 -- --------------------------------------------------------
 
@@ -675,7 +796,11 @@ CREATE TABLE `settings` (
 INSERT INTO `settings` (`id`, `key`, `value`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 'worker_per_meter_rate', '3', 1, '2025-12-06 08:33:51', '2025-12-06 08:33:51'),
 (2, 'worker_per_meter_rate', '2.5', 11, '2025-12-07 01:34:29', '2025-12-07 01:34:29'),
-(3, 'lot_meter_size', '100', 11, '2025-12-13 01:22:33', '2025-12-13 03:00:56');
+(3, 'lot_meter_size', '100', 11, '2025-12-13 01:22:33', '2025-12-13 03:00:56'),
+(4, 'business_name', 'Abc Textile', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26'),
+(5, 'business_address', 'Abc Textile address', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26'),
+(6, 'business_phone', '+9124567890', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26'),
+(7, 'business_gst', '24CSLPP6286N1ZT', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26');
 
 -- --------------------------------------------------------
 
@@ -750,10 +875,12 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`id`, `user_id`, `date`, `total_meters`, `created_at`, `updated_at`) VALUES
-(310, 11, '2025-12-26', 37.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32'),
-(311, 11, '2025-12-13', 275.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32'),
-(312, 11, '2025-12-12', 41.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32'),
-(313, 11, '2025-12-07', 47.00, '2025-12-26 13:57:32', '2025-12-26 13:57:32');
+(934, 11, '2025-12-28', 2070.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
+(935, 11, '2025-12-27', 345.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
+(936, 11, '2025-12-26', 37.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
+(937, 11, '2025-12-13', 275.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
+(938, 11, '2025-12-12', 41.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
+(939, 11, '2025-12-07', 47.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33');
 
 -- --------------------------------------------------------
 
@@ -805,29 +932,6 @@ INSERT INTO `stock_ledgers` (`id`, `user_id`, `transaction_type`, `transaction_d
 (1, 11, 'IN', '2025-12-01', 'Cotton', 20, 1000.00, 'Purchase', 'FabricStock', 1, 'Fabric stock received from sfr', '2025-12-12 12:28:51', '2025-12-12 12:28:51'),
 (2, 11, 'IN', '2025-12-10', 'Cotton', 5, 50.00, 'Production', 'ProductionStock', 1, 'Production by Rohit on Machine 1', '2025-12-12 12:29:34', '2025-12-12 12:29:34'),
 (3, 11, 'IN', '2025-12-11', 'Cotton', 200, 1000.00, 'Production', 'ProductionStock', 2, 'Production by Mohit on Machine 2', '2025-12-12 12:32:50', '2025-12-12 12:32:50');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `takas`
---
-
-CREATE TABLE `takas` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `taka_number` varchar(255) NOT NULL,
-  `meter` decimal(10,2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `takas`
---
-
-INSERT INTO `takas` (`id`, `user_id`, `taka_number`, `meter`, `created_at`, `updated_at`) VALUES
-(1, 11, '1', 220.00, '2025-12-26 13:45:45', '2025-12-26 13:45:45'),
-(2, 1, '1', 500.00, '2025-12-26 13:48:34', '2025-12-26 13:48:34');
 
 -- --------------------------------------------------------
 
@@ -887,7 +991,7 @@ INSERT INTO `user_push_subscriptions` (`id`, `user_id`, `endpoint`, `p256dh`, `a
 (2, 11, 'https://fcm.googleapis.com/fcm/send/dHrzXKksN24:APA91bFRrF0vivQmiwLWwRFEjRRkK-AyUKLQzWOqLaO7K6KHbki4v5PEA5FwzGncuNl5C-s40ePCvCHGtFJHaX2sfGyhAfas5whtmdKJJCzIiKjkLFDz4Ejb4dWaoj9SA9DOkaGTtUXa', 'BLE-vApEehYodQj3koOHDAH3nAu4njP7457Yb55FzzORn8Ssxzx0k6FMgFV80Jv8Caozf0PyEqva2wsLdI_14EU', 'cpM78PhXDRmTKUYww7xGuA', '2025-12-07 08:22:13', '2025-12-07 08:22:13'),
 (3, 11, 'https://fcm.googleapis.com/fcm/send/c9J_iVe7_V0:APA91bHQ6oTuZZOEx-6XPbN1-vFFktkBpQzZZMzjprRjGlIGcwY-Zei2xxSBejpanmOzIC7cRwIeA0KYmIzw9nvHc5-rU8kmCmZBNiyOdwb13y9GM4RCrztw5DP1sVLi_YZaz9-FgjWD', 'BEUd0O8mptW6BoC26iD01MM77L7oS-V3HQ-eqOb7jKxwStprE4oZvS0F52JIo2wnBNik1sraEfT7NPuMtp-5T_A', 'l1DmCKMiDaIbkLaBxAu5ZA', '2025-12-07 09:11:47', '2025-12-07 09:11:47'),
 (4, 11, 'https://updates.push.services.mozilla.com/wpush/v2/gAAAAABpNZl3VgSCvEHlLOuKfv2hAUulLnRU5_rW4OsyFFPKrhmT8NzzXHpIIviKIPOC7yZeSYHyAq8U4b7ebhHQfgX_9vNkETFZp5eN1PEGEG26YuvfLDxcbnVG-dmMSpWUoMERc4r04C9pkx_k5U866_LtUuIeuTNXIA3t_MsZhYeiGxsgd7s', 'BPb1WrcnmntQDGaGO0xkQfgYHYF444I5hauMwSCMWj14B8gzrIvf-I3BL8PWsxkPkZ7TcBCix5jTFqs99nLWHg8', 'MhfH_W0KZo_HPA3uM_9UGg', '2025-12-07 09:42:55', '2025-12-07 09:42:55'),
-(5, 11, 'https://fcm.googleapis.com/fcm/send/fUlHO-GW58E:APA91bE0Bw-Uva5J5MRLaiPF7NukFEQ7zoyBOhbpDmOSaZXVVLdWa24KvKM5ydN1KbjwnqLzjCmIl2g4O2mLfVUYJwBWBAzInHgKXndNqUoPRscYMATUkrMF-dQg8GAnDt0hTZhM92NX', 'BBZxGNFvYorgjcNTnmp4bB7z2F-fQ6F-ND_ZIJIDKuuxdlhYbuzPDrk2-CAZIdCXTKZUKG0F1YRDbd4rN_CIAhk', 'Jll0Tsf-QNEurqdnKfPWYw', '2025-12-10 10:11:31', '2025-12-26 12:16:09');
+(5, 11, 'https://fcm.googleapis.com/fcm/send/fUlHO-GW58E:APA91bE0Bw-Uva5J5MRLaiPF7NukFEQ7zoyBOhbpDmOSaZXVVLdWa24KvKM5ydN1KbjwnqLzjCmIl2g4O2mLfVUYJwBWBAzInHgKXndNqUoPRscYMATUkrMF-dQg8GAnDt0hTZhM92NX', 'BNsFdwINYY24n6bE279kk3Z0z_IetTn-tAFWCNZysW8ZnhL5mtwaj-6nHD9idEziZjp3U1T9mbkL8RPsQsRNdOY', 'Eg3wvvburAOSmb5-llCwVQ', '2025-12-10 10:11:31', '2025-12-28 08:14:12');
 
 -- --------------------------------------------------------
 
@@ -947,7 +1051,15 @@ INSERT INTO `worker_daily_production_entries` (`id`, `user_id`, `date`, `worker_
 (21, 11, '2025-12-13', 6, 30, 'day', 25.00, '2025-12-13 01:23:07', '2025-12-13 01:23:07'),
 (22, 11, '2025-12-26', 6, 28, 'day', 7.00, '2025-12-26 12:35:58', '2025-12-26 12:35:58'),
 (23, 11, '2025-12-26', 6, 29, 'day', 20.00, '2025-12-26 12:35:58', '2025-12-26 12:35:58'),
-(24, 11, '2025-12-26', 6, 30, 'day', 10.00, '2025-12-26 12:35:58', '2025-12-26 12:35:58');
+(24, 11, '2025-12-26', 6, 30, 'day', 10.00, '2025-12-26 12:35:58', '2025-12-26 12:35:58'),
+(25, 11, '2025-12-27', 6, 28, 'day', 250.00, '2025-12-27 10:04:45', '2025-12-27 10:57:44'),
+(26, 11, '2025-12-27', 6, 29, 'day', 35.00, '2025-12-27 10:04:45', '2025-12-27 10:04:45'),
+(27, 11, '2025-12-27', 6, 30, 'day', 15.00, '2025-12-27 10:04:45', '2025-12-27 10:04:45'),
+(28, 11, '2025-12-27', 6, 31, 'day', 45.00, '2025-12-27 10:57:28', '2025-12-27 10:57:28'),
+(29, 11, '2025-12-28', 6, 28, 'day', 200.00, '2025-12-28 08:14:41', '2025-12-28 08:14:41'),
+(30, 11, '2025-12-28', 6, 29, 'day', 400.00, '2025-12-28 08:14:41', '2025-12-28 08:14:41'),
+(31, 11, '2025-12-28', 6, 30, 'day', 520.00, '2025-12-28 08:14:41', '2025-12-28 08:14:41'),
+(32, 11, '2025-12-28', 6, 31, 'day', 950.00, '2025-12-28 08:14:41', '2025-12-28 08:14:41');
 
 -- --------------------------------------------------------
 
@@ -970,9 +1082,10 @@ CREATE TABLE `worker_machine_assignments` (
 --
 
 INSERT INTO `worker_machine_assignments` (`id`, `user_id`, `worker_id`, `machine_id`, `shift_id`, `created_at`, `updated_at`) VALUES
-(13, 11, 6, 28, 'day', '2025-12-07 00:26:34', '2025-12-07 00:26:34'),
-(14, 11, 6, 29, 'day', '2025-12-07 00:26:34', '2025-12-07 00:26:34'),
-(15, 11, 6, 30, 'day', '2025-12-07 00:26:34', '2025-12-07 00:26:34');
+(16, 11, 6, 28, 'day', '2025-12-27 10:56:29', '2025-12-27 10:56:29'),
+(17, 11, 6, 29, 'day', '2025-12-27 10:56:29', '2025-12-27 10:56:29'),
+(18, 11, 6, 30, 'day', '2025-12-27 10:56:29', '2025-12-27 10:56:29'),
+(19, 11, 6, 31, 'day', '2025-12-27 10:56:29', '2025-12-27 10:56:29');
 
 --
 -- Indexes for dumped tables
@@ -997,6 +1110,21 @@ ALTER TABLE `cache`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `challans`
+--
+ALTER TABLE `challans`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `challans_party_id_foreign` (`party_id`),
+  ADD KEY `challans_created_by_foreign` (`created_by`);
+
+--
+-- Indexes for table `challan_items`
+--
+ALTER TABLE `challan_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `challan_items_challan_id_foreign` (`challan_id`);
 
 --
 -- Indexes for table `fabric_stocks`
@@ -1161,14 +1289,6 @@ ALTER TABLE `stock_ledgers`
   ADD KEY `stock_ledgers_user_id_foreign` (`user_id`);
 
 --
--- Indexes for table `takas`
---
-ALTER TABLE `takas`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `takas_user_id_taka_number_unique` (`user_id`,`taka_number`),
-  ADD KEY `takas_user_id_index` (`user_id`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -1216,6 +1336,18 @@ ALTER TABLE `attendances`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `challans`
+--
+ALTER TABLE `challans`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `challan_items`
+--
+ALTER TABLE `challan_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+
+--
 -- AUTO_INCREMENT for table `fabric_stocks`
 --
 ALTER TABLE `fabric_stocks`
@@ -1237,13 +1369,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `machines`
 --
 ALTER TABLE `machines`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `parties`
@@ -1255,13 +1387,13 @@ ALTER TABLE `parties`
 -- AUTO_INCREMENT for table `payslips`
 --
 ALTER TABLE `payslips`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
 -- AUTO_INCREMENT for table `production_stocks`
@@ -1273,13 +1405,13 @@ ALTER TABLE `production_stocks`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `staff_details`
@@ -1297,7 +1429,7 @@ ALTER TABLE `staff_salaries`
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=314;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=940;
 
 --
 -- AUTO_INCREMENT for table `stock_dispatches`
@@ -1310,12 +1442,6 @@ ALTER TABLE `stock_dispatches`
 --
 ALTER TABLE `stock_ledgers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `takas`
---
-ALTER TABLE `takas`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1339,13 +1465,13 @@ ALTER TABLE `workers`
 -- AUTO_INCREMENT for table `worker_daily_production_entries`
 --
 ALTER TABLE `worker_daily_production_entries`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `worker_machine_assignments`
 --
 ALTER TABLE `worker_machine_assignments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
@@ -1357,6 +1483,19 @@ ALTER TABLE `worker_machine_assignments`
 ALTER TABLE `attendances`
   ADD CONSTRAINT `attendances_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `attendances_staff_id_foreign` FOREIGN KEY (`staff_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `challans`
+--
+ALTER TABLE `challans`
+  ADD CONSTRAINT `challans_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `challans_party_id_foreign` FOREIGN KEY (`party_id`) REFERENCES `parties` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `challan_items`
+--
+ALTER TABLE `challan_items`
+  ADD CONSTRAINT `challan_items_challan_id_foreign` FOREIGN KEY (`challan_id`) REFERENCES `challans` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `fabric_stocks`
@@ -1455,12 +1594,6 @@ ALTER TABLE `stock_dispatches`
 --
 ALTER TABLE `stock_ledgers`
   ADD CONSTRAINT `stock_ledgers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `takas`
---
-ALTER TABLE `takas`
-  ADD CONSTRAINT `takas_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users`

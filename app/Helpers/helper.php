@@ -43,4 +43,14 @@ if (!function_exists('formatMachineNumber')) {
     }
 }
 
+if (!function_exists('formatChallanNumber')) {
+    function formatChallanNumber($id)
+    {
+        if($id === null){
+            return '--';
+        }
+        return '#CHL-' . str_pad($id, 6, '0', STR_PAD_LEFT);
+    }
+}
+
 ?>

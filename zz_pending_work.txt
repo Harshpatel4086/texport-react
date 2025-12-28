@@ -16,3 +16,12 @@ Dashboard Panel
     -  Expense Management (Add Expense, View Expenses, Expense Reports)
     -  Settings (General(Company Logo (For invoices)), Security, Notifications)
 
+Issue In Project :
+    - ✅ While creating the challan it's not create the proper challan on first attempt but when we try again it's create the challan properly.
+    - ✅ Challan index page is not showing the proper data. (party name not showing properly).
+    - ✅ need to improve the UI of challan all pages.
+    - ✅ edit challan page not working properly.(console error showing).
+    - ✅ when click the create challan button it's reload the page instead of not reloading the page.
+    - ✅ when click the back to challan button it's reload the page instead of not reloading the page.
+
+Need to run migration on server

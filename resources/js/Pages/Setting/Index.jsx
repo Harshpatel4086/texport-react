@@ -15,11 +15,12 @@ import {
     MdSecurity,
     MdLanguage,
     MdPalette,
-    MdStorage
+    MdStorage,
+    MdBusiness
 } from 'react-icons/md';
 
 export default function SettingIndex(props) {
-    const { auth = {}, workerRate = '' } = props;
+    const { auth = {}, workerRate = '', businessDetails = {} } = props;
 
     useToastFlash();
     const { t } = useLanguage();
@@ -31,9 +32,21 @@ export default function SettingIndex(props) {
         rate: workerRate || '',
     });
 
+    const { data: businessData, setData: setBusinessData, post: postBusiness, processing: businessProcessing, errors: businessErrors } = useForm({
+        name: businessDetails.name || '',
+        address: businessDetails.address || '',
+        phone: businessDetails.phone || '',
+        gst: businessDetails.gst || '',
+    });
+
     const handleSubmit = (e) => {
         e.preventDefault();
         post(route('settings.worker-rate'));
+    };
+
+    const handleBusinessSubmit = (e) => {
+        e.preventDefault();
+        postBusiness(route('settings.business-details'));
     };
 
 
@@ -45,23 +58,17 @@ export default function SettingIndex(props) {
 
     const settingsSections = [
         {
+            id: 'business',
+            label: t('Business Details'),
+            icon: MdBusiness,
+            description: t('Configure business information for challans')
+        },
+        {
             id: 'worker',
             label: t('Worker Settings'),
             icon: MdPerson,
             description: t('Configure worker rates and production parameters')
         },
-        // {
-        //     id: 'notifications',
-        //     label: 'Notifications',
-        //     icon: MdNotifications,
-        //     // description: 'Manage notification preferences'
-        // },
-        // {
-        //     id: 'security',
-        //     label: 'Security',
-        //     icon: MdSecurity,
-        //     // description: 'Security and privacy settings'
-        // }
     ];
 
     return (
@@ -132,6 +139,100 @@ export default function SettingIndex(props) {
                             {/* Settings Content */}
                             <div className="xl:col-span-3">
                                 <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+                                    {/* Business Details */}
+                                    {activeSection === "business" && (
+                                        <div className="p-6">
+                                            <div className="flex items-center mb-6">
+                                                <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center mr-4">
+                                                    <MdBusiness className="w-6 h-6 text-secondary" />
+                                                </div>
+                                                <div>
+                                                    <h2 className="text-xl font-semibold text-text">Business Details</h2>
+                                                    <p className="text-gray-600">Configure business information for challans</p>
+                                                </div>
+                                            </div>
+
+                                            <form onSubmit={handleBusinessSubmit} className="space-y-6">
+                                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                                    <div>
+                                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                            Business Name *
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            value={businessData.name}
+                                                            onChange={(e) => setBusinessData('name', e.target.value)}
+                                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                                                            placeholder="Enter business name"
+                                                            required
+                                                        />
+                                                        {businessErrors.name && (
+                                                            <p className="text-red-500 text-sm mt-1">{businessErrors.name}</p>
+                                                        )}
+                                                    </div>
+
+                                                    <div>
+                                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                            Phone Number
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            value={businessData.phone}
+                                                            onChange={(e) => setBusinessData('phone', e.target.value)}
+                                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                                                            placeholder="Enter phone number"
+                                                        />
+                                                        {businessErrors.phone && (
+                                                            <p className="text-red-500 text-sm mt-1">{businessErrors.phone}</p>
+                                                        )}
+                                                    </div>
+
+                                                    <div className="lg:col-span-2">
+                                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                            Business Address *
+                                                        </label>
+                                                        <textarea
+                                                            value={businessData.address}
+                                                            onChange={(e) => setBusinessData('address', e.target.value)}
+                                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                                                            placeholder="Enter business address"
+                                                            rows="3"
+                                                            required
+                                                        />
+                                                        {businessErrors.address && (
+                                                            <p className="text-red-500 text-sm mt-1">{businessErrors.address}</p>
+                                                        )}
+                                                    </div>
+
+                                                    <div className="lg:col-span-2">
+                                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                                            GST Number
+                                                        </label>
+                                                        <input
+                                                            type="text"
+                                                            value={businessData.gst}
+                                                            onChange={(e) => setBusinessData('gst', e.target.value)}
+                                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                                                            placeholder="Enter GST number"
+                                                        />
+                                                        {businessErrors.gst && (
+                                                            <p className="text-red-500 text-sm mt-1">{businessErrors.gst}</p>
+                                                        )}
+                                                    </div>
+                                                </div>
+
+                                                <Button
+                                                    type="submit"
+                                                    disabled={businessProcessing}
+                                                    className="w-full lg:w-auto"
+                                                >
+                                                    <MdSave className="w-4 h-4 mr-2" />
+                                                    {businessProcessing ? 'Saving...' : 'Save Business Details'}
+                                                </Button>
+                                            </form>
+                                        </div>
+                                    )}
+
                                     {/* Worker Settings */}
                                     {activeSection === "worker" && (
                                         <div className="p-6">

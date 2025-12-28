@@ -118,6 +118,7 @@ class Stock extends Model
 
     public static function getTotalAvailableMeters($userId)
     {
-        return self::where('user_id', $userId)->sum('total_meters');
+        // Use the StockService for consistent calculation
+        return \App\Services\StockService::getTotalAvailableStock($userId);
     }
 }
