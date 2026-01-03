@@ -35,6 +35,7 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
                 'permissions' => $request->user() ? $request->user()->allPermissions()->pluck('name')->toArray() : [],
                 'isOwner' => $request->user() ? !$request->user()->is_staff : false,
+                'aiEnabled' => !empty(config('services.gemini.api_key') ?? env('GEMINI_API_KEY')),
             ],
             'flash' => [
                 'success' => $request->session()->get('success'),

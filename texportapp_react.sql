@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2025 at 04:58 PM
+-- Generation Time: Dec 30, 2025 at 11:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -85,6 +85,7 @@ CREATE TABLE `challans` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `challan_number` int(11) NOT NULL,
   `party_id` bigint(20) UNSIGNED NOT NULL,
+  `quality_id` bigint(20) UNSIGNED DEFAULT NULL,
   `total_meter` decimal(10,2) NOT NULL,
   `total_lots` int(11) NOT NULL,
   `date` date NOT NULL,
@@ -97,11 +98,11 @@ CREATE TABLE `challans` (
 -- Dumping data for table `challans`
 --
 
-INSERT INTO `challans` (`id`, `challan_number`, `party_id`, `total_meter`, `total_lots`, `date`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 1, 7, 718.00, 1, '2025-12-27', 11, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
-(2, 2, 7, 26.00, 1, '2025-12-27', 11, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
-(3, 3, 7, 160.00, 1, '2025-12-28', 11, '2025-12-28 08:21:16', '2025-12-28 08:26:42'),
-(4, 4, 7, 723.99, 5, '2025-12-28', 11, '2025-12-28 09:09:50', '2025-12-28 10:16:08');
+INSERT INTO `challans` (`id`, `challan_number`, `party_id`, `quality_id`, `total_meter`, `total_lots`, `date`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 1, 7, NULL, 718.00, 1, '2025-12-27', 11, '2025-12-27 12:22:06', '2025-12-27 12:22:06'),
+(2, 2, 7, NULL, 26.00, 1, '2025-12-27', 11, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
+(3, 3, 7, 2, 160.00, 1, '2025-12-28', 11, '2025-12-28 08:21:16', '2025-12-30 04:27:47'),
+(4, 4, 7, 2, 723.99, 5, '2025-12-28', 11, '2025-12-28 09:09:50', '2025-12-30 03:07:16');
 
 -- --------------------------------------------------------
 
@@ -148,78 +149,78 @@ INSERT INTO `challan_items` (`id`, `challan_id`, `sr_number`, `meter`, `group_nu
 (22, 2, 10, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
 (23, 2, 11, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
 (24, 2, 12, 1.00, 1, '2025-12-27 12:25:07', '2025-12-27 12:25:07'),
-(73, 3, 1, 10.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(74, 3, 2, 11.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(75, 3, 3, 12.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(76, 3, 4, 13.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(77, 3, 5, 14.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(78, 3, 6, 15.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(79, 3, 7, 10.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(80, 3, 8, 11.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(81, 3, 9, 12.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(82, 3, 10, 13.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(83, 3, 11, 14.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(84, 3, 12, 25.00, 1, '2025-12-28 09:08:57', '2025-12-28 09:08:57'),
-(181, 4, 1, 10.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(182, 4, 2, 11.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(183, 4, 3, 12.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(184, 4, 4, 13.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(185, 4, 5, 14.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(186, 4, 6, 15.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(187, 4, 7, 10.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(188, 4, 8, 11.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(189, 4, 9, 12.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(190, 4, 10, 13.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(191, 4, 11, 14.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(192, 4, 12, 15.00, 1, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(193, 4, 13, 10.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(194, 4, 14, 11.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(195, 4, 15, 12.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(196, 4, 16, 13.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(197, 4, 17, 14.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(198, 4, 18, 15.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(199, 4, 19, 16.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(200, 4, 20, 17.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(201, 4, 21, 18.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(202, 4, 22, 19.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(203, 4, 23, 20.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(204, 4, 24, 25.00, 2, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(205, 4, 25, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(206, 4, 26, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(207, 4, 27, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(208, 4, 28, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(209, 4, 29, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(210, 4, 30, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(211, 4, 31, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(212, 4, 32, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(213, 4, 33, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(214, 4, 34, 11.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(215, 4, 35, 12.00, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(216, 4, 36, 10.99, 3, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(217, 4, 37, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(218, 4, 38, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(219, 4, 39, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(220, 4, 40, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(221, 4, 41, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(222, 4, 42, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(223, 4, 43, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(224, 4, 44, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(225, 4, 45, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(226, 4, 46, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(227, 4, 47, 10.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(228, 4, 48, 11.00, 4, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(229, 4, 49, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(230, 4, 50, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(231, 4, 51, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(232, 4, 52, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(233, 4, 53, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(234, 4, 54, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(235, 4, 55, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(236, 4, 56, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(237, 4, 57, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(238, 4, 58, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(239, 4, 59, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08'),
-(240, 4, 60, 10.00, 5, '2025-12-28 10:16:08', '2025-12-28 10:16:08');
+(301, 4, 1, 10.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(302, 4, 2, 11.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(303, 4, 3, 12.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(304, 4, 4, 13.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(305, 4, 5, 14.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(306, 4, 6, 15.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(307, 4, 7, 10.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(308, 4, 8, 11.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(309, 4, 9, 12.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(310, 4, 10, 13.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(311, 4, 11, 14.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(312, 4, 12, 15.00, 1, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(313, 4, 13, 10.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(314, 4, 14, 11.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(315, 4, 15, 12.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(316, 4, 16, 13.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(317, 4, 17, 14.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(318, 4, 18, 15.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(319, 4, 19, 16.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(320, 4, 20, 17.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(321, 4, 21, 18.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(322, 4, 22, 19.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(323, 4, 23, 20.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(324, 4, 24, 25.00, 2, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(325, 4, 25, 12.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(326, 4, 26, 11.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(327, 4, 27, 12.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(328, 4, 28, 11.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(329, 4, 29, 12.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(330, 4, 30, 11.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(331, 4, 31, 12.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(332, 4, 32, 11.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(333, 4, 33, 12.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(334, 4, 34, 11.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(335, 4, 35, 12.00, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(336, 4, 36, 10.99, 3, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(337, 4, 37, 10.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(338, 4, 38, 11.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(339, 4, 39, 10.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(340, 4, 40, 11.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(341, 4, 41, 10.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(342, 4, 42, 11.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(343, 4, 43, 10.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(344, 4, 44, 11.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(345, 4, 45, 10.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(346, 4, 46, 11.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(347, 4, 47, 10.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(348, 4, 48, 11.00, 4, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(349, 4, 49, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(350, 4, 50, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(351, 4, 51, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(352, 4, 52, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(353, 4, 53, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(354, 4, 54, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(355, 4, 55, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(356, 4, 56, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(357, 4, 57, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(358, 4, 58, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(359, 4, 59, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(360, 4, 60, 10.00, 5, '2025-12-30 03:07:16', '2025-12-30 03:07:16'),
+(361, 3, 1, 10.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(362, 3, 2, 11.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(363, 3, 3, 12.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(364, 3, 4, 13.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(365, 3, 5, 14.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(366, 3, 6, 15.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(367, 3, 7, 10.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(368, 3, 8, 11.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(369, 3, 9, 12.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(370, 3, 10, 13.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(371, 3, 11, 14.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47'),
+(372, 3, 12, 25.00, 1, '2025-12-30 04:27:47', '2025-12-30 04:27:47');
 
 -- --------------------------------------------------------
 
@@ -266,6 +267,45 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `invoices`
+--
+
+CREATE TABLE `invoices` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `invoice_number` int(11) NOT NULL,
+  `challan_id` bigint(20) UNSIGNED NOT NULL,
+  `party_id` bigint(20) UNSIGNED NOT NULL,
+  `quality_id` bigint(20) UNSIGNED NOT NULL,
+  `total_meter` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `base_amount` decimal(10,2) NOT NULL,
+  `cgst_percentage` decimal(5,2) DEFAULT NULL,
+  `sgst_percentage` decimal(5,2) DEFAULT NULL,
+  `igst_percentage` decimal(5,2) DEFAULT NULL,
+  `cgst_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `sgst_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `igst_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total_tax` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `subtotal` decimal(10,2) NOT NULL,
+  `round_off` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `final_amount` decimal(10,2) NOT NULL,
+  `date` date NOT NULL,
+  `created_by` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `invoices`
+--
+
+INSERT INTO `invoices` (`id`, `invoice_number`, `challan_id`, `party_id`, `quality_id`, `total_meter`, `price`, `base_amount`, `cgst_percentage`, `sgst_percentage`, `igst_percentage`, `cgst_amount`, `sgst_amount`, `igst_amount`, `total_tax`, `subtotal`, `round_off`, `final_amount`, `date`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 4, 4, 7, 2, 723.99, 10.25, 7420.90, NULL, NULL, NULL, 0.00, 0.00, 0.00, 0.00, 7420.90, 0.10, 7421.00, '2025-12-30', 11, '2025-12-30 03:36:47', '2025-12-30 03:36:47'),
+(2, 3, 3, 7, 2, 160.00, 15.75, 2520.00, 2.50, 2.50, NULL, 63.00, 63.00, 0.00, 126.00, 2646.00, 0.00, 2646.00, '2025-12-30', 11, '2025-12-30 04:28:19', '2025-12-30 04:28:19');
 
 -- --------------------------------------------------------
 
@@ -407,7 +447,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2025_12_27_161027_drop_takas_table', 20),
 (40, '2025_12_27_161043_drop_challans_and_challan_items_tables', 20),
 (41, '2025_01_18_000001_create_challans_table', 21),
-(42, '2025_01_18_000002_create_challan_items_table', 21);
+(42, '2025_01_18_000002_create_challan_items_table', 21),
+(43, '2025_01_19_000001_create_qualities_table', 22),
+(44, '2025_01_19_000002_add_quality_id_to_challans_table', 22),
+(45, '2025_01_20_000001_add_tax_fields_to_qualities_table', 23),
+(46, '2025_01_20_000002_create_invoices_table', 23);
 
 -- --------------------------------------------------------
 
@@ -552,7 +596,15 @@ INSERT INTO `permissions` (`id`, `name`, `display_name`, `description`, `created
 (120, 'create challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
 (121, 'edit challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
 (122, 'view challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
-(123, 'delete challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58');
+(123, 'delete challan', NULL, NULL, '2025-12-27 11:56:58', '2025-12-27 11:56:58'),
+(124, 'manage quality', NULL, NULL, '2025-12-30 02:50:38', '2025-12-30 02:50:38'),
+(125, 'create quality', NULL, NULL, '2025-12-30 02:50:38', '2025-12-30 02:50:38'),
+(126, 'edit quality', NULL, NULL, '2025-12-30 02:50:38', '2025-12-30 02:50:38'),
+(127, 'delete quality', NULL, NULL, '2025-12-30 02:50:38', '2025-12-30 02:50:38'),
+(128, 'manage invoice', NULL, NULL, '2025-12-30 03:28:59', '2025-12-30 03:28:59'),
+(129, 'create invoice', NULL, NULL, '2025-12-30 03:28:59', '2025-12-30 03:28:59'),
+(130, 'view invoice', NULL, NULL, '2025-12-30 03:28:59', '2025-12-30 03:28:59'),
+(131, 'delete invoice', NULL, NULL, '2025-12-30 03:28:59', '2025-12-30 03:28:59');
 
 -- --------------------------------------------------------
 
@@ -637,7 +689,15 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (120, 1),
 (121, 1),
 (122, 1),
-(123, 1);
+(123, 1),
+(124, 1),
+(125, 1),
+(126, 1),
+(127, 1),
+(128, 1),
+(129, 1),
+(130, 1),
+(131, 1);
 
 -- --------------------------------------------------------
 
@@ -678,6 +738,33 @@ CREATE TABLE `production_stocks` (
 INSERT INTO `production_stocks` (`id`, `user_id`, `production_date`, `machine_id`, `worker_id`, `fabric_type`, `roll_count`, `total_weight`, `quality_grade`, `created_at`, `updated_at`) VALUES
 (1, 11, '2025-12-10', 28, 6, 'Cotton', 50, 500.00, 'A', '2025-12-12 12:29:34', '2025-12-12 12:30:58'),
 (2, 11, '2025-12-11', 29, 7, 'Cotton', 200, 1000.00, 'A', '2025-12-12 12:32:50', '2025-12-12 12:32:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `qualities`
+--
+
+CREATE TABLE `qualities` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `quality_name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `cgst_percentage` decimal(5,2) DEFAULT NULL,
+  `sgst_percentage` decimal(5,2) DEFAULT NULL,
+  `igst_percentage` decimal(5,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `qualities`
+--
+
+INSERT INTO `qualities` (`id`, `user_id`, `quality_name`, `description`, `status`, `cgst_percentage`, `sgst_percentage`, `igst_percentage`, `created_at`, `updated_at`) VALUES
+(1, 11, 'Reniyal', NULL, 1, NULL, NULL, NULL, '2025-12-30 02:58:57', '2025-12-30 02:59:38'),
+(2, 11, 'Rayon', NULL, 1, 2.50, 2.50, NULL, '2025-12-30 03:07:05', '2025-12-30 04:26:54');
 
 -- --------------------------------------------------------
 
@@ -765,14 +852,12 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('8pwgDPkds4dpzqJ9o891pssmkWznILsHyAXYSRVu', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTzVoZndTSHdMOFNtSmcya0NLN0lGbGdIb3pKakExdjR3UGNwWFNMdCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766934228),
-('bdZd99jO5C6PknKgXiPrj8YGbJYvZsGXx3cj8JqA', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoieTVRMmM4T01WelF5bFVRSWg4MFV1T1Z5c1BiRXJMd1RZV0t2V2J2RSI7czozOiJ1cmwiO2E6MDp7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQxOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3RyYW5zbGF0aW9ucy9lbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjExO30=', 1766937481),
-('bIRnO58lFxNUQBMEbTB7F8GE9uvKCSxj7qYiv5xB', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZWNuNmg5b0lWR21WSUVIYmdDZ0VKWXVNQ1RpNWczSk9mSEo1ZkJiMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766935335),
-('Ix3ToV4UH6mDj13EBOvqLWztujU1Q6bck1NNxgtJ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZnBoR1lFVTJFOHZWbHJVT2dOMXZ3ZlU2clFScmg3MnhIekZnR0dkVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766934133),
-('N2bwbaegP5hS1t8wd2F4XDouWtltaPXM3lmLGjbK', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVWl2amZiWWQ1RHozcUt2bDlMbUdHWVdHSGVLVnl3aXViblljT3NsbCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766937433),
-('O8KhsGhqz61dn3AVGkfwa8aa2RjubAnhL44PWUBv', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVVhEVWU5ZVdNN1RPcHp1MXFaTTEweTVyMGFsRm5OTE1vSUpScUZoQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766934353),
-('temA0PHqTCfRGHlbJuavLhySTkEL9AD20ghVBOLS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoieEtUam5oa0oxWDFBQTBGUDBYT3RrbXFtMmJmOG5yZTk4bHdPSEQybCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766936699),
-('vAWUCqon00F38S7GH4gBBcty84AcudIKY5ukM91C', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiN0tROHFmZ3BEVUlETHNzSkN4dWY2R1BSY284YW52YUlrVnJHSXlrOSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1766936669);
+('0VuKmNdBTFbpil74fsMiIT6AtBKbIEU8kqC9G34j', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTXh5eTRDSHlSSFgzNXVtTTE3TTJUblhSNlI2eXdWSzZOaFdPRDVwcSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767088627),
+('AT0gisz1kAI7lugo0YMr03q1NQ8HZMAKJa4Ot0we', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiMGVXMkZ2dGhxT1U4T0ZoTE9BZUxEWEpSNDlyZ2FrYUJCN2ViWGwxcSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767083840),
+('CsB8qbLDmUGHaZ6wTisNbKokR1ZXaWNqahI4oiVa', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQnJaVkFWM3pZRXNTN1RiRW9Zb3BWa0xDb0tFc0k3aHJaN1RZUjlGVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767085662),
+('nKSF18MmSyMJvr9zGPy7bW5z06ChPagw4q9eRy6t', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYVZtUFFRMUVncjJQSDJCdFBuZXRodHB5OEwxMUV5aHUwTGJ0b3hZQSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767086891),
+('qeYphf2ipx3Ya2oA0wvxpAfm7izykWZdVohIElj7', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiUDN6NDQ4cTBQcHFvRjhpWnEwVFp2ckRqSmV2dkJSbmIxZXhQSzI5SSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767088831),
+('WfWTWQeBuZaDju9Utp1P09thF8kMOCnivFoI0tGg', 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWUprWWVzZ3FPUk9ydndWT0lVTHBmcDcxZGtwYkFaNWFJQUxKMFlJSyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hcGkvdHJhbnNsYXRpb25zL2VuIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTE7fQ==', 1767088700);
 
 -- --------------------------------------------------------
 
@@ -796,11 +881,7 @@ CREATE TABLE `settings` (
 INSERT INTO `settings` (`id`, `key`, `value`, `user_id`, `created_at`, `updated_at`) VALUES
 (1, 'worker_per_meter_rate', '3', 1, '2025-12-06 08:33:51', '2025-12-06 08:33:51'),
 (2, 'worker_per_meter_rate', '2.5', 11, '2025-12-07 01:34:29', '2025-12-07 01:34:29'),
-(3, 'lot_meter_size', '100', 11, '2025-12-13 01:22:33', '2025-12-13 03:00:56'),
-(4, 'business_name', 'Abc Textile', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26'),
-(5, 'business_address', 'Abc Textile address', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26'),
-(6, 'business_phone', '+9124567890', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26'),
-(7, 'business_gst', '24CSLPP6286N1ZT', 11, '2025-12-28 10:06:26', '2025-12-28 10:06:26');
+(3, 'lot_meter_size', '100', 11, '2025-12-13 01:22:33', '2025-12-13 03:00:56');
 
 -- --------------------------------------------------------
 
@@ -875,12 +956,12 @@ CREATE TABLE `stocks` (
 --
 
 INSERT INTO `stocks` (`id`, `user_id`, `date`, `total_meters`, `created_at`, `updated_at`) VALUES
-(934, 11, '2025-12-28', 2070.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
-(935, 11, '2025-12-27', 345.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
-(936, 11, '2025-12-26', 37.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
-(937, 11, '2025-12-13', 275.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
-(938, 11, '2025-12-12', 41.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33'),
-(939, 11, '2025-12-07', 47.00, '2025-12-28 10:20:33', '2025-12-28 10:20:33');
+(946, 11, '2025-12-28', 2070.00, '2025-12-30 01:53:55', '2025-12-30 01:53:55'),
+(947, 11, '2025-12-27', 345.00, '2025-12-30 01:53:55', '2025-12-30 01:53:55'),
+(948, 11, '2025-12-26', 37.00, '2025-12-30 01:53:55', '2025-12-30 01:53:55'),
+(949, 11, '2025-12-13', 275.00, '2025-12-30 01:53:55', '2025-12-30 01:53:55'),
+(950, 11, '2025-12-12', 41.00, '2025-12-30 01:53:55', '2025-12-30 01:53:55'),
+(951, 11, '2025-12-07', 47.00, '2025-12-30 01:53:55', '2025-12-30 01:53:55');
 
 -- --------------------------------------------------------
 
@@ -991,7 +1072,7 @@ INSERT INTO `user_push_subscriptions` (`id`, `user_id`, `endpoint`, `p256dh`, `a
 (2, 11, 'https://fcm.googleapis.com/fcm/send/dHrzXKksN24:APA91bFRrF0vivQmiwLWwRFEjRRkK-AyUKLQzWOqLaO7K6KHbki4v5PEA5FwzGncuNl5C-s40ePCvCHGtFJHaX2sfGyhAfas5whtmdKJJCzIiKjkLFDz4Ejb4dWaoj9SA9DOkaGTtUXa', 'BLE-vApEehYodQj3koOHDAH3nAu4njP7457Yb55FzzORn8Ssxzx0k6FMgFV80Jv8Caozf0PyEqva2wsLdI_14EU', 'cpM78PhXDRmTKUYww7xGuA', '2025-12-07 08:22:13', '2025-12-07 08:22:13'),
 (3, 11, 'https://fcm.googleapis.com/fcm/send/c9J_iVe7_V0:APA91bHQ6oTuZZOEx-6XPbN1-vFFktkBpQzZZMzjprRjGlIGcwY-Zei2xxSBejpanmOzIC7cRwIeA0KYmIzw9nvHc5-rU8kmCmZBNiyOdwb13y9GM4RCrztw5DP1sVLi_YZaz9-FgjWD', 'BEUd0O8mptW6BoC26iD01MM77L7oS-V3HQ-eqOb7jKxwStprE4oZvS0F52JIo2wnBNik1sraEfT7NPuMtp-5T_A', 'l1DmCKMiDaIbkLaBxAu5ZA', '2025-12-07 09:11:47', '2025-12-07 09:11:47'),
 (4, 11, 'https://updates.push.services.mozilla.com/wpush/v2/gAAAAABpNZl3VgSCvEHlLOuKfv2hAUulLnRU5_rW4OsyFFPKrhmT8NzzXHpIIviKIPOC7yZeSYHyAq8U4b7ebhHQfgX_9vNkETFZp5eN1PEGEG26YuvfLDxcbnVG-dmMSpWUoMERc4r04C9pkx_k5U866_LtUuIeuTNXIA3t_MsZhYeiGxsgd7s', 'BPb1WrcnmntQDGaGO0xkQfgYHYF444I5hauMwSCMWj14B8gzrIvf-I3BL8PWsxkPkZ7TcBCix5jTFqs99nLWHg8', 'MhfH_W0KZo_HPA3uM_9UGg', '2025-12-07 09:42:55', '2025-12-07 09:42:55'),
-(5, 11, 'https://fcm.googleapis.com/fcm/send/fUlHO-GW58E:APA91bE0Bw-Uva5J5MRLaiPF7NukFEQ7zoyBOhbpDmOSaZXVVLdWa24KvKM5ydN1KbjwnqLzjCmIl2g4O2mLfVUYJwBWBAzInHgKXndNqUoPRscYMATUkrMF-dQg8GAnDt0hTZhM92NX', 'BNsFdwINYY24n6bE279kk3Z0z_IetTn-tAFWCNZysW8ZnhL5mtwaj-6nHD9idEziZjp3U1T9mbkL8RPsQsRNdOY', 'Eg3wvvburAOSmb5-llCwVQ', '2025-12-10 10:11:31', '2025-12-28 08:14:12');
+(5, 11, 'https://fcm.googleapis.com/fcm/send/fUlHO-GW58E:APA91bE0Bw-Uva5J5MRLaiPF7NukFEQ7zoyBOhbpDmOSaZXVVLdWa24KvKM5ydN1KbjwnqLzjCmIl2g4O2mLfVUYJwBWBAzInHgKXndNqUoPRscYMATUkrMF-dQg8GAnDt0hTZhM92NX', 'BMcK1AIEkceMdZIcCZQUE1TQ91ICxvCISMxKTVgvlPIHHtHsWPvH-x5a0w_PyoYURmLYjzWti1GoXazlWIhS64s', 'nvrP8XhnMvSlbF5E3Wa9Ww', '2025-12-10 10:11:31', '2025-12-30 01:53:54');
 
 -- --------------------------------------------------------
 
@@ -1117,7 +1198,8 @@ ALTER TABLE `cache_locks`
 ALTER TABLE `challans`
   ADD PRIMARY KEY (`id`),
   ADD KEY `challans_party_id_foreign` (`party_id`),
-  ADD KEY `challans_created_by_foreign` (`created_by`);
+  ADD KEY `challans_created_by_foreign` (`created_by`),
+  ADD KEY `challans_quality_id_foreign` (`quality_id`);
 
 --
 -- Indexes for table `challan_items`
@@ -1140,6 +1222,16 @@ ALTER TABLE `fabric_stocks`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `invoices`
+--
+ALTER TABLE `invoices`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `invoices_challan_id_unique` (`challan_id`),
+  ADD KEY `invoices_party_id_foreign` (`party_id`),
+  ADD KEY `invoices_quality_id_foreign` (`quality_id`),
+  ADD KEY `invoices_created_by_foreign` (`created_by`);
 
 --
 -- Indexes for table `jobs`
@@ -1217,6 +1309,13 @@ ALTER TABLE `production_stocks`
   ADD KEY `production_stocks_user_id_foreign` (`user_id`),
   ADD KEY `production_stocks_machine_id_foreign` (`machine_id`),
   ADD KEY `production_stocks_worker_id_foreign` (`worker_id`);
+
+--
+-- Indexes for table `qualities`
+--
+ALTER TABLE `qualities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `qualities_user_id_quality_name_unique` (`user_id`,`quality_name`);
 
 --
 -- Indexes for table `roles`
@@ -1345,7 +1444,7 @@ ALTER TABLE `challans`
 -- AUTO_INCREMENT for table `challan_items`
 --
 ALTER TABLE `challan_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
 
 --
 -- AUTO_INCREMENT for table `fabric_stocks`
@@ -1358,6 +1457,12 @@ ALTER TABLE `fabric_stocks`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `invoices`
+--
+ALTER TABLE `invoices`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `jobs`
@@ -1375,7 +1480,7 @@ ALTER TABLE `machines`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `parties`
@@ -1393,12 +1498,18 @@ ALTER TABLE `payslips`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `production_stocks`
 --
 ALTER TABLE `production_stocks`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `qualities`
+--
+ALTER TABLE `qualities`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -1429,7 +1540,7 @@ ALTER TABLE `staff_salaries`
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=940;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=952;
 
 --
 -- AUTO_INCREMENT for table `stock_dispatches`
@@ -1489,7 +1600,8 @@ ALTER TABLE `attendances`
 --
 ALTER TABLE `challans`
   ADD CONSTRAINT `challans_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `challans_party_id_foreign` FOREIGN KEY (`party_id`) REFERENCES `parties` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `challans_party_id_foreign` FOREIGN KEY (`party_id`) REFERENCES `parties` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `challans_quality_id_foreign` FOREIGN KEY (`quality_id`) REFERENCES `qualities` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints for table `challan_items`
@@ -1503,6 +1615,15 @@ ALTER TABLE `challan_items`
 ALTER TABLE `fabric_stocks`
   ADD CONSTRAINT `fabric_stocks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fabric_stocks_vendor_party_id_foreign` FOREIGN KEY (`vendor_party_id`) REFERENCES `parties` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `invoices`
+--
+ALTER TABLE `invoices`
+  ADD CONSTRAINT `invoices_challan_id_foreign` FOREIGN KEY (`challan_id`) REFERENCES `challans` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `invoices_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `invoices_party_id_foreign` FOREIGN KEY (`party_id`) REFERENCES `parties` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `invoices_quality_id_foreign` FOREIGN KEY (`quality_id`) REFERENCES `qualities` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `machines`
@@ -1543,6 +1664,12 @@ ALTER TABLE `production_stocks`
   ADD CONSTRAINT `production_stocks_machine_id_foreign` FOREIGN KEY (`machine_id`) REFERENCES `machines` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `production_stocks_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `production_stocks_worker_id_foreign` FOREIGN KEY (`worker_id`) REFERENCES `workers` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `qualities`
+--
+ALTER TABLE `qualities`
+  ADD CONSTRAINT `qualities_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `roles`

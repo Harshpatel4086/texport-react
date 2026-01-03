@@ -3,6 +3,7 @@
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\ChallanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\MachineController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\SubscriptionsController;
 use App\Http\Controllers\WorkerController;
 use App\Http\Controllers\WorkerMachineAssignmentController;
 use App\Http\Controllers\WorkerProductionController;
-use App\Http\Controllers\WorkerSalaryController;
+use App\Http\Controllers\QualityController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,9 @@ Route::get('/api/translations/{locale}', [LanguageController::class, 'getTransla
 
 // Public Challan View (no auth required)
 Route::get('/challan/{encryptedId}', [ChallanController::class, 'publicView'])->name('challans.public');
+
+// Public Invoice View (no auth required)
+Route::get('/invoice/{encryptedId}', [InvoiceController::class, 'publicView'])->name('invoices.public');
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
@@ -93,9 +97,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Party routes
     Route::resource('parties', PartyManagementController::class);
 
+    // Quality routes
+    Route::resource('qualities', QualityController::class);
+
     // Challan routes
     Route::resource('challans', ChallanController::class);
     Route::post('challans/check-stock', [ChallanController::class, 'checkStock'])->name('challans.check-stock');
+
+    // Invoice routes
+    Route::resource('invoices', InvoiceController::class);
 
 
 
@@ -140,7 +150,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('stock', [StockController::class, 'index'])->name('stock.index');
     Route::post('stock/refresh', [StockController::class, 'refreshStock'])->name('stock.refresh');
 
-
+    // AI Assistant Route
+    Route::post('/ai/chat', [App\Http\Controllers\AiController::class, 'chat'])->name('ai.chat');
 });
 
 require __DIR__.'/auth.php';

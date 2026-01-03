@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Challan;
 use App\Models\ChallanItem;
 use App\Models\Party;
+use App\Models\Quality;
 use App\Models\Setting;
 use App\Services\StockService;
 use Illuminate\Http\Request;
@@ -19,7 +20,7 @@ class ChallanController extends Controller
             return redirect()->route('dashboard')->with('error', 'Permission denied!');
         }
 
-        $query = Challan::with('party')
+        $query = Challan::with(['party', 'invoice'])
             ->where('created_by', createdBy());
 
         if ($request->filled('search')) {
@@ -84,10 +85,16 @@ class ChallanController extends Controller
             ->orderBy('party_name')
             ->get(['id', 'party_name', 'gst_number', 'address', 'business_name', 'business_location']);
 
+        $qualities = Quality::where('user_id', createdBy())
+            ->where('status', true)
+            ->orderBy('quality_name')
+            ->get(['id', 'quality_name']);
+
         $availableStock = StockService::getTotalAvailableStock();
 
         return Inertia::render('Challan/Create', [
             'parties' => $parties,
+            'qualities' => $qualities,
             'availableStock' => $availableStock
         ]);
     }
@@ -100,6 +107,7 @@ class ChallanController extends Controller
 
         $request->validate([
             'party_id' => 'required|exists:parties,id',
+            'quality_id' => 'required|exists:qualities,id',
             'date' => 'required|date',
             'items' => 'required|array|min:1',
             'items.*.sr_number' => 'required|integer|min:1',
@@ -121,6 +129,7 @@ class ChallanController extends Controller
             $challan = Challan::create([
                 'challan_number' => Challan::generateChallanNumber(),
                 'party_id' => $request->party_id,
+                'quality_id' => $request->quality_id,
                 'total_meter' => $request->total_meter,
                 'total_lots' => $request->total_lots,
                 'date' => $request->date,
@@ -150,7 +159,7 @@ class ChallanController extends Controller
             abort(403);
         }
 
-        $challan->load(['party', 'items']);
+        $challan->load(['party', 'quality', 'items', 'invoice']);
         $challan->formatted_challan_number = $challan->formatted_challan_number;
 
         return Inertia::render('Challan/Show', [
@@ -172,12 +181,18 @@ class ChallanController extends Controller
             ->orderBy('party_name')
             ->get(['id', 'party_name', 'gst_number', 'address', 'business_name', 'business_location']);
 
+        $qualities = Quality::where('user_id', createdBy())
+            ->where('status', true)
+            ->orderBy('quality_name')
+            ->get(['id', 'quality_name']);
+
         $challan->load('items');
         $availableStock = StockService::getTotalAvailableStock();
 
         return Inertia::render('Challan/Edit', [
             'challan' => $challan,
             'parties' => $parties,
+            'qualities' => $qualities,
             'availableStock' => $availableStock
         ]);
     }
@@ -194,6 +209,7 @@ class ChallanController extends Controller
 
         $request->validate([
             'party_id' => 'required|exists:parties,id',
+            'quality_id' => 'required|exists:qualities,id',
             'date' => 'required|date',
             'items' => 'required|array|min:1',
             'items.*.sr_number' => 'required|integer|min:1',
@@ -214,6 +230,7 @@ class ChallanController extends Controller
         try {
             $challan->update([
                 'party_id' => $request->party_id,
+                'quality_id' => $request->quality_id,
                 'total_meter' => $request->total_meter,
                 'total_lots' => $request->total_lots,
                 'date' => $request->date,
@@ -257,7 +274,7 @@ class ChallanController extends Controller
     {
         try {
             $challanId = \Illuminate\Support\Facades\Crypt::decryptString($encryptedId);
-            $challan = Challan::with(['party', 'items', 'creator'])->findOrFail($challanId);
+            $challan = Challan::with(['party', 'quality', 'items', 'creator'])->findOrFail($challanId);
             $challan->formatted_challan_number = $challan->formatted_challan_number;
 
             // Get business details from settings
@@ -266,6 +283,7 @@ class ChallanController extends Controller
                 'address' => Setting::getValue('business_address', $challan->created_by),
                 'phone' => Setting::getValue('business_phone', $challan->created_by),
                 'gst' => Setting::getValue('business_gst', $challan->created_by),
+                'link' => Config('app.url',"https://www.textile.texportapp.in/"),
             ];
 
             return Inertia::render('Challan/PublicView', [

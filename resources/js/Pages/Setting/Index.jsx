@@ -26,7 +26,23 @@ export default function SettingIndex(props) {
     const { t } = useLanguage();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('worker');
+    const settingsSections = [
+        {
+            id: 'business',
+            label: t('Business Details'),
+            icon: MdBusiness,
+            description: t('Configure business information for challans')
+        },
+        {
+            id: 'worker',
+            label: t('Worker Settings'),
+            icon: MdPerson,
+            description: t('Configure worker rates and production parameters')
+        },
+    ];
+    
+    // const [activeSection, setActiveSection] = useState('business');
+    const [activeSection, setActiveSection] = useState(settingsSections[0].id);
 
     const { data, setData, post, processing, errors } = useForm({
         rate: workerRate || '',
@@ -54,21 +70,6 @@ export default function SettingIndex(props) {
     const breadcrumbs = [
         { label: t('Dashboard'), href: route('dashboard') },
         { label: t('Settings') }
-    ];
-
-    const settingsSections = [
-        {
-            id: 'business',
-            label: t('Business Details'),
-            icon: MdBusiness,
-            description: t('Configure business information for challans')
-        },
-        {
-            id: 'worker',
-            label: t('Worker Settings'),
-            icon: MdPerson,
-            description: t('Configure worker rates and production parameters')
-        },
     ];
 
     return (

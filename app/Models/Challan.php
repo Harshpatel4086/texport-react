@@ -9,6 +9,7 @@ class Challan extends Model
     protected $fillable = [
         'challan_number',
         'party_id',
+        'quality_id',
         'total_meter',
         'total_lots',
         'date',
@@ -51,6 +52,11 @@ class Challan extends Model
         return $this->hasMany(ChallanItem::class);
     }
 
+    public function quality()
+    {
+        return $this->belongsTo(Quality::class);
+    }
+
     public function getFormattedChallanNumberAttribute()
     {
         return formatChallanNumber($this->challan_number);
@@ -59,6 +65,11 @@ class Challan extends Model
     public function getEncryptedIdAttribute()
     {
         return \Illuminate\Support\Facades\Crypt::encryptString($this->id);
+    }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
     }
 
     public static function generateChallanNumber()

@@ -21,14 +21,39 @@ export default function ChallanPublicView({ challan, businessDetails }) {
         groupTotals[item.group_number] += parseFloat(item.meter);
     });
 
+    const handlePrint = () => {
+        window.print();
+    };
+
     return (
         <>
             <Head title={`Challan ${challan.formatted_challan_number}`} />
 
-            <div className="min-h-screen bg-gray-100 py-8">
+            <style>{`
+                @media print {
+                    body { margin: 0; padding: 0; }
+                    .print-hidden { display: none !important; }
+                    .print-container { background: white !important; padding: 0 !important; margin: 0 !important; }
+                    .challan-table { border: 2px solid black !important; }
+                }
+            `}</style>
+
+            <div className="min-h-screen bg-gray-100 py-8 print-container">
                 <div className="max-w-4xl mx-auto px-4">
+                    {/* Print Button */}
+                    <div className="mb-4 print-hidden">
+                        <button
+                            onClick={handlePrint}
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center gap-2 sm:py-3 sm:px-6"
+                        >
+                            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                            </svg>
+                            <span className="text-sm sm:text-base">Print Challan</span>
+                        </button>
+                    </div>
                     {/* Main Challan Table */}
-                    <div className="bg-white border-2 border-black">
+                    <div className="bg-white border-2 border-black challan-table">
                         {/* Header */}
                         <div className="grid grid-cols-2 border-b-2 border-black">
                             <div className="p-3 text-center border-r-2 border-black">
@@ -37,7 +62,8 @@ export default function ChallanPublicView({ challan, businessDetails }) {
                                 </h1>
                                 <div className="text-xs mt-2 leading-tight">
                                     {businessDetails?.address ||
-                                        "Address not available"}
+                                    // if link so showing on clickable
+                                        <a href={businessDetails?.link}>{businessDetails?.link}</a>}
                                 </div>
                                 <div className="text-xs mt-2 grid grid-cols-2 gap-2">
                                     <div className="text-left">
@@ -72,9 +98,9 @@ export default function ChallanPublicView({ challan, businessDetails }) {
                                             ).toLocaleDateString("en-GB")}
                                         </strong>
                                     </div>
-                                    {/* <div>Quality :</div>
-                                    <div><strong>RENIYAL</strong></div>
-                                    <div>Broker :</div>
+                                    <div>Quality :</div>
+                                    <div><strong>{challan.quality?.quality_name || '-'}</strong></div>
+                                    {/* <div>Broker :</div>
                                     <div><strong>DIRECT</strong></div> */}
                                 </div>
                             </div>

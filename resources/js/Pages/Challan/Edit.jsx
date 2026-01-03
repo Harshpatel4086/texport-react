@@ -11,7 +11,7 @@ import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
 
 export default function ChallanEdit(props) {
-    const { auth = {}, challan = {}, parties = [], availableStock = 0 } = props;
+    const { auth = {}, challan = {}, parties = [], qualities = [], availableStock = 0 } = props;
 
     useToastFlash();
 
@@ -23,6 +23,7 @@ export default function ChallanEdit(props) {
 
     const { data, setData, put, processing, errors } = useForm({
         party_id: challan.party_id || '',
+        quality_id: challan.quality_id || '',
         date: challan.date ? new Date(challan.date).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
         items: [],
         total_meter: challan.total_meter || 0,
@@ -208,7 +209,7 @@ export default function ChallanEdit(props) {
                                     <MdInfo className="w-5 h-5 text-primary" />
                                     <h2 className="text-lg font-semibold text-text">Challan Details</h2>
                                 </div>
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                                     <div>
                                         <Select
                                             label="Select Party"
@@ -222,6 +223,23 @@ export default function ChallanEdit(props) {
                                             {parties.map((party) => (
                                                 <option key={party.id} value={party.id}>
                                                     {party.party_name}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </div>
+                                    <div>
+                                        <Select
+                                            label="Select Quality"
+                                            value={data.quality_id}
+                                            onChange={(e) => setData('quality_id', e.target.value)}
+                                            error={errors.quality_id}
+                                            required
+                                            className="text-sm sm:text-base"
+                                        >
+                                            <option value="">Choose a quality...</option>
+                                            {qualities.map((quality) => (
+                                                <option key={quality.id} value={quality.id}>
+                                                    {quality.quality_name}
                                                 </option>
                                             ))}
                                         </Select>

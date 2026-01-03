@@ -53,4 +53,14 @@ if (!function_exists('formatChallanNumber')) {
     }
 }
 
+if (!function_exists('formatInvoiceNumber')) {
+    function formatInvoiceNumber($id)
+    {
+        if($id === null){
+            return '--';
+        }
+        return '#INV-' . str_pad($id, 6, '0', STR_PAD_LEFT);
+    }
+}
+
 ?>

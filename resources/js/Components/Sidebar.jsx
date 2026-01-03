@@ -16,10 +16,12 @@ import {
     MdSchedule,
     MdPrecisionManufacturing,
     MdWork,
-    MdInventory
+    MdInventory,
+    MdReceipt
 } from 'react-icons/md';
 import { usePermissions } from '@/Utils/permissions';
 import { useLanguage } from '@/Contexts/LanguageContext';
+import { LogoFull, LogoIcon } from '@/Components/Logo';
 import LanguageSwitcher from '@/Components/LanguageSwitcher';
 
 export default function Sidebar({ isOpen, setIsOpen, user }) {
@@ -83,6 +85,18 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
               ]
             : []),
 
+        // Show Quality as direct menu item
+        ...(canManage("quality")
+            ? [
+                  {
+                      name: t('Quality'),
+                      icon: MdStar,
+                      href: "/qualities",
+                      routeName: "qualities.index",
+                  },
+              ]
+            : []),
+
         // Show Challan as direct menu item
         ...(canManage("challan")
             ? [
@@ -91,6 +105,18 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                       icon: MdLocalShipping,
                       href: "/challans",
                       routeName: "challans.index",
+                  },
+              ]
+            : []),
+
+        // Show Invoice as direct menu item
+        ...(canManage("invoice")
+            ? [
+                  {
+                      name: t('Invoice'),
+                      icon: MdReceipt,
+                      href: "/invoices",
+                      routeName: "invoices.index",
                   },
               ]
             : []),
@@ -179,23 +205,22 @@ export default function Sidebar({ isOpen, setIsOpen, user }) {
                 isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
             } flex flex-col shadow-lg`}>
                 {/* Logo */}
-                <div className="p-6 flex items-center justify-between">
-                    <Link href="/">
-                        <img
-                            src="/assets/logo/logo_dark.png"
-                            alt="TexPort"
-                            className="h-8"
-                        />
+                <div className={`p-6 flex items-center ${isOpen ? 'justify-between' : 'justify-center'} border-b border-white/10`}>
+                    <Link href="/dashboard" className="flex items-center gap-3">
+                        {isOpen ? (
+                             <LogoIcon className="h-8 w-8 text-primary relative z-50" />
+                        ) : (
+                             <LogoFull className="h-8 text-primary relative z-50" iconClassName="h-8 w-8 text-primary" />
+
+                        )}
                     </Link>
                     <button
-                        className="lg:hidden text-gray-400 hover:text-white"
+                        className="lg:hidden text-gray-400 hover:text-primary transition-colors"
                         onClick={() => setIsOpen(false)}
                     >
                         ✕
                     </button>
                 </div>
-
-                {/* Main Menu */}
                 <div className="flex-1 px-4 overflow-y-auto">
                     <div className="text-xs text-gray-400 mb-4 uppercase tracking-wider"></div>
                     <nav className="space-y-1">

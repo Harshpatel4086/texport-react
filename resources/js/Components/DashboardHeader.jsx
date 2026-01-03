@@ -2,6 +2,7 @@ import { Link } from '@inertiajs/react';
 import { MdMenu, MdChevronRight } from 'react-icons/md';
 import Dropdown from '@/Components/Dropdown';
 import LanguageSwitcher from '@/Components/LanguageSwitcher';
+import AiAssistant from '@/Components/AiAssistant';
 
 export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] }) {
     return (
@@ -133,6 +134,7 @@ export default function DashboardHeader({ user, onMenuClick, breadcrumbs = [] })
                     </div>
                 </div>
             </div>
+            <AiAssistant />
         </header>
     );
 }

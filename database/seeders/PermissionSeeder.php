@@ -37,12 +37,24 @@ class PermissionSeeder extends Seeder
             'view party',
             'delete party',
 
+            // Quality Management
+            'manage quality',
+            'create quality',
+            'edit quality',
+            'delete quality',
+
             // Challan Management
             'manage challan',
             'create challan',
             'edit challan',
             'view challan',
             'delete challan',
+
+            // Invoice Management
+            'manage invoice',
+            'create invoice',
+            'view invoice',
+            'delete invoice',
 
             // Attendance Management
             // 'manage attendance',

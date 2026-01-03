@@ -1,4 +1,4 @@
-import { MdVisibility, MdEdit, MdDelete, MdLink } from 'react-icons/md';
+import { MdVisibility, MdEdit, MdDelete, MdLink, MdReceipt } from 'react-icons/md';
 import IconButton from '@/Components/IconButton';
 import { usePermissions } from '@/Utils/permissions';
 import { router } from '@inertiajs/react';
@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 import ChallanDeleteModal from './ChallanDeleteModal';
 
 export default function ChallanActions({ item }) {
-    const { canView, canEdit, canDelete } = usePermissions();
+    const { canView, canEdit, canDelete, canCreate } = usePermissions();
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleView = () => {
@@ -20,6 +20,10 @@ export default function ChallanActions({ item }) {
 
     const handleDelete = () => {
         setShowDeleteModal(true);
+    };
+
+    const handleCreateInvoice = () => {
+        router.visit(route('invoices.create', { challan_id: item.id }));
     };
 
     const handleCopyLink = async () => {
@@ -50,7 +54,15 @@ export default function ChallanActions({ item }) {
                     tooltip="Copy Public Link"
                     variant="success"
                 />
-                {canEdit('challan') && (
+                {canCreate('invoice') && !item.invoice && (
+                    <IconButton
+                        icon={MdReceipt}
+                        onClick={handleCreateInvoice}
+                        tooltip="Create Invoice"
+                        variant="primary"
+                    />
+                )}
+                {canEdit('challan') && !item.invoice && (
                     <IconButton
                         icon={MdEdit}
                         onClick={handleEdit}
@@ -58,7 +70,7 @@ export default function ChallanActions({ item }) {
                         variant="warning"
                     />
                 )}
-                {canDelete('challan') && (
+                {canDelete('challan') && !item.invoice && (
                     <IconButton
                         icon={MdDelete}
                         onClick={handleDelete}

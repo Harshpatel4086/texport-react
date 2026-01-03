@@ -4,7 +4,7 @@ import Sidebar from '@/Components/Sidebar';
 import DashboardHeader from '@/Components/DashboardHeader';
 import Button from '@/Components/Button';
 import Card from '@/Components/Card';
-import { MdArrowBack, MdEdit, MdVisibility, MdInventory, MdInfo, MdCalendarToday, MdPerson } from 'react-icons/md';
+import { MdArrowBack, MdEdit, MdVisibility, MdInventory, MdInfo, MdCalendarToday, MdPerson, MdStar } from 'react-icons/md';
 import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
 import { usePermissions } from '@/Utils/permissions';
@@ -64,7 +64,7 @@ export default function ChallanShow(props) {
                                 </div>
                             </div>
                             <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 w-full sm:w-auto">
-                                {canEdit('challan') && (
+                                {canEdit('challan') && !challan.invoice && (
                                     <Button
                                         variant="outline"
                                         size="sm"
@@ -130,6 +130,28 @@ export default function ChallanShow(props) {
                                     </div> */}
                                 </div>
                             </Card>
+
+                            {/* Quality Details Card */}
+                            {challan.quality && (
+                                <Card className="p-4 sm:p-6">
+                                    <div className="flex items-center space-x-2 mb-4">
+                                        <MdStar className="w-5 h-5 text-yellow-500" />
+                                        <h2 className="text-lg font-semibold text-text">Quality Details</h2>
+                                    </div>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                        <div className="p-3 bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-lg border border-yellow-200">
+                                            <label className="text-xs font-medium text-gray-600 uppercase tracking-wider block mb-1">Quality Name</label>
+                                            <div className="text-sm font-semibold text-gray-900">{challan.quality.quality_name}</div>
+                                        </div>
+                                        {challan.quality.description && (
+                                            <div className="p-3 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg border border-gray-200">
+                                                <label className="text-xs font-medium text-gray-600 uppercase tracking-wider block mb-1">Description</label>
+                                                <div className="text-sm font-semibold text-gray-900">{challan.quality.description}</div>
+                                            </div>
+                                        )}
+                                    </div>
+                                </Card>
+                            )}
 
                             {/* Party Details Card */}
                             {challan.party && (

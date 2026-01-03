@@ -11,19 +11,21 @@ import Toast from '@/Components/Toast';
 import { useToastFlash } from '@/Hooks/useToastFlash';
 
 export default function ChallanCreate(props) {
-    const { auth = {}, parties = [], availableStock = 0 } = props;
+    const { auth = {}, parties = [], qualities = [], availableStock = 0 } = props;
 
     useToastFlash();
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [groups, setGroups] = useState([{ id: 1, items: Array.from({ length: 12 }, (_, i) => ({ sr: i + 1, meter: '' })) }]);
     const [selectedParty, setSelectedParty] = useState('');
+    const [selectedQuality, setSelectedQuality] = useState('');
     const [selectedPartyDetails, setSelectedPartyDetails] = useState(null);
     const [stockAlert, setStockAlert] = useState('');
     const [isStockValid, setIsStockValid] = useState(true);
 
     const { data, setData, post, processing, errors } = useForm({
         party_id: '',
+        quality_id: '',
         date: new Date().toISOString().split('T')[0],
         items: [],
         total_meter: 0,
@@ -36,6 +38,11 @@ export default function ChallanCreate(props) {
         const party = parties.find(p => p.id == selectedParty);
         setSelectedPartyDetails(party || null);
     }, [selectedParty]);
+
+    // Sync selectedQuality with form data
+    useEffect(() => {
+        setData('quality_id', selectedQuality);
+    }, [selectedQuality]);
 
     const calculateTotals = () => {
         let totalMeter = 0;
@@ -121,6 +128,10 @@ export default function ChallanCreate(props) {
             alert('Please select a party');
             return;
         }
+        if (!selectedQuality) {
+            alert('Please select a quality');
+            return;
+        }
 
         post(route('challans.store'));
     };
@@ -176,7 +187,7 @@ export default function ChallanCreate(props) {
                                     <MdInfo className="w-5 h-5 text-primary" />
                                     <h2 className="text-lg font-semibold text-text">Challan Details</h2>
                                 </div>
-                                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
                                     <div>
                                         <Select
                                             label="Select Party"
@@ -190,6 +201,23 @@ export default function ChallanCreate(props) {
                                             {parties.map((party) => (
                                                 <option key={party.id} value={party.id}>
                                                     {party.party_name}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                    </div>
+                                    <div>
+                                        <Select
+                                            label="Select Quality"
+                                            value={selectedQuality}
+                                            onChange={(e) => setSelectedQuality(e.target.value)}
+                                            error={errors.quality_id}
+                                            required
+                                            className="text-sm sm:text-base"
+                                        >
+                                            <option value="">Choose a quality...</option>
+                                            {qualities.map((quality) => (
+                                                <option key={quality.id} value={quality.id}>
+                                                    {quality.quality_name}
                                                 </option>
                                             ))}
                                         </Select>
@@ -280,7 +308,7 @@ export default function ChallanCreate(props) {
                             </div>
 
                             {/* SR-wise Entry Section */}
-                            {selectedParty && (
+                            {selectedParty && selectedQuality && (
                                 <div className="space-y-4 sm:space-y-6">
                                     {groups.map((group, groupIndex) => (
                                         <Card key={group.id} className="p-4 sm:p-6">

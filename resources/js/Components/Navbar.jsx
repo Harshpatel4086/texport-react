@@ -1,6 +1,7 @@
 import { Link } from '@inertiajs/react';
 import Container from './Container';
 import Button from './Button';
+import { LogoFull } from './Logo';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
@@ -20,11 +21,7 @@ export default function Navbar({ auth }) {
                             href={route("home")}
                             className="text-2xl font-bold text-primary hover:opacity-80 transition-opacity"
                         >
-                            <img
-                                src="assets/logo/logo_dark.png"
-                                alt="TexPort"
-                                className="h-8"
-                            />
+                        <LogoFull className="h-10" />
                         </Link>
                     </div>
 
@@ -55,9 +52,10 @@ export default function Navbar({ auth }) {
                             Contact
                         </Link>
 
+
                         {auth?.user ? (
                             <Link href={route("dashboard")}>
-                                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200">
+                                <Button className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg">
                                     Dashboard
                                 </Button>
                             </Link>
@@ -67,13 +65,13 @@ export default function Navbar({ auth }) {
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        className="border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 font-medium"
+                                        className="border-gray-300 text-gray-700 hover:border-primary-600 hover:text-primary-600 font-medium rounded-lg"
                                     >
                                         Sign In
                                     </Button>
                                 </Link>
                                 <Link href={route("register")}>
-                                    <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-6 py-2 text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200">
+                                    <Button className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2 text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 rounded-lg">
                                         Get Started Free
                                     </Button>
                                 </Link>
@@ -128,7 +126,7 @@ export default function Navbar({ auth }) {
                             <div className="pt-4 border-t border-gray-100">
                                 {auth?.user ? (
                                     <Link href={route("dashboard")}>
-                                        <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold">
+                                        <Button className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg">
                                             Dashboard
                                         </Button>
                                     </Link>
@@ -137,13 +135,13 @@ export default function Navbar({ auth }) {
                                         <Link href={route("login")}>
                                             <Button
                                                 variant="outline"
-                                                className="w-full border-gray-300 text-gray-700 hover:border-blue-600 hover:text-blue-600 font-medium"
+                                                className="w-full border-gray-300 text-gray-700 hover:border-primary-600 hover:text-primary-600 font-medium rounded-lg"
                                             >
                                                 Sign In
                                             </Button>
                                         </Link>
                                         <Link href={route("register")}>
-                                            <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold">
+                                            <Button className="w-full bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-lg">
                                                 Get Started Free
                                             </Button>
                                         </Link>

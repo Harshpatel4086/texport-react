@@ -65,6 +65,8 @@ self.addEventListener('fetch', event => {
             if (event.request.mode === 'navigate') {
               return caches.match(OFFLINE_URL);
             }
+            // Return a standard offline response for other assets to avoid TypeError
+            return new Response('Offline', { status: 503, statusText: 'Service Unavailable' });
           });
       })
   );
